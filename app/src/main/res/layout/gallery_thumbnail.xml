@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.acharya.habba2k18.Gallery.SquareLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/transparent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:padding="5dp"
+        android:id="@+id/thumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop" />
+</com.acharya.habba2k18.Gallery.SquareLayout>

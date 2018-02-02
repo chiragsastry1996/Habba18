@@ -1,0 +1,67 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_gradient">
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1.0"
+    android:layout_alignBottom="@id/view_pager"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/first"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="@android:color/transparent"
+        android:text="first"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/back3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="@android:color/transparent"
+        android:text="3 back"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/middle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="@android:color/transparent"
+        android:text="middle"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/jump3"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="@android:color/transparent"
+        android:text="3 front"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/last"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_weight="0.25"
+        android:background="@android:color/transparent"
+        android:text="last"
+        android:textColor="@color/white"/>
+
+
+</LinearLayout>
+
+</RelativeLayout>
