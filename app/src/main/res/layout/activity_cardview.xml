@@ -4,8 +4,9 @@
                                                  android:id="@+id/main_content"
                                                  android:layout_width="match_parent"
                                                  android:layout_height="match_parent"
-                                                 android:background="@android:color/white"
                                                  android:fitsSystemWindows="true">
+
+
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
@@ -69,10 +70,14 @@
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
 
+
+
         </android.support.design.widget.CollapsingToolbarLayout>
+
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+    <include layout="@layout/content_main">
+    </include>
 
 </android.support.design.widget.CoordinatorLayout>

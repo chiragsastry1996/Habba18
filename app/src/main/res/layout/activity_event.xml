@@ -1,12 +1,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/background_gradient">
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="center"
+        android:src="@drawable/background_image"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingBottom="30dp">
 
     </android.support.v4.view.ViewPager>
 <LinearLayout
@@ -22,7 +28,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:background="@android:color/transparent"
-        android:text="first"
+        android:text="@string/first"
         android:textColor="@color/white"/>
 
     <Button
@@ -31,7 +37,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:background="@android:color/transparent"
-        android:text="3 back"
+        android:text="@string/back3"
         android:textColor="@color/white"/>
 
     <Button
@@ -40,7 +46,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:background="@android:color/transparent"
-        android:text="middle"
+        android:text="@string/middle"
         android:textColor="@color/white"/>
 
     <Button
@@ -49,7 +55,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:background="@android:color/transparent"
-        android:text="3 front"
+        android:text="@string/jump3"
         android:textColor="@color/white"/>
 
     <Button
@@ -58,7 +64,7 @@
         android:layout_height="match_parent"
         android:layout_weight="0.25"
         android:background="@android:color/transparent"
-        android:text="last"
+        android:text="@string/last"
         android:textColor="@color/white"/>
 
 

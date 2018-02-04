@@ -34,7 +34,6 @@ public class Event extends AppCompatActivity {
         }
 
         mViewPager = (ViewPager) findViewById(R.id.view_pager);
-        mViewPager.setOffscreenPageLimit(2);
         carPagerAdapter = new CarPagerAdapter(getSupportFragmentManager());
 //        mViewPager.setPageMargin((int) (getResources().getDisplayMetrics().widthPixels * -0.28));
 //
@@ -50,7 +49,7 @@ public class Event extends AppCompatActivity {
 
         mViewPager.setPageTransformer(true, new CardStackTransformer());
 
-        mViewPager.setOffscreenPageLimit(5);
+        mViewPager.setOffscreenPageLimit(7);
 
         mViewPager.setAdapter(carPagerAdapter);
 
@@ -110,6 +109,7 @@ public class Event extends AppCompatActivity {
         {
             if(position>=0)
             {
+
                 page.setScaleX(1f - 0.02f * position);
 
                 page.setScaleY(1f);
@@ -118,7 +118,7 @@ public class Event extends AppCompatActivity {
 
                 page.setTranslationY(30 * position);
 
-                page.setAlpha(1.0f - Math.abs(position * 0.2f));
+                page.setAlpha(1.0f - Math.abs(position * 0.25f));
             }
 
         }

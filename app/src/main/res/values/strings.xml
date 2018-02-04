@@ -32,4 +32,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="last"><![CDATA[-->>]]></string>
+    <string name="jump3"><![CDATA[>]]></string>
+    <string name="middle">o</string>
+    <string name="back3"><![CDATA[<]]></string>
+    <string name="first"><![CDATA[<<--]]></string>
 </resources>

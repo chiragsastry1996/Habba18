@@ -55,8 +55,10 @@ public class CarFragment extends Fragment{
 
                 carname1.setText(name);
 
-        String numberOfEvents = String.valueOf(Test.subcatList.get(name).size() + " Events");
-                eventNumber.setText(numberOfEvents);
+        String numberOfEvents = String.valueOf(Test.subcatList.get(name).size());
+        if(Integer.parseInt(numberOfEvents)<10)
+                eventNumber.setText("0"+numberOfEvents);
+        else eventNumber.setText(numberOfEvents);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

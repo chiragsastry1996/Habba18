@@ -2,6 +2,7 @@ package com.acharya.habba2k18.Test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -28,10 +29,12 @@ public class Test extends AppCompatActivity {
     private static long time;
     ProgressBar progressBar;
     public String url = "http://acharyahabba.in/habba18/json.php";
-    public boolean connection = false, dbchange = true;
+    public boolean connection = false, dbchange = false;
     public static ArrayList<ArrayList<String>> eventList;
+    public static HashMap<String,String> dbChangeList;
     public static HashMap<String,HashMap<String,ArrayList<String>>> subcatList;
     public static ArrayList<ArrayList<String>> timeline;
+    public static String subcat_version="0",feeds_version="0",mainc_version="0";
     private String TAG = Test.class.getSimpleName();
 
 
@@ -46,18 +49,128 @@ public class Test extends AppCompatActivity {
         connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
 
         eventList = new ArrayList<>();
+        dbChangeList = new HashMap<>();
         subcatList = new HashMap<>();
         timeline = new ArrayList<>();
-        new GetEvents().execute();
         time = System.currentTimeMillis();
+
+        new GetVersion().execute();
 
         progressBar = (ProgressBar)findViewById(R.id.progressBar2);
     }
 
-    protected void onResume() {
-        super.onResume();
-    }
 
+    //Fetching the JSON Object
+    public class GetVersion extends AsyncTask<Void, Void, Void> {
+
+
+
+        @Override
+        public void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        //GET request done in background
+        @Override
+        protected Void doInBackground(Void... arg0) {
+
+            // Making a request to url and getting response
+
+            if(connection) {
+                try {
+                    HttpHandler sh = new HttpHandler();
+                    String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/dbchange.php");
+                    new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("EventVersion", jsonStr);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            String jsonString = null;
+
+            jsonString = new ReadWriteJsonFileUtils(getApplicationContext()).readJsonFileData("EventVersion");
+
+
+            Log.e(TAG, "Response from url: " + jsonString);
+
+            if (jsonString != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonString);
+
+
+                    JSONArray contacts = jsonObj.getJSONArray("result");
+                    for(int i = 0; i<contacts.length(); i++) {
+                        JSONObject c = contacts.getJSONObject(i);
+                        String tableName = c.getString("tableName");
+                        String version = c.getString("version");
+
+
+                        dbChangeList.put(tableName,version);
+                    }
+
+                } catch (final JSONException e) {
+                    Log.e(TAG, "Json parsing error: " + e.getMessage());
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),
+                                    "Json parsing error: " + e.getMessage(),
+                                    LENGTH_LONG)
+                                    .show();
+                        }
+                    });
+
+                }
+            } else {
+                Log.e(TAG, "Couldn't get json from server.");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getApplicationContext(),
+                                "No data available!\nPlease switch on your internet",
+                                LENGTH_LONG)
+                                .show();
+                    }
+                });
+
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            //On UI Thread, perform Front-End tasks
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+
+                    SharedPreferences prefs = getSharedPreferences("Version", MODE_PRIVATE);
+                        subcat_version = prefs.getString("subcat", "0");
+                        feeds_version = prefs.getString("feeds", "0");
+                        mainc_version = prefs.getString("mainc", "0");
+
+                    String current_subcat_version = dbChangeList.get("subcat");
+                    String current_mainc_version = dbChangeList.get("mainc");
+                    if((!mainc_version.equals(current_mainc_version)||(!subcat_version.equals(current_subcat_version)))){
+                        dbchange = true;
+                        Toast.makeText(getApplicationContext(),"DB changed",Toast.LENGTH_SHORT).show();
+                    }
+                    new GetEvents().execute();
+                    System.out.println("ssss "+ mainc_version+subcat_version+current_mainc_version+current_subcat_version);
+                    SharedPreferences.Editor editor = getSharedPreferences("Version", MODE_PRIVATE).edit();
+                    editor.putString("subcat", dbChangeList.get("subcat"));
+                    editor.putString("feeds", dbChangeList.get("feeds"));
+                    editor.putString("mainc", dbChangeList.get("mainc"));
+                    editor.apply();
+                }
+
+            });
+        }
+
+
+    }
 
     //Fetching the JSON Object
     public class GetEvents extends AsyncTask<Void, Void, Void> {
@@ -75,10 +188,18 @@ public class Test extends AppCompatActivity {
 
             // Making a request to url and getting response
 
+
             if(connection == true && dbchange == true) {
                 try {
                     HttpHandler sh = new HttpHandler();
                     String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/events.php");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),"Event fetched",Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("EventCache", jsonStr);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -180,6 +301,12 @@ public class Test extends AppCompatActivity {
                 try {
                     HttpHandler sh = new HttpHandler();
                     String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/json.php");
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),"Subcat fetched",Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("MainCache", jsonStr);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -281,6 +408,9 @@ public class Test extends AppCompatActivity {
                 @Override
                 public void run() {
                     progressBar.setVisibility(View.GONE);
+
+
+
                     Intent intent = new Intent(Test.this, MainActivity.class);
                     startActivity(intent);
                     finish();

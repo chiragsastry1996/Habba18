@@ -63,8 +63,9 @@ public class TimeLineActivity extends AppCompatActivity {
         timelineList = new ArrayList();
 
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -72,7 +73,7 @@ public class TimeLineActivity extends AppCompatActivity {
         calendarView = (MaterialCalendarView) findViewById(R.id.calendar);
 
 
-        setTitle(mOrientation == Orientation.HORIZONTAL ? getResources().getString(R.string.horizontal_timeline) : getResources().getString(R.string.vertical_timeline));
+     //   setTitle(mOrientation == Orientation.HORIZONTAL ? getResources().getString(R.string.horizontal_timeline) : getResources().getString(R.string.vertical_timeline));
 
         mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mRecyclerView.setLayoutManager(getLinearLayoutManager());
@@ -109,6 +110,8 @@ public class TimeLineActivity extends AppCompatActivity {
 
                 String searchDate = date.getYear() + "-" + mon + "-" + dat;
 
+                toolbar.setTitle(searchDate);
+
 
                 for (int i = 0; i < Test.timeline.size(); i++) {
                     if (searchDate.equals(Test.timeline.get(i).get(1))) {
@@ -138,7 +141,17 @@ public class TimeLineActivity extends AppCompatActivity {
 
         calendarView.setDateSelected(CalendarDay.today(), true);
 
-        String search = CalendarDay.today().getYear() + "-" + CalendarDay.today().getMonth() + "-" + CalendarDay.today().getDate();
+        int curDate = CalendarDay.today().getDay();
+        int months = CalendarDay.today().getMonth() + 1;
+        String mon = "", dat = "";
+        if (months < 10) mon = "0" + String.valueOf(months);
+        else mon = String.valueOf(months);
+        if (curDate < 10) dat = "0" + String.valueOf(curDate);
+        else dat = String.valueOf(curDate);
+
+        String search = CalendarDay.today().getYear() + "-" + mon + "-" + dat;
+
+        toolbar.setTitle(search);
         for (int i = 0; i < Test.timeline.size(); i++) {
             if (search.equals(Test.timeline.get(i).get(1))) {
                 ArrayList<String> indexList = new ArrayList<String>();
