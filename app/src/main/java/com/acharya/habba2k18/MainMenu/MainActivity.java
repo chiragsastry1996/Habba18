@@ -38,23 +38,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         getSupportActionBar().hide();
         overridePendingTransition(R.anim.slide_in_left_fast,R.anim.slide_out_right_fast);
-        setUpMenu();                                                //sets up the side menus
+        setUpMenu();
         if( savedInstanceState == null )
-            changeFragment(new HomeFragment());//changes the Fragment to home
-    }
+            changeFragment(new HomeFragment());
+        }
 
     private void setUpMenu() {
 
 
-        resideMenu = new ResideMenu(this);                             // attach to current activity;
-        resideMenu.setBackground(R.mipmap.bgimage);           //set the background
+        resideMenu = new ResideMenu(this);
+        resideMenu.setBackground(R.mipmap.bgimage);
         resideMenu.attachToActivity(this);
-        // resideMenu.setMenuListener(menuListener);                     //makes toast:not required
-        resideMenu.setScaleValue(0.6f);                                   //valid scale factor is between 0.0f and 1.0f. leftmenu'width is 150dip.
+        // resideMenu.setMenuListener(menuListener);
+        resideMenu.setScaleValue(0.6f);
 
         // create menu items;
         //sets the menu pictures
-        itemNotification = new ResideMenuItem(this, R.mipmap.ic_launcher, "Notifications");
+        itemNotification = new ResideMenuItem(this, R.mipmap.ic_launcher, "Notification");
         itemMaps = new ResideMenuItem(this,R.mipmap.ic_launcher, "Maps");
         itemEvents = new ResideMenuItem(this,R.mipmap.ic_launcher,"Events");
         itemTimeline = new ResideMenuItem(this,R.mipmap.ic_launcher,"Timeline");
