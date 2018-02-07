@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import java.util.HashMap;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class Test extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
     private static long time;
     ProgressBar progressBar;
     public String url = "http://acharyahabba.in/habba18/json.php";
@@ -47,6 +49,7 @@ public class Test extends AppCompatActivity {
 
         final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
         connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
+
 
         eventList = new ArrayList<>();
         dbChangeList = new HashMap<>();

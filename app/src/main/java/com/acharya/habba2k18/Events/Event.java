@@ -11,11 +11,13 @@ import com.acharya.habba2k18.Events.adapter.CarPagerAdapter;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Event extends AppCompatActivity {
 
     ViewPager mViewPager;
     CarPagerAdapter carPagerAdapter;
+    private FirebaseAnalytics mFirebaseAnalytics;
     public int currentposition;
     Button first,three_prev,middle,three_next,last;
 
@@ -25,10 +27,13 @@ public class Event extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         getSupportActionBar().hide();
+
 
         Intent mIntent = getIntent();
         Bundle bundle = mIntent.getExtras();
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
         if (bundle != null) {
             currentposition = bundle.getInt("currentposition");
         }

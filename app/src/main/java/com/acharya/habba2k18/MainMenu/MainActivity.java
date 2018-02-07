@@ -21,12 +21,14 @@ import android.widget.Toast;
 
 import com.acharya.habba2k18.Registration.Registration;
 import com.acharya.habba2k18.Timeline.TimeLineActivity;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
     private ResideMenu resideMenu;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private ResideMenuItem itemDeveloper,itemRegister,itemEvents,itemMaps,itemTimeline,itemNotification, itemAboutUs,itemGallery,itemFeed;
     private static long back_pressed;
 
@@ -34,7 +36,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
+        Bundle bundle = new Bundle();
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, "residemenu");
+        mFirebaseAnalytics.logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
 
         getSupportActionBar().hide();
         overridePendingTransition(R.anim.slide_in_left_fast,R.anim.slide_out_right_fast);

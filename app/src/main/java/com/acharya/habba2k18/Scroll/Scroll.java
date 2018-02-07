@@ -14,12 +14,14 @@ import android.widget.Toast;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
 import com.bumptech.glide.Glide;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Scroll extends AppCompatActivity {
     public String eventname,category;
     public int val;
     Button button;
     TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7;
+    private FirebaseAnalytics mFirebaseAnalytics;
     ImageView imageView;
     private static String name;
     private static String about;

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.ReadWriteJsonFileUtils;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,7 @@ import java.util.List;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class FeedActivity extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
     private List<Feed> feedList;
     private FeedAdapter feedAdapter;
     private RecyclerView recyclerView;
@@ -46,6 +48,7 @@ public class FeedActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setNestedScrollingEnabled(false);
+
 
         contactList = new ArrayList<>();
         contactList.clear();

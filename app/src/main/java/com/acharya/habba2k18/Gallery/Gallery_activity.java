@@ -16,6 +16,7 @@ import com.acharya.habba2k18.R;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +26,7 @@ import java.util.ArrayList;
 
 public class Gallery_activity extends AppCompatActivity {
 
+    private FirebaseAnalytics mFirebaseAnalytics;
     private String TAG = Gallery_activity.class.getSimpleName();
     private static final String endpoint = "http://acharyahabba.in/habba18/gallery.json";           // the url should atleast have 2 urls, medium and large. Eg: See this json https://api.androidhive.info/json/glide.json
     private ArrayList<Image> images;
@@ -37,6 +39,7 @@ public class Gallery_activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
+
 
         final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
         connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());

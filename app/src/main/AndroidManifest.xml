@@ -4,14 +4,13 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the 'MyLocation' functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-
     <application
         android:name=".Gallery.AppController"
         android:allowBackup="true"
@@ -112,6 +111,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Scroll.ScrollViewPager.ScrollViewPager">
+        </activity>
+        <activity android:name=".Analytics.analytics">
         </activity>
     </application>
 

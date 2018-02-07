@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,6 +30,7 @@ import static android.widget.Toast.LENGTH_LONG;
 
 
 public class Registration extends AppCompatActivity implements View.OnClickListener {
+
 
     private EditText editTextName;
     private EditText editTextUsername;

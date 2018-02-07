@@ -20,7 +20,6 @@ android {
 }
 allprojects {
     repositories {
-
         maven { url "https://jitpack.io" }
         google()
     }
@@ -35,8 +34,6 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.1.0'
     compile 'com.android.support:design:26.1.0'
     compile 'com.android.support:recyclerview-v7:26.1.0'
-    compile 'com.google.android.gms:play-services-auth:11.6.0'
-    compile files('libs/YouTubeAndroidPlayerApi.jar')
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.specyci:residemenu:1.6'
     compile 'com.github.bumptech.glide:glide:4.2.0'
@@ -46,14 +43,14 @@ dependencies {
     compile 'com.github.vipulasri:timelineview:1.0.5'
     compile 'com.jakewharton:butterknife:8.8.1'
     compile 'com.google.firebase:firebase-messaging:11.6.0'
+    compile 'com.google.firebase:firebase-core:11.6.0'
     compile 'com.firebase:firebase-jobdispatcher:0.8.5'
     compile 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'com.google.android.gms:play-services-maps:11.6.0'
     compile 'com.google.android.gms:play-services-location:11.6.0'
     compile 'com.google.maps.android:android-maps-utils:0.5'
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
-    compile 'com.github.kenglxn.QRGen:android:2.2.0'
-    compile 'com.google.android.gms:play-services-analytics:11.6.0'
+    compile files('libs/YouTubeAndroidPlayerApi.jar')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testCompile 'junit:junit:4.12'
 }

@@ -22,6 +22,7 @@ import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
 import com.bumptech.glide.Glide;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,6 +37,7 @@ import static android.widget.Toast.LENGTH_LONG;
 public class CardView extends AppCompatActivity {
 
     private AlbumsAdapter adapter;
+    private FirebaseAnalytics mFirebaseAnalytics;
     private List<Album> albumList;
     public static String name,key;
     public static ArrayList<String> value;

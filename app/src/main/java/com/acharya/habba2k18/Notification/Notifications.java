@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.Feed.FeedAdapter;
 import com.acharya.habba2k18.R;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 
@@ -30,6 +31,7 @@ import java.util.List;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class Notifications extends AppCompatActivity {
+    private FirebaseAnalytics mFirebaseAnalytics;
     private List<NotificationModel> NotificationList;
     private NotificationAdapter NotificationAdapter;
     private RecyclerView recyclerView;
