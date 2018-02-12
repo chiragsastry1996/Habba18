@@ -50,15 +50,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/backdrop_title"
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/backdrop_title" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/backdrop_subtitle"
-                        android:textColor="@android:color/white"
-                        android:textSize="@dimen/backdrop_subtitle" />
+                        android:textColor="@android:color/black"
+                        android:textSize="@dimen/backdrop_title"/>
 
                 </LinearLayout>
             </RelativeLayout>
@@ -77,7 +70,13 @@
 
     </android.support.design.widget.AppBarLayout>
 
-    <include layout="@layout/content_main">
+    <include
+        layout="@layout/content_main">
     </include>
+
+    <FrameLayout
+        android:id="@+id/frameContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -1,11 +1,20 @@
 package com.acharya.habba2k18.Scroll.ScrollViewPager;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
 
+import com.acharya.habba2k18.BlurBuilder;
 import com.acharya.habba2k18.CardView.CardView;
 import com.acharya.habba2k18.Events.Event;
 import com.acharya.habba2k18.Events.adapter.CarPagerAdapter;
@@ -16,7 +25,8 @@ import com.acharya.habba2k18.Test.Test;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class ScrollViewPager extends AppCompatActivity {
+public class ScrollViewPager extends Fragment {
+    private  View view;
     ViewPager mViewPager;
     public static String name;
     ScrollPageAdapter ScrollPagerAdapter;
@@ -24,17 +34,14 @@ public class ScrollViewPager extends AppCompatActivity {
     public int currentposition;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scroll_view_pager);
-        getSupportActionBar().hide();
+        view = inflater.inflate(R.layout.activity_scroll_view_pager, container, false);
 
-        Intent mIntent = getIntent();
-        Bundle bundle = mIntent.getExtras();
-        if (bundle != null) {
-            name = bundle.getString("category");
-            currentposition = bundle.getInt("position");
-        }
+        name = getArguments().getString("category");
+            currentposition = getArguments().getInt("position");
+
 
         scrollEvents = new ArrayList<>();
 
@@ -45,20 +52,48 @@ public class ScrollViewPager extends AppCompatActivity {
             System.out.println("zzzz : " + key + " " + value);
         }
 
-        mViewPager = (ViewPager) findViewById(R.id.view_pager);
+        mViewPager = (ViewPager) view.findViewById(R.id.view_pager);
         mViewPager.setOffscreenPageLimit(2);
-        ScrollPagerAdapter = new ScrollPageAdapter(getSupportFragmentManager());
+        //mViewPager.setPageMargin((int) (getResources().getDisplayMetrics().widthPixels * -0.2));
+
+        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override public void transformPage(View page, float position) {
+                page.setScaleX(0.9f - Math.abs(position * 0.3f));
+                page.setScaleY(0.9f - Math.abs(position * 0.1f));
+                page.setAlpha(1.0f - Math.abs(position * 0.5f));
+            }
+        });
+        mViewPager.setAdapter(ScrollPagerAdapter);
+        mViewPager.setCurrentItem(currentposition,true);
+        ScrollPagerAdapter = new ScrollPageAdapter(getFragmentManager());
 
 
         mViewPager.setAdapter(ScrollPagerAdapter);
         mViewPager.setCurrentItem(currentposition);
 
+        return view;
+
     }
 
     @Override
-    public void onBackPressed() {
-        Intent i8 = new Intent(ScrollViewPager.this, CardView.class);
-        startActivity(i8);
-        finish();
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
+
+
+
+        final Activity activity = getActivity();
+        final View content = activity.findViewById(android.R.id.content).getRootView();
+        if (content.getWidth() > 0) {
+            Bitmap image = BlurBuilder.blur(content);
+            view.setBackground(new BitmapDrawable(activity.getResources(), image));
+        } else {
+            content.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+                @Override
+                public void onGlobalLayout() {
+                    Bitmap image = BlurBuilder.blur(content);
+                    view.setBackground(new BitmapDrawable(activity.getResources(), image));
+                }
+            });
+        }
     }
+
 }

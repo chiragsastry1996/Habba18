@@ -27,7 +27,6 @@ import java.util.HashMap;
 import static android.widget.Toast.LENGTH_LONG;
 
 public class Test extends AppCompatActivity {
-    private FirebaseAnalytics mFirebaseAnalytics;
     private static long time;
     ProgressBar progressBar;
     public String url = "http://acharyahabba.in/habba18/json.php";

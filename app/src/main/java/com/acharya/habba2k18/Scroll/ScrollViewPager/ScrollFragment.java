@@ -1,8 +1,11 @@
 package com.acharya.habba2k18.Scroll.ScrollViewPager;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,8 +22,6 @@ import com.bumptech.glide.Glide;
 public class ScrollFragment extends Fragment{
     int position;
     View view;
-    public String eventname = "Solo",category = "Dance";
-    public int val;
     Button button;
     TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7;
     ImageView imageView;

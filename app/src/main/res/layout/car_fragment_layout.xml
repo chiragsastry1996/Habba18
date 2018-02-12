@@ -46,7 +46,7 @@
                 android:paddingLeft="15dp"
                 android:text="jgvghvgvcg"
                 android:textAlignment="viewStart"
-                android:textColor="#414d73"
+                android:textColor="#ffffff"
                 android:textSize="50sp"
                 android:textStyle="bold"/>
 
@@ -57,13 +57,12 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_below="@+id/relativeLayout"
-                android:layout_marginTop="61dp"
                 android:fontFamily="sans-serif-light"
-                android:scaleX="0.5"
-                android:scaleY="0.5"
+                android:scaleX="0.4"
+                android:scaleY="0.4"
                 android:src="@drawable/dance"
                 android:textAlignment="center"
-                android:textColor="#414d73"
+                android:textColor="#ffffff"
                 android:textSize="150dp"
                 android:textStyle="bold"/>
 

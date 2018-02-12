@@ -1,6 +1,10 @@
 package com.acharya.habba2k18.Events.fragments;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -17,6 +21,8 @@ import com.acharya.habba2k18.CardView.CardView;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 
 
 public class CarFragment extends Fragment{
@@ -66,6 +72,7 @@ public class CarFragment extends Fragment{
 
                 Intent intent1 = new Intent(getActivity(), CardView.class);
                 intent1.putExtra("main_category",Test.eventList.get(position).get(1));
+                intent1.putExtra("image_url",Test.eventList.get(position).get(2));
                 startActivity(intent1);
 
 

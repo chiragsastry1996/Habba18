@@ -6,6 +6,12 @@
                 android:layout_height="wrap_content"
                 tools:context=".Feed.FeedActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background_image"
+        android:scaleType="center"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/names_list_view"
         android:layout_width="match_parent"

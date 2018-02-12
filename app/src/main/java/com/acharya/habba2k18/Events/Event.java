@@ -1,6 +1,8 @@
 package com.acharya.habba2k18.Events;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +13,12 @@ import com.acharya.habba2k18.Events.adapter.CarPagerAdapter;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.firebase.analytics.FirebaseAnalytics;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 public class Event extends AppCompatActivity {
 
@@ -19,8 +26,7 @@ public class Event extends AppCompatActivity {
     CarPagerAdapter carPagerAdapter;
     private FirebaseAnalytics mFirebaseAnalytics;
     public int currentposition;
-    Button first,three_prev,middle,three_next,last;
-
+    Button first, three_prev, middle, three_next, last;
 
 
     @Override
@@ -58,13 +64,40 @@ public class Event extends AppCompatActivity {
 
         mViewPager.setAdapter(carPagerAdapter);
 
-        mViewPager.setCurrentItem(currentposition,true);
+        mViewPager.setCurrentItem(currentposition, true);
 
-        first = (Button)findViewById(R.id.first);
-        three_prev = (Button)findViewById(R.id.back3);
-        middle = (Button)findViewById(R.id.middle);
-        three_next = (Button)findViewById(R.id.jump3);
-        last = (Button)findViewById(R.id.last);
+        first = (Button) findViewById(R.id.first);
+        three_prev = (Button) findViewById(R.id.back3);
+        middle = (Button) findViewById(R.id.middle);
+        three_next = (Button) findViewById(R.id.jump3);
+        last = (Button) findViewById(R.id.last);
+
+//        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+//            @Override
+//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+//                // carPagerAdapter.getCount() - 1 because, of using Constant.mutedColor[position] + 1
+//                if (position < carPagerAdapter.getCount() - 1) {
+//                            Glide.with(getBaseContext()).load(Test.eventList.get(position).get(2)).apply(bitmapTransform(new BlurTransformation(40))).into(new SimpleTarget<Drawable>() {
+//                                @Override
+//                                public void onResourceReady(Drawable resource, Transition<? super Drawable> transition) {
+//                                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+//                                        mViewPager.setBackground(resource);
+//                     }
+//                    }
+//                 });
+//                }
+//            }
+//
+//            @Override
+//            public void onPageSelected(int position) {
+//            }
+//
+//            @Override
+//            public void onPageScrollStateChanged(int state) {
+//
+//            }
+//        });
+
 
         first.setOnClickListener(new View.OnClickListener() {
             @Override

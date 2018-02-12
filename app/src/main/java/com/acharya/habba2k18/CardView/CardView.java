@@ -3,7 +3,6 @@ package com.acharya.habba2k18.CardView;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -11,42 +10,33 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.acharya.habba2k18.Events.Event;
-import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
 import com.bumptech.glide.Glide;
-import com.google.firebase.analytics.FirebaseAnalytics;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import static android.widget.Toast.LENGTH_LONG;
-
 public class CardView extends AppCompatActivity {
 
     private AlbumsAdapter adapter;
-    private FirebaseAnalytics mFirebaseAnalytics;
+    public static AppBarLayout appBarLayout;
     private List<Album> albumList;
-    public static String name,key;
+    public static String name,key,image_url;
     public static ArrayList<String> value;
+    private TextView heading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cardview);
-
 
         initCollapsingToolbar();
 
@@ -54,24 +44,40 @@ public class CardView extends AppCompatActivity {
         Bundle bundle = mIntent.getExtras();
         if (bundle != null) {
             name = bundle.getString("main_category");
+            image_url = bundle.getString("image_url");
             System.out.println("main_category" + name);
         }
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        heading = (TextView)findViewById(R.id.love_music);
+
+        heading.setText(name);
 
         albumList = new ArrayList<>();
         adapter = new AlbumsAdapter(this, albumList);
 
-        RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(10), true));
+       // RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 2);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        layoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int mod = position % 3;
+            if(mod == 0)
+                    return 2;
+                else
+                    return 1;
+            }
+        });
+
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, dpToPx(0), true));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(adapter);
 
         prepareAlbums();
 
         try {
-            Glide.with(this).load(R.drawable.cover).into((ImageView) findViewById(R.id.backdrop));
+            Glide.with(this).load(image_url).into((ImageView) findViewById(R.id.backdrop));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -85,7 +91,7 @@ public class CardView extends AppCompatActivity {
         final CollapsingToolbarLayout collapsingToolbar =
                 (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
         collapsingToolbar.setTitle(" ");
-        AppBarLayout appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
+        appBarLayout = (AppBarLayout) findViewById(R.id.appbar);
         appBarLayout.setExpanded(true);
 
         // hiding & showing the title when toolbar expanded & collapsed
@@ -109,9 +115,7 @@ public class CardView extends AppCompatActivity {
         });
     }
 
-    /**
-     * Adding few albums for testing
-     */
+
     private void prepareAlbums() {
 
         Album a;
@@ -128,9 +132,7 @@ public class CardView extends AppCompatActivity {
 
         }
 
-    /**
-     * RecyclerView item decoration - give equal margin around grid item
-     */
+
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
         private int spanCount;
@@ -176,12 +178,15 @@ public class CardView extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        super.onBackPressed();
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
-        Intent intent1 = new Intent(CardView.this, Event.class);
-        intent1.putExtra("currentposition", Integer.parseInt(value.get(5))-1);
-        startActivity(intent1);
-        finish();
+        if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
+            Intent intent1 = new Intent(CardView.this, Event.class);
+            intent1.putExtra("currentposition", Integer.parseInt(value.get(5))-1);
+            startActivity(intent1);
+            finish();
+        } else {
+            getSupportFragmentManager().popBackStack();
+        }
 
     }
 

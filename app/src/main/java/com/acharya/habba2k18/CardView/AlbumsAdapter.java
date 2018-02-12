@@ -2,6 +2,9 @@ package com.acharya.habba2k18.CardView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,6 +21,8 @@ import com.acharya.habba2k18.Scroll.ScrollViewPager.ScrollViewPager;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import static com.acharya.habba2k18.CardView.CardView.appBarLayout;
 
 
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHolder> {
@@ -63,14 +68,22 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             @Override
             public void onClick(View view) {
 
+                appBarLayout.setExpanded(true);
+                Bundle args = new Bundle();
+                args.putInt("position", position);
+                args.putString("category", CardView.name);
+                Fragment detail = new ScrollViewPager();
+                detail.setArguments(args);
+                ((AppCompatActivity) mContext).getSupportFragmentManager()
+                        .beginTransaction()
+                        .add(R.id.frameContainer, detail).addToBackStack(null).commit();
 
 
-
-                        Intent i = new Intent(view.getContext(),ScrollViewPager.class);
-                        i.putExtra("position",position);
-                        i.putExtra("category",CardView.name);
-                        Toast.makeText(view.getContext(),album.getName(),Toast.LENGTH_SHORT).show();
-                        view.getContext().startActivity(i);
+//                        Intent i = new Intent(view.getContext(),ScrollViewPager.class);
+//                        i.putExtra("position",position);
+//                        i.putExtra("category",CardView.name);
+//                        Toast.makeText(view.getContext(),album.getName(),Toast.LENGTH_SHORT).show();
+//                        view.getContext().startActivity(i);
             }
 
         });
