@@ -3,9 +3,12 @@ package com.acharya.habba2k18.Scroll;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -36,6 +39,12 @@ public class Scroll extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroll);
         overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
         button = (Button)findViewById(R.id.button3);
 
         button.setOnClickListener(new View.OnClickListener() {

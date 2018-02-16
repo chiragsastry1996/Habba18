@@ -1,5 +1,31 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
-                                   android:id="@+id/view_pager"
-                                   android:layout_width="match_parent"
-                                   android:layout_height="wrap_content"
-                                   android:background="@android:color/transparent"/>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        app:layout_collapseMode="parallax"
+        android:adjustViewBounds="true"
+        android:layout_height="wrap_content"
+        android:transitionName="image"/>
+
+
+</RelativeLayout>
+
+<android.support.v4.view.ViewPager
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/view_pager"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"/>
+
+</RelativeLayout>
+
+

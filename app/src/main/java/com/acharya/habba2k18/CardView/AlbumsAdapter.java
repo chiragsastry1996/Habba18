@@ -22,7 +22,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import static com.acharya.habba2k18.CardView.CardView.appBarLayout;
+
 
 
 public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHolder> {
@@ -68,7 +68,7 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
             @Override
             public void onClick(View view) {
 
-                appBarLayout.setExpanded(true);
+
                 Bundle args = new Bundle();
                 args.putInt("position", position);
                 args.putString("category", CardView.name);

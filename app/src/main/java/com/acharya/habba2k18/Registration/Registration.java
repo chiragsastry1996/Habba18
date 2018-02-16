@@ -1,23 +1,34 @@
 package com.acharya.habba2k18.Registration;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.acharya.habba2k18.BlurBuilder;
 import com.acharya.habba2k18.Events.HttpHandler;
+import com.acharya.habba2k18.Gallery.Image;
 import com.acharya.habba2k18.R;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -25,6 +36,8 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -36,6 +49,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     private EditText editTextUsername;
     private EditText editTextPhone;
     private EditText editTextEmail;
+    private RelativeLayout relative_layout;
     Spinner s1, s2;
     TextView textView, amountTextview;
     private static String url = null;
@@ -51,10 +65,18 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
+
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
         url = "http://acharyahabba.in/habba18/events.php";
         spinnerlist = new ArrayList<>();
         new GetContacts().execute();
 
+        relative_layout = (RelativeLayout)findViewById(R.id.relative_layout);
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextUsername = (EditText) findViewById(R.id.editTextUserName);
         editTextPhone = (EditText) findViewById(R.id.editPhone);

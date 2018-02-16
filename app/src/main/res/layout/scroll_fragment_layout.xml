@@ -1,302 +1,318 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                xmlns:card_view="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/activity_final_sreen"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:context=".Scroll.Scroll"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@android:color/transparent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true">
 
-    <android.support.design.widget.CoordinatorLayout
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/cards"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="190dp"
+        android:elevation="24dp"
+        app:cardBackgroundColor="#8b8b8b8b"
+        app:cardElevation="24dp">
 
 
-        <android.support.design.widget.AppBarLayout
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#78000000">
+            android:orientation="vertical">
 
-            <android.support.design.widget.CollapsingToolbarLayout
+            <com.github.mmin18.widget.RealtimeBlurView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:contentScrim="@android:color/transparent"
-                app:expandedTitleGravity="top"
-                app:layout_scrollFlags="scroll|enterAlways">
+                app:realtimeBlurRadius="100dp"
+                app:realtimeOverlayColor="@android:color/transparent"/>
 
 
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="match_parent"
-                        card_view:layout_collapseMode="parallax"
-                        android:adjustViewBounds="true"
-                        android:layout_height="wrap_content"
-                        android:transitionName="image"/>
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar_scroll"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:title="Events">
-                <TextView
-                android:text="Working"
-                android:layout_width="match_parent"
-                android:id="@+id/name"
-                android:layout_gravity="bottom"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textSize="40sp"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:paddingBottom="6dp"
-                android:transitionName="text"/>
-
-            </android.support.v7.widget.Toolbar>
-
-        </android.support.design.widget.AppBarLayout>
-
-
-        <android.support.v4.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="15dp"
-            android:fillViewport="true"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-
-            <ScrollView
+            <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true">
+                android:src="#3cb0b0b0"/>
 
-                <LinearLayout
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="1dp">
+
+
+                <TextView
+                    android:text="Working"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:id="@+id/name"
+                    android:layout_gravity="bottom"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:gravity="center"
+                    android:textSize="35sp"
+                    android:background="#00000000"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:paddingBottom="6dp"
+                    android:transitionName="text"/>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:background="#00000000"
+                android:orientation="vertical">
+
+
+
+                <TextView
+                    android:id="@+id/textView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:text="Description"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:background="#00000000"
+                android:orientation="vertical">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/textView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:text="Rules and Regulation"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/rules"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"/>
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:background="#00000000"
+                android:orientation="vertical">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:background="#70000000"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView5"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="20dp"
-                            android:text="Description"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp"/>
-
-                        <TextView
-                            android:id="@+id/about"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="20dp"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp"/>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:background="#70000000"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView6"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="20dp"
-                            android:text="Rules and Regulation"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp"/>
-
-                        <TextView
-                            android:id="@+id/rules"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="20dp"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp"/>
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:background="#70000000"
-                        android:orientation="vertical">
-
-                        <RelativeLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:id="@+id/textView7"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginRight="10dp"
-                                android:paddingLeft="5dp"
-                                android:paddingTop="20dp"
-                                android:text="Contact Number"
-                                android:textColor="@android:color/white"
-                                android:textSize="20sp"/>
-
-                            <ImageView
-                                android:id="@+id/callerbut"
-                                android:layout_width="25dp"
-
-                                android:layout_height="25dp"
-                                android:layout_alignParentBottom="true"
-                                android:layout_toEndOf="@id/textView7"
-                                android:layout_toRightOf="@id/textView7"
-                                card_view:srcCompat="@mipmap/ic_launcher"/>
-                        </RelativeLayout>
-
-                        <TextView
-                            android:id="@+id/ename"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="20dp"
-                            android:textColor="@android:color/white"
-                            android:textSize="15sp"/>
-
-
-                        <TextView
-                            android:id="@+id/number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-
-
-                            android:layout_gravity="bottom|left"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="12dp"
-
-                            android:layout_marginRight="12dp"
-                            android:textColor="@android:color/white"
-                            />
-
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:background="#70000000"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textView8"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="5dp"
-                            android:paddingTop="20dp"
-                            android:text="Amount"
-                            android:textColor="@android:color/white"
-                            android:textSize="20sp"/>
-
-                        <TextView
-                            android:id="@+id/textView9"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="10dp"
-                            android:text="Registration Amount:"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            />
-
-                        <TextView
-                            android:id="@+id/amount"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@android:color/white"
-                            android:textSize="17sp"/>
-
-                        <TextView
-                            android:id="@+id/textView10"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="10dp"
-                            android:text="Price Money:"
-                            android:textColor="@android:color/white"
-                            android:textSize="16sp"
-                            />
-
-                        <TextView
-                            android:id="@+id/pmoney"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-
-                            android:layout_gravity="bottom|center"
-                            android:layout_marginBottom="6dp"
-                            android:layout_marginLeft="12dp"
-                            android:layout_marginRight="12dp"
-                            android:paddingTop="10dp"
-                            android:textColor="@android:color/white"
-                            android:textSize="17sp"/>
-
-                    </LinearLayout>
-
-                    <Button
-                        android:id="@+id/button3"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="1dp"
-                        android:layout_marginLeft="10dp"
                         android:layout_marginRight="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="#FFFFFF"
-                        android:text="Register"
-                        android:textColor="@android:color/black"/>
-                </LinearLayout>
+                        android:paddingLeft="5dp"
+                        android:paddingTop="20dp"
+                        android:text="Contact Number"
+                        android:textColor="@android:color/white"
+                        android:textSize="20sp"/>
 
-            </ScrollView>
+                    <ImageView
+                        android:id="@+id/callerbut"
+                        android:layout_width="25dp"
+
+                        android:layout_height="25dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_toEndOf="@id/textView7"
+                        android:layout_toRightOf="@id/textView7"
+                        android:src="@mipmap/ic_launcher"/>
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/ename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="20dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp"/>
 
 
-        </android.support.v4.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+
+
+                    android:layout_gravity="bottom|left"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="12dp"
+
+                    android:layout_marginRight="12dp"
+                    android:textColor="@android:color/white"
+                    />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="1dp"
+                android:background="#00000000"
+                android:orientation="vertical">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <TextView
+                    android:id="@+id/textView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="20dp"
+                    android:text="Amount"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/textView9"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="10dp"
+                    android:text="Registration Amount:"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/amount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp"/>
+
+                <TextView
+                    android:id="@+id/textView10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="10dp"
+                    android:text="Price Money:"
+                    android:textColor="@android:color/white"
+                    android:textSize="16sp"
+                    />
+
+                <TextView
+                    android:id="@+id/pmoney"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_gravity="bottom|center"
+                    android:layout_marginBottom="6dp"
+                    android:layout_marginLeft="12dp"
+                    android:layout_marginRight="12dp"
+                    android:paddingTop="10dp"
+                    android:textColor="@android:color/white"
+                    android:textSize="17sp"/>
+
+                <Button
+                    android:id="@+id/button_register"
+                    android:layout_width="160dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_gravity="center"
+                    android:text="REGISTER"
+                    android:textColor="#70bdba"
+                    android:background="@drawable/shape_button"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+        </RelativeLayout>
 
 
 
-    </android.support.design.widget.CoordinatorLayout>
+    </android.support.v7.widget.CardView>
+
 </RelativeLayout>
-

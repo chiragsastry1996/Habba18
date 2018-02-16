@@ -70,6 +70,7 @@
                     android:id="@+id/event_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/feed_item_profile_name"
                     android:textStyle="bold"/>
 
@@ -79,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:autoLink="web"
 
-                   />
+                    android:textColor="@color/white"/>
 
             </LinearLayout>
 
@@ -93,6 +94,6 @@
         android:layout_height="1dp"
         android:layout_gravity="bottom"
         android:layout_marginTop="5dp"
-        android:background="#8e6d6d6d"/>
+        android:background="@color/white"/>
 
 </LinearLayout>

@@ -6,310 +6,321 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 tools:context=".Scroll.Scroll"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@mipmap/bgimage">
+                xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ScrollView
+    <ImageView
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentLeft="true">
+        android:scaleType="fitXY"
+        android:layout_height="250dp"
+        />
 
-        <LinearLayout
+    <android.support.v7.widget.CardView
+        android:id="@+id/cards"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginTop="190dp"
+        android:elevation="24dp"
+        app:cardBackgroundColor="#8b8b8b8b"
+        app:cardElevation="24dp">
+
+
+
+        <RelativeLayout
+            android:id="@+id/relative_layout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical">
-            <android.support.v7.widget.CardView
+
+            <com.github.mmin18.widget.RealtimeBlurView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="3dp"
-                card_view:cardCornerRadius="@dimen/card_album_radius">
-                <ImageView
-                    android:id="@+id/imageView"
-                    android:layout_width="match_parent"
-                    android:adjustViewBounds="true"
-                    android:layout_height="wrap_content"
-                    android:transitionName="image"/>
+                app:realtimeBlurRadius="100dp"
+                app:realtimeOverlayColor="@android:color/transparent"/>
 
-                <TextView
-                    android:text="Working"
-                    android:layout_width="match_parent"
-                    android:id="@+id/name"
-                    android:layout_gravity="bottom"
-                    android:layout_height="wrap_content"
-                    android:textAlignment="center"
-                    android:gravity="center"
-                    android:textSize="40sp"
-                    android:background="#78000000"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:paddingBottom="6dp"
-                    android:transitionName="text"/>
-            </android.support.v7.widget.CardView>
 
-            <android.support.v7.widget.CardView
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:elevation="3dp"
-                app:cardBackgroundColor="#70000000"
-                card_view:cardCornerRadius="@dimen/card_album_radius"
-                >
+                android:layout_height="match_parent"
+                android:src="#3cb0b0b0"/>
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fillViewport="true"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#70000000">
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                    <TextView
-                        android:text="Description"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView5"
-                        android:paddingTop="20dp"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/white"
-                        android:paddingLeft="5dp" />
+                        android:orientation="vertical"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="1dp">
 
-                    <TextView
-                        android:id="@+id/about"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="20dp"
-                        android:textSize="15sp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="bottom|center"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="6dp" />
 
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:elevation="3dp"
-                app:cardBackgroundColor="#70000000"
-                card_view:cardCornerRadius="@dimen/card_album_radius">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#70000000">
-
-                    <TextView
-                        android:text="Rules and Regulation"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView6"
-                        android:paddingTop="20dp"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/white"
-                        android:paddingLeft="5dp" />
-
-                    <TextView
-                        android:id="@+id/rules"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:paddingTop="20dp"
-                        android:textSize="15sp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="bottom|center"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="6dp" />
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:elevation="3dp"
-                app:cardBackgroundColor="#70000000"
-                card_view:cardCornerRadius="@dimen/card_album_radius"
-                android:onClick="caller">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#70000000">
-                    <RelativeLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
                         <TextView
-                            android:text="Contact Number"
-                            android:layout_marginRight="10dp"
+                            android:text="Working"
+                            android:layout_width="match_parent"
+                            android:id="@+id/name"
+                            android:layout_gravity="bottom"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:gravity="center"
+                            android:textSize="35sp"
+                            android:background="#00000000"
+                            android:textAllCaps="false"
+                            android:textColor="@android:color/white"
+                            android:paddingBottom="6dp"
+                            android:transitionName="text"/>
+
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="#00000000"
+                        android:orientation="vertical">
+
+
+
+                        <TextView
+                            android:id="@+id/textView5"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="20dp"
+                            android:text="Description"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:id="@+id/about"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="20dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="#00000000"
+                        android:orientation="vertical">
+
+                        <com.github.mmin18.widget.RealtimeBlurView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:realtimeBlurRadius="100dp"
+                            app:realtimeOverlayColor="@android:color/transparent"/>
+
+                        <TextView
+                            android:id="@+id/textView6"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="20dp"
+                            android:text="Rules and Regulation"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"/>
+
+                        <TextView
+                            android:id="@+id/rules"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="20dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="#00000000"
+                        android:orientation="vertical">
+
+                        <com.github.mmin18.widget.RealtimeBlurView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:realtimeBlurRadius="100dp"
+                            app:realtimeOverlayColor="@android:color/transparent"/>
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/textView7"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="10dp"
+                                android:paddingLeft="5dp"
+                                android:paddingTop="20dp"
+                                android:text="Contact Number"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp"/>
+
+                            <ImageView
+                                android:id="@+id/callerbut"
+                                android:layout_width="25dp"
+
+                                android:layout_height="25dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_toEndOf="@id/textView7"
+                                android:layout_toRightOf="@id/textView7"
+                                android:src="@mipmap/ic_launcher"/>
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/ename"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="20dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+
+                        <TextView
+                            android:id="@+id/number"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:id="@+id/textView7"
-                            android:paddingTop="20dp"
-                            android:textSize="20sp"
+
+
+                            android:layout_gravity="bottom|left"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+
+                            android:layout_marginRight="12dp"
                             android:textColor="@android:color/white"
-                            android:paddingLeft="5dp" />
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            />
 
-                            card_view:srcCompat="@mipmap/ic_launcher"
-                            android:id="@+id/callerbut"
-                            android:layout_toEndOf="@id/textView7"
-                            android:layout_alignParentBottom="true"
-                            android:layout_toRightOf="@id/textView7"/>
-                    </RelativeLayout>
-                    <TextView
-                        android:id="@+id/ename"
+
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:paddingTop="20dp"
-                        android:textSize="15sp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="bottom|center"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="6dp" />
+                        android:layout_marginBottom="1dp"
+                        android:background="#00000000"
+                        android:orientation="vertical">
 
+                        <com.github.mmin18.widget.RealtimeBlurView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:realtimeBlurRadius="100dp"
+                            app:realtimeOverlayColor="@android:color/transparent"/>
 
+                        <TextView
+                            android:id="@+id/textView8"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingLeft="5dp"
+                            android:paddingTop="20dp"
+                            android:text="Amount"
+                            android:textColor="@android:color/white"
+                            android:textSize="20sp"/>
 
-                    <TextView
-                        android:id="@+id/number"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        <TextView
+                            android:id="@+id/textView9"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="10dp"
+                            android:text="Registration Amount:"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            />
 
+                        <TextView
+                            android:id="@+id/amount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="bottom|left"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="17sp"/>
 
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="6dp"
-                        />
+                        <TextView
+                            android:id="@+id/textView10"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="10dp"
+                            android:text="Price Money:"
+                            android:textColor="@android:color/white"
+                            android:textSize="16sp"
+                            />
 
+                        <TextView
+                            android:id="@+id/pmoney"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
 
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="10dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="17sp"/>
+
+                        <Button
+                            android:id="@+id/button3"
+                            android:layout_width="160dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="15dp"
+                            android:layout_gravity="center"
+                            android:text="REGISTER"
+                            android:textColor="#70bdba"
+                            android:background="@drawable/shape_button"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
 
-            </android.support.v7.widget.CardView>
+            </ScrollView>
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-                android:paddingTop="5dp"
-                android:elevation="3dp"
-                app:cardBackgroundColor="#70000000"
-                card_view:cardCornerRadius="@dimen/card_album_radius">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="#70000000">
 
-                    <TextView
-                        android:text="Amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView8"
-                        android:paddingTop="20dp"
-                        android:textSize="20sp"
-                        android:textColor="@android:color/white"
-                        android:paddingLeft="5dp" />
-                    <TextView
-                        android:text="Registration Amount:"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView9"
-                        android:paddingTop="10dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:textSize="16sp"
-                        android:textColor="@android:color/white"
-                        />
+        </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/amount"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
 
-                        android:paddingTop="10dp"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="bottom|center"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="6dp" />
-                    <TextView
-                        android:text="Price Money:"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/textView10"
-                        android:paddingTop="10dp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:textSize="16sp"
-                        android:textColor="@android:color/white"
-                        />
 
-                    <TextView
-                        android:id="@+id/pmoney"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-
-                        android:paddingTop="10dp"
-                        android:textSize="17sp"
-                        android:layout_marginLeft="12dp"
-                        android:layout_marginRight="12dp"
-                        android:layout_gravity="bottom|center"
-                        android:textColor="@android:color/white"
-                        android:layout_marginBottom="6dp" />
-
-                </LinearLayout>
-            </android.support.v7.widget.CardView>
-
-            <Button
-                android:text="Register"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/button3"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:textColor="@android:color/black"
-                android:background="#FFFFFF"/>
-        </LinearLayout>
-
-    </ScrollView>
+    </android.support.v7.widget.CardView>
 </RelativeLayout>
 

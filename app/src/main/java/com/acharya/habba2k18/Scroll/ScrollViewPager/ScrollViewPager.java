@@ -1,9 +1,11 @@
 package com.acharya.habba2k18.Scroll.ScrollViewPager;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.Build;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.acharya.habba2k18.BlurBuilder;
 import com.acharya.habba2k18.CardView.CardView;
@@ -21,6 +26,9 @@ import com.acharya.habba2k18.Events.adapter.CarPagerAdapter;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,6 +37,7 @@ public class ScrollViewPager extends Fragment {
     private  View view;
     ViewPager mViewPager;
     public static String name;
+    ImageView imageView;
     ScrollPageAdapter ScrollPagerAdapter;
     public static ArrayList<ArrayList<String>> scrollEvents;
     public int currentposition;
@@ -39,9 +48,10 @@ public class ScrollViewPager extends Fragment {
         super.onCreate(savedInstanceState);
         view = inflater.inflate(R.layout.activity_scroll_view_pager, container, false);
 
-        name = getArguments().getString("category");
-            currentposition = getArguments().getInt("position");
+        imageView = (ImageView)view.findViewById(R.id.imageView);
 
+        name = getArguments().getString("category");
+        currentposition = getArguments().getInt("position");
 
         scrollEvents = new ArrayList<>();
 
@@ -58,11 +68,31 @@ public class ScrollViewPager extends Fragment {
 
         mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override public void transformPage(View page, float position) {
-                page.setScaleX(0.9f - Math.abs(position * 0.3f));
-                page.setScaleY(0.9f - Math.abs(position * 0.1f));
-                page.setAlpha(1.0f - Math.abs(position * 0.5f));
+                page.setScaleX(1f - Math.abs(position * 0.3f));
+                page.setScaleY(1f - Math.abs(position * 0.1f));
+               // page.setAlpha(1.0f - Math.abs(position * 0.5f));
             }
         });
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Glide.with(getContext())
+                        .load(scrollEvents.get(position).get(2))
+                        .apply(new RequestOptions().placeholder(R.drawable.dynamic_placeholder))
+                        .into(imageView);
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         mViewPager.setAdapter(ScrollPagerAdapter);
         mViewPager.setCurrentItem(currentposition,true);
         ScrollPagerAdapter = new ScrollPageAdapter(getFragmentManager());

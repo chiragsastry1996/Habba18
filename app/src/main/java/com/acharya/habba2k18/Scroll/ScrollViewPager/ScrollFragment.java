@@ -1,6 +1,7 @@
 package com.acharya.habba2k18.Scroll.ScrollViewPager;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.acharya.habba2k18.R;
+import com.acharya.habba2k18.Scroll.EventRegistration;
 import com.acharya.habba2k18.Test.Test;
 import com.bumptech.glide.Glide;
 
@@ -36,7 +38,7 @@ public class ScrollFragment extends Fragment{
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.scroll_fragment_layout, container, false);
 
         tv1=(TextView)view.findViewById(R.id.name);
@@ -46,9 +48,9 @@ public class ScrollFragment extends Fragment{
         tv5=(TextView)view.findViewById(R.id.number);
         tv6=(TextView)view.findViewById(R.id.ename);
         tv7=(TextView)view.findViewById(R.id.pmoney);
-        imageView = (ImageView)view.findViewById(R.id.imageView);
+      //  imageView = (ImageView)view.findViewById(R.id.imageView);
 
-        button = view.findViewById(R.id.button3);
+        button = view.findViewById(R.id.button_register);
         setUpFragmentData();
         return view;
     }
@@ -70,7 +72,17 @@ public class ScrollFragment extends Fragment{
         tv5.setText(number);
         tv6.setText(ename);
         tv7.setText(prizemoney);
-        Glide.with(getContext()).load(image).into(imageView);
+       // Glide.with(getContext()).load(image).into(imageView);
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), EventRegistration.class);
+                intent.putExtra("event",name);
+                intent.putExtra("amount",amount);
+                startActivity(intent);
+            }
+        });
     }
 
     public Fragment setFragmentPosition(int position) {

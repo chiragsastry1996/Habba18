@@ -7,75 +7,64 @@
               android:layout_height="match_parent"
               tools:context=".Timeline.TimeLineActivity">
 
-<android.support.design.widget.CoordinatorLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#15163e">
+        android:background="@color/colorPrimaryDark"
+        android:orientation="vertical">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/calendar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentScrim="@android:color/transparent"
-            app:expandedTitleGravity="top"
-            app:layout_scrollFlags="scroll|enterAlways"
-            >
+            android:layout_marginTop="20dp"
+            app:mcv_arrowColor="@android:color/white"
+            app:layout_collapseMode="parallax"
+            app:mcv_selectionColor="@color/colorAccent"
+            app:mcv_dateTextAppearance="@style/TextAppearance.MyCustomDay"
+            app:mcv_headerTextAppearance="@style/TextAppearance.MyCustomDay"
+            app:mcv_weekDayTextAppearance="@style/TextAppearance.MyCustomDay"
+            app:mcv_showOtherDates="defaults"
+            app:mcv_tileHeight="35dp"/>
 
-            <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:id="@+id/calendar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                app:layout_collapseMode="parallax"
-                app:mcv_selectionColor="@color/colorAccent"
-                app:mcv_dateTextAppearance="@style/TextAppearance.MyCustomDay"
-                app:mcv_showOtherDates="defaults"
-                app:mcv_tileHeight="35dp"/>
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:layout_gravity="bottom"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@android:color/white"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_gravity="bottom"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/cardview_dark_background"/>
-
-
-        </android.support.design.widget.CollapsingToolbarLayout>
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_collapseMode="pin"
+            app:titleTextColor="@android:color/white"
+            android:textAlignment="center"
             app:title="Events"/>
 
-    </android.support.design.widget.AppBarLayout>
+    </LinearLayout>
 
 
-    <android.support.v4.widget.NestedScrollView
+
+
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="15dp"
         android:fillViewport="true"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
         <include layout="@layout/content_timeline" />
 
 
-    </android.support.v4.widget.NestedScrollView>
-
-
-
-</android.support.design.widget.CoordinatorLayout>
+    </ScrollView>
 
 </LinearLayout>

@@ -3,6 +3,7 @@ package com.acharya.habba2k18.Timeline;
 import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 
@@ -58,6 +61,11 @@ public class TimeLineActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window w = getWindow(); // in Activity's onCreate() for instance
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        }
 
         timestampsList = new ArrayList<>();
         timelineList = new ArrayList();
@@ -215,7 +223,7 @@ public class TimeLineActivity extends AppCompatActivity {
             calendarDays.add(CalendarDay.from(timestampsList.get(j).getYear() - 100 + 2000, timestampsList.get(j).getMonth(), timestampsList.get(j).getDate()));
 
         }
-        calendarView.addDecorator(new EventDecorator(Color.RED, calendarDays));
+        calendarView.addDecorator(new EventDecorator(Color.parseColor("#c8ad00"), calendarDays));
 
     }
 
