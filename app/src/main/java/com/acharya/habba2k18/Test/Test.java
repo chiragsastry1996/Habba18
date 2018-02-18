@@ -12,20 +12,23 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import pl.droidsonroids.gif.AnimationListener;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -33,12 +36,13 @@ public class Test extends AppCompatActivity {
     private static long time;
     ProgressBar progressBar;
     public String url = "http://acharyahabba.in/habba18/json.php";
-    public boolean connection = false, dbchange = false;
+    public boolean connection = false, dbchange = false,glide_complete=false, data_complete = false;
     public static ArrayList<ArrayList<String>> eventList;
     public static HashMap<String,String> dbChangeList;
     public static HashMap<String,HashMap<String,ArrayList<String>>> subcatList;
     public static ArrayList<ArrayList<String>> timeline;
     public static String subcat_version="0",feeds_version="0",mainc_version="0";
+    private ImageView imageView;
     private String TAG = Test.class.getSimpleName();
 
 
@@ -54,9 +58,11 @@ public class Test extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.GONE);
+
         final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
         connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
-
 
         eventList = new ArrayList<>();
         dbChangeList = new HashMap<>();
@@ -64,9 +70,36 @@ public class Test extends AppCompatActivity {
         timeline = new ArrayList<>();
         time = System.currentTimeMillis();
 
+
         new GetVersion().execute();
 
-        progressBar = (ProgressBar)findViewById(R.id.progressBar2);
+        imageView = (ImageView)findViewById(R.id.splash_gif);
+
+        try {
+            final pl.droidsonroids.gif.GifDrawable gifFromResource = new pl.droidsonroids.gif.GifDrawable( getResources(), R.drawable.image_gif);
+            imageView.setImageDrawable(gifFromResource);
+            gifFromResource.addAnimationListener(new AnimationListener() {
+                @Override
+                public void onAnimationCompleted(int loopNumber) {
+                    if(loopNumber<3) {
+                        glide_complete = true;
+                        gifFromResource.stop();
+                        progressBar.setVisibility(View.VISIBLE);
+                        if(glide_complete && data_complete) {
+                            Intent intent = new Intent(Test.this, MainActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    }
+
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
 
 
@@ -418,12 +451,14 @@ public class Test extends AppCompatActivity {
                 @Override
                 public void run() {
                     progressBar.setVisibility(View.GONE);
+                    data_complete = true;
+                    if(glide_complete && data_complete) {
+                        Intent intent = new Intent(Test.this, MainActivity.class);
+                        startActivity(intent);
+                        finish();
 
+                    }
 
-
-                    Intent intent = new Intent(Test.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
 
                 }
             });

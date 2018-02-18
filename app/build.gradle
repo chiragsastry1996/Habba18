@@ -54,6 +54,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-location:11.6.0'
     compile 'com.google.maps.android:android-maps-utils:0.5'
     compile 'com.prolificinteractive:material-calendarview:1.4.3'
+    compile 'com.synnapps:carouselview:0.1.4'
+    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.10'
     compile files('libs/YouTubeAndroidPlayerApi.jar')
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     testCompile 'junit:junit:4.12'

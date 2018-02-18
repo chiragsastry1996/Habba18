@@ -103,14 +103,13 @@
         </service>
         <!-- [END firebase_iid_service] -->
 
-        <activity android:name=".Test.Test">
+        <activity android:name=".Test.Test"
+                  android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
-        </activity>
-        <activity android:name=".Scroll.ScrollViewPager.ScrollViewPager">
         </activity>
     </application>
 

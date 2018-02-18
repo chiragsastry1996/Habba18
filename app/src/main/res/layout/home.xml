@@ -3,28 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-                android:background="@mipmap/bgimage">
+    android:layout_height="fill_parent">
+
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:fillColor="#FFFFFFFF"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="3000"
+        app:strokeColor="#FF777777"
+        app:strokeWidth="1dp"/>
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:srcCompat="@mipmap/ic_launcher"
         android:id="@+id/imageView11"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:textColor="@android:color/white"
-        android:textSize="17sp"
-        android:id="@+id/btn_open_menu"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
-        android:layout_alignBottom="@+id/imageView11"
         android:layout_centerHorizontal="true"
-        android:background="@android:color/transparent" />
+        android:scaleX="0.9"
+        android:scaleY="0.9"/>
 
 
 </RelativeLayout>
