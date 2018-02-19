@@ -73,7 +73,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="15dp"
+                            android:layout_marginBottom="20dp"
                             android:text="Registration"
                             android:textAlignment="center"
                             android:textColor="@android:color/white"
@@ -91,7 +91,8 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/white"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textSize="20sp"/>
 
 
                         <TextView
@@ -107,7 +108,8 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/white"
 
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textSize="20sp"/>
 
 
                         <TextView
@@ -125,7 +127,8 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/white"
                             android:inputType="phone"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textSize="20sp"/>
 
 
                         <TextView
@@ -141,7 +144,8 @@
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/white"
                             android:inputType="textEmailAddress"
-                            android:textColor="@color/white"/>
+                            android:textColor="@color/white"
+                            android:textSize="20sp"/>
 
 
                         <TextView
@@ -155,6 +159,7 @@
                             android:id="@+id/spinner"
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
+                            android:popupBackground="#8b8b8b"
                             android:backgroundTint="@color/white"/>
                         <!--android:entries="@array/spinnerRoot" />-->
 
@@ -169,6 +174,7 @@
                             android:id="@+id/spinner2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:popupBackground="#8b8b8b"
                             android:backgroundTint="@color/white"/>
 
                         <TextView

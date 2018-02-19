@@ -34,18 +34,11 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
                 android:textAlignment="center"
-
                 android:textColor="@android:color/white"
                 android:textSize="20sp"/>
-
-            <TextView
-                android:id="@+id/titlealpha"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:textColor="@color/album_title"
-                android:textSize="0sp"/>
 
         </LinearLayout>
 

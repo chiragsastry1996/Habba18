@@ -78,11 +78,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="20dp"
                 android:text="Registration"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:textSize="25sp"/>
+
+
 
             <TextView
                 android:layout_width="wrap_content"
@@ -95,7 +97,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -109,7 +112,8 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -126,7 +130,8 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/white"
                 android:inputType="phone"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:textSize="20sp"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -139,9 +144,10 @@
                 android:id="@+id/editTextEmail"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/white"/>
+                android:textSize="20sp"/>
 
 
             <TextView

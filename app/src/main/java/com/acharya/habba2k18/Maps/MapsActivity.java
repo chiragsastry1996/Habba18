@@ -12,8 +12,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.acharya.habba2k18.Events.HttpHandler;
@@ -33,7 +31,6 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.maps.android.ui.IconGenerator;
 
 import org.json.JSONArray;
@@ -49,7 +46,7 @@ import static com.acharya.habba2k18.R.id.map;
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
-    private FirebaseAnalytics mFirebaseAnalytics;
+
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
     LocationRequest mLocationRequest;
@@ -70,11 +67,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
         iconFactory = new IconGenerator(getApplicationContext());
         //Array spinnerlist to Store all the details of the contact
         contactList = new ArrayList<>();
@@ -84,7 +76,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //URL to return all the location in the database
         url = "http://acharyahabba.in/habba18/location.php";
 
-        getSupportActionBar().setTitle("Map Location Activity");
+        getSupportActionBar().hide();
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFrag.getMapAsync(this);
@@ -108,6 +100,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Custom styling of google map (Dark theme)
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json);
         googleMap.setMapStyle(style);
+
+        //move map camera
+        LatLng latLng1 = new LatLng(13.0845, 77.4851);
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+
         //Check permission and set my marker
         mymarker();
     }
@@ -165,12 +163,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onLocationChanged(final Location location) {
         //When the current location of the user is changed, it has to be Updated
         mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-
-        //Hide Action Bar
-        getSupportActionBar().hide();
 
         //Setting Marker to my current Location
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -178,8 +170,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.position(latLng);
         markerOptions.title("Current Position");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
-        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
-        mCurrLocationMarker.setTitle("me");
 
 
         //Get latitude and Longitude of the current location of User
@@ -193,12 +183,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public boolean onMarkerClick(Marker marker) {
                 //If the clicked marker is not my current location
-             if (!(marker.getTitle().equals("me"))) {
+                if (!(marker.getTitle().equals("me"))) {
 
-                 Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                         Uri.parse("http://maps.google.com/maps?saddr="+location.getLatitude()+","+location.getLongitude()+"&daddr="+marker.getPosition().latitude+","+marker.getPosition().longitude));
-                intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
-                startActivity(intent);
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                            Uri.parse("http://maps.google.com/maps?saddr="+location.getLatitude()+","+location.getLongitude()+"&daddr="+marker.getPosition().latitude+","+marker.getPosition().longitude));
+                    intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
+                    startActivity(intent);
 
                 }
                 //If clicked on own location, display "this is your location"

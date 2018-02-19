@@ -44,6 +44,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         imageView1 = (ImageView)parentView.findViewById(R.id.imageView11);
         try {
             final pl.droidsonroids.gif.GifDrawable gifFromResource = new pl.droidsonroids.gif.GifDrawable( getResources(), R.drawable.image_gif);
@@ -51,6 +52,13 @@ public class HomeFragment extends Fragment {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        imageView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // do nothing
+            }
+        });
 
     }
 

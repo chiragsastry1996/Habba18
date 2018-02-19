@@ -252,7 +252,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
 
-                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(Registration.this,android.R.layout.simple_spinner_dropdown_item, spinnerlist);
+                    ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(Registration.this,R.layout.spinner_item, spinnerlist);
                     s1.setAdapter(spinnerAdapter);
 
                    s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -364,7 +364,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 public void run() {
 
                     ArrayAdapter<String> subspinnerAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                            android.R.layout.simple_spinner_dropdown_item , subspinnerlist);
+                            R.layout.spinner_item , subspinnerlist);
                     s2.setAdapter(subspinnerAdapter);
                     amountTextview.setText(amount);
 

@@ -14,7 +14,8 @@
         app:radius="6dp"
         app:slideInterval="3000"
         app:strokeColor="#FF777777"
-        app:strokeWidth="1dp"/>
+        app:strokeWidth="1dp"
+        android:clickable="false"/>
 
     <ImageView
         android:id="@+id/imageView11"

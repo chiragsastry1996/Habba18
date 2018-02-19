@@ -31,13 +31,12 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     private List<Album> albumList;
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView title, titlealpha;
+        public TextView title;
         public ImageView thumbnail, overflow;
 
         public MyViewHolder(View view) {
             super(view);
             title = view.findViewById(R.id.title);
-            titlealpha = view.findViewById(R.id.titlealpha);
             thumbnail = view.findViewById(R.id.thumbnail);
         }
     }
@@ -60,7 +59,6 @@ public class AlbumsAdapter extends RecyclerView.Adapter<AlbumsAdapter.MyViewHold
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         final Album album = albumList.get(position);
         holder.title.setText(album.getName());
-        holder.titlealpha.setText(album.getName());
         // loading album cover using Glide library
         Glide.with(mContext).load(album.getThumbnail()).into(holder.thumbnail);
 

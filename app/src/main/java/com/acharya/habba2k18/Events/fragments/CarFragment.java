@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -29,7 +30,7 @@ public class CarFragment extends Fragment{
 
     View view;
     ImageView carImage;
-    TextView carName,eventNumber, carname1;
+    TextView carName,eventNumber;
     RelativeLayout fragmentContainer;
     Button button;
     int position;
@@ -41,7 +42,6 @@ public class CarFragment extends Fragment{
 
         carImage = view.findViewById(R.id.car_image);
         carName = view.findViewById(R.id.car_name);
-        carname1 = view.findViewById(R.id.car_name1);
         eventNumber = view.findViewById(R.id.number_events);
         fragmentContainer = view.findViewById(R.id.container);
 
@@ -56,24 +56,31 @@ public class CarFragment extends Fragment{
                 .load(Test.eventList.get(position).get(2))
                 .into(carImage);
 
-        String name = Test.eventList.get(position).get(1);
+        final String name = Test.eventList.get(position).get(1);
                 carName.setText(name);
-
-                carname1.setText(name);
 
         String numberOfEvents = String.valueOf(Test.subcatList.get(name).size());
         if(Integer.parseInt(numberOfEvents)<10)
-                eventNumber.setText("0"+numberOfEvents);
-        else eventNumber.setText(numberOfEvents);
+                eventNumber.setText("0"+numberOfEvents + " Events");
+        else eventNumber.setText(numberOfEvents + " Events");
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                Intent intent1 = new Intent(getActivity(), CardView.class);
-                intent1.putExtra("main_category",Test.eventList.get(position).get(1));
-                intent1.putExtra("image_url",Test.eventList.get(position).get(2));
-                startActivity(intent1);
+                if(name.equals("Dance"))
+                {
+                    String url = "http://www.google.com";
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+                }
+                else {
+                    Intent intent1 = new Intent(getActivity(), CardView.class);
+                    intent1.putExtra("main_category", Test.eventList.get(position).get(1));
+                    intent1.putExtra("image_url", Test.eventList.get(position).get(2));
+                    startActivity(intent1);
+                }
 
 
             }
