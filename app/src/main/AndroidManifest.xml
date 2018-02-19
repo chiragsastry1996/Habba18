@@ -19,31 +19,33 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Base.Theme.AppCompat.Light">
-        <activity android:name=".MainMenu.MainActivity"
-                  android:screenOrientation="portrait"
-                  android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".MainMenu.MainActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
-        <activity android:name=".Events.Event"
-                  android:screenOrientation="portrait"
-                  android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".Events.Event"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CardView.CardView"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Scroll.Scroll"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Timeline.TimeLineActivity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -74,34 +76,35 @@
 
         <activity
             android:name=".Maps.MapsActivity"
-            android:screenOrientation="portrait"
             android:configChanges="orientation|screenSize"
-            android:label="@string/title_activity_maps">
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Registration.Registration"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize"/>
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Scroll.EventRegistration"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Feed.FeedActivity"
-                  android:screenOrientation="portrait"
-                  android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".Feed.FeedActivity"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Gallery.Gallery_activity"
-            android:theme="@style/AppTheme.NoActionBar"
+            android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
-            android:configChanges="orientation|screenSize">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".Notification.Notifications"
-                  android:screenOrientation="portrait"
-                  android:configChanges="orientation|screenSize">
+        <activity
+            android:name=".Notification.Notifications"
+            android:configChanges="orientation|screenSize"
+            android:screenOrientation="portrait">
         </activity>
 
         <service android:name=".Notification.MyFirebaseMessagingService">
@@ -125,13 +128,16 @@
         </service>
         <!-- [END firebase_iid_service] -->
 
-        <activity android:name=".Test.Test"
-                  android:theme="@style/Theme.AppCompat.Translucent">
+        <activity
+            android:name=".Test.Test"
+            android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".Error.Error">
         </activity>
     </application>
 

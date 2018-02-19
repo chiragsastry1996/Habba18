@@ -2,6 +2,7 @@ package com.acharya.habba2k18.Registration;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
@@ -27,7 +28,9 @@ import android.widget.Toast;
 
 import com.acharya.habba2k18.BlurBuilder;
 import com.acharya.habba2k18.Events.HttpHandler;
+import com.acharya.habba2k18.Feed.FeedActivity;
 import com.acharya.habba2k18.Gallery.Image;
+import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 
 import org.json.JSONArray;
@@ -373,6 +376,14 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             });
         }
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i8 = new Intent(Registration.this, MainActivity.class);
+        startActivity(i8);
+        finish();
 
     }
 

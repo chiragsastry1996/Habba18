@@ -2,6 +2,7 @@ package com.acharya.habba2k18.Notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,7 +18,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.acharya.habba2k18.Events.HttpHandler;
+import com.acharya.habba2k18.Feed.FeedActivity;
 import com.acharya.habba2k18.Feed.FeedAdapter;
+import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -187,6 +190,14 @@ public class Notifications extends AppCompatActivity {
 
             });
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent i8 = new Intent(Notifications.this, MainActivity.class);
+        startActivity(i8);
+        finish();
 
     }
 

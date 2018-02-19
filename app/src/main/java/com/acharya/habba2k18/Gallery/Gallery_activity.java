@@ -2,6 +2,7 @@ package com.acharya.habba2k18.Gallery;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.acharya.habba2k18.Feed.FeedActivity;
+import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -126,4 +129,13 @@ public class Gallery_activity extends AppCompatActivity {
         // Adding request to request queue
         AppController.getInstance().addToRequestQueue(req);
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent i8 = new Intent(Gallery_activity.this, MainActivity.class);
+        startActivity(i8);
+        finish();
+
+    }
+
 }

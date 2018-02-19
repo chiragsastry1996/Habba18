@@ -1,6 +1,14 @@
 package com.acharya.habba2k18.MainMenu;
 
+import android.Manifest;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.location.LocationManager;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -192,16 +200,40 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         else if (view ==itemMaps) {
 
-            resideMenu.closeMenu();
 
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent1 = new Intent(MainActivity.this, MapsActivity.class);
-                    startActivity(intent1);
-                }
-            }, 200);
+                resideMenu.closeMenu();
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        final LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+                        if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                            buildAlertMessageNoGps();
+
+                        }
+                        else if(manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+                            if (ContextCompat.checkSelfPermission(MainActivity.this,
+                                    Manifest.permission.ACCESS_FINE_LOCATION)
+                                    == PackageManager.PERMISSION_GRANTED) {
+                                Intent intent1 = new Intent(MainActivity.this, MapsActivity.class);
+                                startActivity(intent1);
+                            }
+                            else {
+                                ActivityCompat.requestPermissions(MainActivity.this,
+                                        new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                                        99);
+                            }
+                        }
+
+
+                    }
+                }, 200);
+
+
+
         }
 
         else if (view == itemDeveloper)
@@ -244,6 +276,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
     public ResideMenu getResideMenu(){
         return resideMenu;
+    }
+    private void buildAlertMessageNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+                .setCancelable(false)
+                //Onclick should go to Location settings to Switch ON GPS
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                //If chose not to switch on GPS, exit the app
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        finish();
+                        System.exit(0);
+                    }
+                });
+        final AlertDialog alert = builder.create();
+        alert.show();
     }
     @Override
     public void onBackPressed()

@@ -1,6 +1,7 @@
 package com.acharya.habba2k18.Feed;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
@@ -18,6 +19,8 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.acharya.habba2k18.Events.HttpHandler;
+import com.acharya.habba2k18.MainMenu.MainActivity;
+import com.acharya.habba2k18.Maps.MapsActivity;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.ReadWriteJsonFileUtils;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -181,6 +184,14 @@ public class FeedActivity extends AppCompatActivity {
             });
         }
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
+            Intent i8 = new Intent(FeedActivity.this, MainActivity.class);
+            startActivity(i8);
+            finish();
 
     }
 

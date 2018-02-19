@@ -14,9 +14,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.acharya.habba2k18.Error.Error;
 import com.acharya.habba2k18.Events.HttpHandler;
+import com.acharya.habba2k18.Feed.FeedActivity;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 
@@ -169,10 +172,9 @@ public class Test extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "No data available!\nPlease switch on your internet",
-                                LENGTH_LONG)
-                                .show();
+                        Intent intent = new Intent(Test.this, Error.class);
+                        startActivity(intent);
+                        finish();
                     }
                 });
 
@@ -190,9 +192,9 @@ public class Test extends AppCompatActivity {
                 public void run() {
 
                     SharedPreferences prefs = getSharedPreferences("Version", MODE_PRIVATE);
-                        subcat_version = prefs.getString("subcat", "0");
-                        feeds_version = prefs.getString("feeds", "0");
-                        mainc_version = prefs.getString("mainc", "0");
+                    subcat_version = prefs.getString("subcat", "0");
+                    feeds_version = prefs.getString("feeds", "0");
+                    mainc_version = prefs.getString("mainc", "0");
 
                     String current_subcat_version = dbChangeList.get("subcat");
                     String current_mainc_version = dbChangeList.get("mainc");
@@ -294,10 +296,11 @@ public class Test extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "No data available!\nPlease switch on your internet",
-                                LENGTH_LONG)
-                                .show();
+                        Intent intent = new Intent(Test.this, Error.class);
+                        intent.putExtra("error_title","No Data Available");
+                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                        startActivity(intent);
+                        finish();
                     }
                 });
 
@@ -430,10 +433,11 @@ public class Test extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "No data available!\nPlease switch on your internet",
-                                LENGTH_LONG)
-                                .show();
+                        Intent intent = new Intent(Test.this, Error.class);
+                        intent.putExtra("error_title","No Data Available");
+                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                        startActivity(intent);
+                        finish();
                     }
                 });
             }
@@ -464,6 +468,11 @@ public class Test extends AppCompatActivity {
             });
         }
 
+
+    }
+
+    @Override
+    public void onBackPressed() {
 
     }
 

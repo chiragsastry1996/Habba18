@@ -37,4 +37,5 @@
     <string name="middle">o</string>
     <string name="back3"><![CDATA[<]]></string>
     <string name="first"><![CDATA[<<--]]></string>
+    <string name="title_activity_maps2">Map</string>
 </resources>

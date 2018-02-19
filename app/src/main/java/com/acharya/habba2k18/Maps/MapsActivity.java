@@ -76,7 +76,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //URL to return all the location in the database
         url = "http://acharyahabba.in/habba18/location.php";
 
-        getSupportActionBar().hide();
+        getSupportActionBar().setTitle("Map Location Activity");
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFrag.getMapAsync(this);
@@ -100,12 +100,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Custom styling of google map (Dark theme)
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json);
         googleMap.setMapStyle(style);
-
-        //move map camera
-        LatLng latLng1 = new LatLng(13.0845, 77.4851);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
-
         //Check permission and set my marker
         mymarker();
     }
@@ -163,6 +157,12 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onLocationChanged(final Location location) {
         //When the current location of the user is changed, it has to be Updated
         mLastLocation = location;
+        if (mCurrLocationMarker != null) {
+            mCurrLocationMarker.remove();
+        }
+
+        //Hide Action Bar
+        getSupportActionBar().hide();
 
         //Setting Marker to my current Location
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -170,6 +170,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         markerOptions.position(latLng);
         markerOptions.title("Current Position");
         markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE));
+        mCurrLocationMarker = mGoogleMap.addMarker(markerOptions);
+        mCurrLocationMarker.setTitle("me");
 
 
         //Get latitude and Longitude of the current location of User

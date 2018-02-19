@@ -1,6 +1,7 @@
 package com.acharya.habba2k18.Timeline;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 
 import com.acharya.habba2k18.Events.HttpHandler;
+import com.acharya.habba2k18.Feed.FeedActivity;
+import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Test.Test;
 import com.acharya.habba2k18.Timeline.model.OrderStatus;
@@ -193,7 +196,7 @@ public class TimeLineActivity extends AppCompatActivity {
 
             SimpleDateFormat date24Format = new SimpleDateFormat("HH:mm");
 
-            String time = null;
+            String time = "00:00 PM";
             try {
                 time = Test.timeline.get(i).get(1) + " " + date24Format.format(date12Format.parse(Test.timeline.get(i).get(2)));
             } catch (ParseException e) {
@@ -253,4 +256,11 @@ public class TimeLineActivity extends AppCompatActivity {
 
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        finish();
+
+    }
+
 }
