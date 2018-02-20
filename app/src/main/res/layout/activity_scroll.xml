@@ -57,6 +57,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -94,13 +96,12 @@
                         android:orientation="vertical">
 
 
-
                         <TextView
                             android:id="@+id/textView5"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
-                            android:paddingTop="20dp"
+                            android:paddingTop="15dp"
                             android:text="Description"
                             android:textColor="@android:color/white"
                             android:textSize="20sp"/>
@@ -118,6 +119,14 @@
                             android:textSize="15sp"/>
 
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -137,7 +146,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
-                            android:paddingTop="20dp"
+                            android:paddingTop="15dp"
                             android:text="Rules and Regulation"
                             android:textColor="@android:color/white"
                             android:textSize="20sp"/>
@@ -156,6 +165,13 @@
 
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -180,7 +196,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="10dp"
                                 android:paddingLeft="5dp"
-                                android:paddingTop="20dp"
+                                android:paddingTop="15dp"
                                 android:text="Contact Number"
                                 android:textColor="@android:color/white"
                                 android:textSize="20sp"/>
@@ -188,12 +204,20 @@
                             <ImageView
                                 android:id="@+id/callerbut"
                                 android:layout_width="25dp"
-
                                 android:layout_height="25dp"
                                 android:layout_alignParentBottom="true"
                                 android:layout_toEndOf="@id/textView7"
                                 android:layout_toRightOf="@id/textView7"
                                 android:src="@mipmap/ic_launcher"/>
+
+                            <ImageView
+                                android:id="@+id/whatsapp_button"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@mipmap/ic_launcher_round"
+                                android:layout_alignParentBottom="true"
+                                android:layout_toEndOf="@id/callerbut"
+                                android:layout_toRightOf="@id/callerbut"/>
                         </RelativeLayout>
 
                         <TextView
@@ -226,6 +250,67 @@
 
                     </LinearLayout>
 
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="#00000000"
+                        android:orientation="vertical">
+
+                        <RelativeLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/textView11"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:paddingTop="15dp"
+                                android:text="Venue"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp"/>
+
+                            <ImageView
+                                android:id="@+id/button_navigate"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:layout_alignParentBottom="true"
+                                android:layout_toEndOf="@id/textView11"
+                                android:layout_toRightOf="@id/textView11"
+                                android:src="@mipmap/ic_launcher"/>
+
+                        </RelativeLayout>
+
+                        <TextView
+                            android:id="@+id/venue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="20dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -244,7 +329,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:paddingLeft="5dp"
-                            android:paddingTop="20dp"
+                            android:paddingTop="15dp"
                             android:text="Amount"
                             android:textColor="@android:color/white"
                             android:textSize="20sp"/>
@@ -299,17 +384,26 @@
                             android:textColor="@android:color/white"
                             android:textSize="17sp"/>
 
-                        <Button
-                            android:id="@+id/button3"
-                            android:layout_width="160dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="15dp"
-                            android:layout_gravity="center"
-                            android:text="REGISTER"
-                            android:textColor="#70bdba"
-                            android:background="@drawable/shape_button"/>
-
                     </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"/>
+
+                    <Button
+                        android:id="@+id/button3"
+                        android:layout_width="160dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginBottom="15dp"
+                        android:layout_gravity="center"
+                        android:text="REGISTER"
+                        android:textColor="#70bdba"
+                        android:background="@drawable/shape_button"/>
 
                 </LinearLayout>
 

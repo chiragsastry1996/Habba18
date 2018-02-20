@@ -388,6 +388,8 @@ public class Test extends AppCompatActivity {
                             String time = eventdetails.getString("time");
                             String venue = eventdetails.getString("venue");
                             String mainc =  eventdetails.getString("mainc");
+                            String lat =  eventdetails.getString("lat");
+                            String lang =  eventdetails.getString("lang");
 
                             ArrayList<String> contact = new ArrayList<>();
                             contact.add(eid);
@@ -401,6 +403,9 @@ public class Test extends AppCompatActivity {
                             contact.add(eventhead);
                             contact.add(prizemoney);
                             contact.add(date);
+                            contact.add(venue);
+                            contact.add(lat);
+                            contact.add(lang);
                             details.put(name,contact);
 
                             ArrayList<String> timelist = new ArrayList<String>();

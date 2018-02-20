@@ -2,6 +2,7 @@ package com.acharya.habba2k18.Notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -22,6 +23,7 @@ import com.acharya.habba2k18.Feed.FeedActivity;
 import com.acharya.habba2k18.Feed.FeedAdapter;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
+import com.acharya.habba2k18.Registration.RegisterUserClass;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
@@ -30,8 +32,18 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.FormBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 import static android.widget.Toast.LENGTH_LONG;
 
@@ -43,6 +55,7 @@ public class Notifications extends AppCompatActivity {
     private static final String url ="http://acharyahabba.in/habba18/feeds.php";
     public ArrayList<ArrayList<String>> ServerDatatList;
     private static final String TAG = "Notifications";
+    private static final String REGISTER_URL = "http://acharyahabba.in/habba18/firebase/register.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +78,12 @@ public class Notifications extends AppCompatActivity {
             notificationManager.createNotificationChannel(new NotificationChannel(channelId,
                     channelName, NotificationManager.IMPORTANCE_LOW));
         }
+
+        FirebaseMessaging.getInstance().subscribeToTopic("news");
+        String token = FirebaseInstanceId.getInstance().getToken();
+
+        Log.d("token", token);
+        registerToken(token);
 
         // If a notification message is tapped, any data accompanying the notification
         // message is available in the intent extras. In this sample the launcher
@@ -191,6 +210,38 @@ public class Notifications extends AppCompatActivity {
             });
         }
 
+    }
+
+    private void registerToken(String token) {
+        class RegisterUser extends AsyncTask<String, Void, String> {
+            RegisterUserClass ruc = new RegisterUserClass();
+
+            @Override
+            protected void onPreExecute() {
+                super.onPreExecute();
+            }
+
+            @Override
+            protected void onPostExecute(String s) {
+                super.onPostExecute(s);
+               // Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                Log.e("error",s);
+            }
+
+            @Override
+            protected String doInBackground(String... params) {
+
+                HashMap<String, String> data = new HashMap<String, String>();
+                data.put("token", params[0]);
+
+                String result = ruc.sendPostRequest(REGISTER_URL, data);
+
+                return result;
+            }
+        }
+
+        RegisterUser ru = new RegisterUser();
+        ru.execute(token);
     }
 
     @Override
