@@ -41,7 +41,7 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
 
     private Button buttonRegister;
 
-    private static final String REGISTER_URL = "http://theprince.96.lt//android/register.php";
+    private static final String REGISTER_URL = "http://acharyahabba.in/habba18/register.php";
 
 
     @Override
@@ -133,7 +133,6 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
 
     private void register(String name, String clg, String number, String email, String sctg) {
         class RegisterUser extends AsyncTask<String, Void, String> {
-            ProgressDialog loading;
             RegisterUserClass ruc = new RegisterUserClass();
 
 
@@ -145,7 +144,6 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
             }
 
@@ -155,9 +153,9 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
                 HashMap<String, String> data = new HashMap<String, String>();
                 data.put("name", params[0]);
                 data.put("clg", params[1]);
-                data.put("number", params[2]);
+                data.put("num", params[2]);
                 data.put("email", params[3]);
-                data.put("sctg", params[5]);
+                data.put("sub", params[4]);
 
                 String result = ruc.sendPostRequest(REGISTER_URL, data);
 

@@ -12,6 +12,8 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.acharya.habba2k18.AboutUs.AboutUs;
+import com.acharya.habba2k18.Devs.Dev;
 import com.acharya.habba2k18.Events.Event;
 import com.acharya.habba2k18.Feed.FeedActivity;
 import com.acharya.habba2k18.Gallery.Gallery_activity;
@@ -244,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    Intent intent1 = new Intent(MainActivity.this, Event.class);
+                    Intent intent1 = new Intent(MainActivity.this, Dev.class);
                     startActivity(intent1);
                 }
             }, 200);
@@ -259,6 +261,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, Notifications.class);
+                    startActivity(intent1);
+                }
+            }, 200);
+        }
+
+        else if (view == itemAboutUs){
+
+            resideMenu.closeMenu();
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent1 = new Intent(MainActivity.this, AboutUs.class);
                     startActivity(intent1);
                 }
             }, 200);

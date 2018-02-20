@@ -30,8 +30,8 @@ public class CarFragment extends Fragment{
 
     View view;
     ImageView carImage;
-    TextView carName,eventNumber;
     RelativeLayout fragmentContainer;
+    TextView carName,eventNumber;
     Button button;
     int position;
 

@@ -196,7 +196,7 @@ public class TimeLineActivity extends AppCompatActivity {
 
             SimpleDateFormat date24Format = new SimpleDateFormat("HH:mm");
 
-            String time = "00:00 PM";
+            String time = "00:01 PM";
             try {
                 time = Test.timeline.get(i).get(1) + " " + date24Format.format(date12Format.parse(Test.timeline.get(i).get(2)));
             } catch (ParseException e) {
@@ -216,7 +216,8 @@ public class TimeLineActivity extends AppCompatActivity {
                 Timestamp timestamp = new Timestamp(parsedTimeStamp.getTime());
                 timestampsList.add(timestamp);
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "TimeStap parsing error", LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Some events don't have time\nUpload time in events", LENGTH_LONG).show();
+                Log.e("TimeStap parsing error", e.toString());
             }
 
         }

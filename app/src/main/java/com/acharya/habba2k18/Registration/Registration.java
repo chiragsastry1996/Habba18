@@ -60,7 +60,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     private Button buttonRegister;
 
-    private static final String REGISTER_URL = "http://theprince.96.lt//android/register.php";
+    private static final String REGISTER_URL = "http://acharyahabba.in/habba18/register.php";
 
 
     @Override
@@ -137,25 +137,22 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         String ctg = s1.getSelectedItem().toString();
         String sctg = s2.getSelectedItem().toString();
 
-        register(name, clg, number, email, ctg, sctg);
+        register(name, clg, number, email, sctg);
     }
 
-    private void register(String name, String clg, String number, String email, String ctg, String sctg) {
+    private void register(String name, String clg, String number, String email,String sctg) {
         class RegisterUser extends AsyncTask<String, Void, String> {
-            ProgressDialog loading;
             RegisterUserClass ruc = new RegisterUserClass();
 
 
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(Registration.this, "Please Wait", null, true, true);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                loading.dismiss();
                 Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
             }
 
@@ -165,10 +162,9 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 HashMap<String, String> data = new HashMap<String, String>();
                 data.put("name", params[0]);
                 data.put("clg", params[1]);
-                data.put("number", params[2]);
+                data.put("num", params[2]);
                 data.put("email", params[3]);
-                data.put("ctg", params[4]);
-                data.put("sctg", params[5]);
+                data.put("sub", params[4]);
 
                 String result = ruc.sendPostRequest(REGISTER_URL, data);
 
@@ -177,7 +173,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
         }
 
         RegisterUser ru = new RegisterUser();
-        ru.execute(name, clg, number, email, ctg, sctg);
+        ru.execute(name, clg, number, email, sctg);
     }
 
     private String TAG = Registration.class.getSimpleName();

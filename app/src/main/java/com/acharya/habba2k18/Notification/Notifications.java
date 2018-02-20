@@ -2,7 +2,6 @@ package com.acharya.habba2k18.Notification;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
@@ -12,31 +11,21 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.acharya.habba2k18.Events.HttpHandler;
-import com.acharya.habba2k18.Feed.FeedActivity;
-import com.acharya.habba2k18.Feed.FeedAdapter;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
-import com.acharya.habba2k18.Registration.RegisterUserClass;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import com.google.firebase.iid.FirebaseInstanceId;
-import com.google.firebase.messaging.FirebaseMessaging;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-
 
 import static android.widget.Toast.LENGTH_LONG;
 

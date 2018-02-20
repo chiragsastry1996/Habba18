@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background_gradient"
+    tools:context="com.acharya.habba2k18.Devs.Dev">
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Developers"
+        android:textSize="50sp"
+        android:id="@+id/texdev"
+        android:gravity="center_horizontal"
+        android:textColor="@android:color/background_light" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@id/texdev">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="20dp"
+                android:id="@+id/c1"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:alpha="1"
+                    android:background="#00050505"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chirag D.K\nApp Developer\nComputer Science"
+                        android:layout_marginStart="0dp"
+                        android:layout_toEndOf="@+id/face1"
+                        android:background="@android:color/transparent"
+                        android:layout_centerVertical="true"
+                        android:textSize="14sp"
+
+                        android:textColor="@android:color/background_light" />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="8050403084"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/chirag"
+                        android:id="@+id/face1"
+                        android:background="@android:color/transparent"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignParentStart="true" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="chiragsastry@gmail.com"/>
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c2"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    android:background="@android:color/transparent">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/adi"
+                        android:id="@+id/face2"
+                        android:background="@android:color/transparent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Aditya Das\nApp Developer\nComputer Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face2"
+                        android:background="@android:color/transparent"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView2"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="8861583640"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView2"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="aditya.das8.ad@gmail.com"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c3"
+                android:background="@android:color/transparent"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/raghav"
+                        android:id="@+id/face3"
+                        android:background="@android:color/transparent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Raghav C.S\nApp Developer\nInformation Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face3"
+                        android:background="@android:color/transparent"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView3"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9740358104"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView3"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="csraghav7@gmail.com"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c4"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/prateek"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face4"/>
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView4"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="8105440185"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prateek Hegde\nWeb Developer\nMechatronics"
+                        android:textColor="@android:color/background_light"
+                        android:background="@android:color/transparent"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/face4" />
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView4"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="prateekhegde12@gmail.com"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c5"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/arjun"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face5"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Arjun M\nMotion Graphics Designer\nComputer Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face5"
+                        android:background="@android:color/transparent"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView5"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="7353717705"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView5"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="arjunptm@gmail.com"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c6"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/ankur"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face6"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ankur Vinekar\nUI/UX Designer\nComputer Science"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face6"
+                        android:layout_centerVertical="true"
+                        android:background="@android:color/transparent"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView6"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9663218396"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView6"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="ankurvinekar@gmail.com"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c7"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/hrushi"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face7"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ashwin Prasad\nReact-Native Developer\nInformation Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face7"
+                        android:background="@android:color/transparent"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView7"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9538757478"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView7"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="hrushikeshchoudary@gmail.com"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="#870a0a0a"
+                android:id="@+id/c8"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/nikhil"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face8"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rajat Porwal\nAndroid Developer\nInformation Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face8"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView8"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9738863810"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView8"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="nktalwar15@gmail.com"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="#870a0a0a"
+                android:id="@+id/c9"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/nikhil"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face9"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ananth N Bhat\nWeb Developer\nComputer Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face9"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView9"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9738863810"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView9"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="nktalwar15@gmail.com"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:background="#870a0a0a"
+                android:id="@+id/c10"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp">
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/nikhil"
+                        android:background="@android:color/transparent"
+                        android:id="@+id/face10"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Prashant P\nWeb Developer\nComputer Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face10"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView10"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9738863810"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView10"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="nktalwar15@gmail.com"/>
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
