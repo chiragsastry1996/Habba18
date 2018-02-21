@@ -6,46 +6,39 @@
                 android:layout_height="match_parent"
                 android:fitsSystemWindows="true">
 
-
-    <ScrollView
+    <ImageView
+        android:id="@+id/backdrop"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:scaleType="fitXY"/>
 
-        <RelativeLayout
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:realtimeBlurRadius="100dp"
+        app:realtimeOverlayColor="#3cb0b0b0"/>
+
+
+    <RelativeLayout
+        android:id="@+id/relative_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+
+        android:layout_alignParentStart="true"
+        android:background="#50000000"
+        android:orientation="vertical">
+
+        <com.github.mmin18.widget.RealtimeBlurView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:realtimeBlurRadius="100dp"
+            app:realtimeOverlayColor="#3cb0b0b0"/>
 
-            <RelativeLayout
-                android:id="@+id/top"
-                android:layout_width="match_parent"
-                android:layout_height="250dp">
+        <include
+            layout="@layout/content_main">
+        </include>
 
-                <ImageView
-                    android:id="@+id/backdrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:fitsSystemWindows="true"
-                    android:scaleType="centerCrop"
-                    app:layout_collapseMode="parallax" />
-            </RelativeLayout>
-
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/top"
-                android:layout_centerHorizontal="true"
-                android:background="@android:color/transparent">
-
-                <include
-                    layout="@layout/content_main">
-                </include>
-
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-    </ScrollView>
+    </RelativeLayout>
 
 
     <FrameLayout

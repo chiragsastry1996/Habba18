@@ -1,40 +1,50 @@
-package com.acharya.habba2k18.AboutUs;
+package com.acharya.habba2k18.Maps;
 
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.acharya.habba2k18.R;
+import com.acharya.habba2k18.Test.Test;
+import com.bumptech.glide.Glide;
 
-
-public class AboutUsFragment extends Fragment {
+public class MapsFragment extends Fragment {
 
     View view;
+    ImageView carImage;
     RelativeLayout fragmentContainer;
-    TextView body;
+    TextView carName;
     int position;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.aboutus_fragment_layout, container, false);
+        view = inflater.inflate(R.layout.maps_fragment_layout, container, false);
 
-        body = view.findViewById(R.id.body);
-        if(position == 0) body.setText(R.string.About_Habba);
-        if(position == 1) body.setText(R.string.About_Habba);
+        carImage = view.findViewById(R.id.background);
+        carName = view.findViewById(R.id.car_name);
         fragmentContainer = view.findViewById(R.id.container);
 
         setUpFragmentData();
-
         return view;
     }
+
     public void setUpFragmentData() {
 
+        Glide.with(getContext())
+                .load(Test.eventList.get(position).get(2))
+                .into(carImage);
+
+        final String name = Test.eventList.get(position).get(1);
+        carName.setText(name);
 
     }
 

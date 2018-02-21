@@ -29,7 +29,7 @@ import com.bumptech.glide.request.transition.Transition;
 public class CarFragment extends Fragment{
 
     View view;
-    ImageView carImage;
+    ImageView carImage,logo;
     RelativeLayout fragmentContainer;
     TextView carName,eventNumber;
     Button button;
@@ -43,6 +43,7 @@ public class CarFragment extends Fragment{
         carImage = view.findViewById(R.id.car_image);
         carName = view.findViewById(R.id.car_name);
         eventNumber = view.findViewById(R.id.number_events);
+        logo = view.findViewById(R.id.logo);
         fragmentContainer = view.findViewById(R.id.container);
 
         button = view.findViewById(R.id.button3);
@@ -55,6 +56,10 @@ public class CarFragment extends Fragment{
         Glide.with(getContext())
                 .load(Test.eventList.get(position).get(2))
                 .into(carImage);
+
+        Glide.with(getContext())
+                .load(Test.eventList.get(position).get(3))
+                .into(logo);
 
         final String name = Test.eventList.get(position).get(1);
                 carName.setText(name);

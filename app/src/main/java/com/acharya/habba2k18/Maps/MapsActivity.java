@@ -1,22 +1,31 @@
 package com.acharya.habba2k18.Maps;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.Toast;
 
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
+import com.acharya.habba2k18.Test.ReadWriteJsonFileUtils;
+import com.acharya.habba2k18.Test.Test;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -38,19 +47,25 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import static android.widget.Toast.LENGTH_LONG;
 import static com.acharya.habba2k18.R.id.map;
+import static com.acharya.habba2k18.Test.Test.dbchange;
 
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
 
 
+    ViewPager mViewPager;
+    MapsAdapter mapsAdapter;
     GoogleMap mGoogleMap;
     SupportMapFragment mapFrag;
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
+    public static int pos = 0;
+    public static boolean connection = false,first_time = true;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     Marker mMarkerA;
@@ -59,6 +74,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public String url;
     public static String geid, glat, glang, gevent;
     private static long back_pressed;
+    public static HashMap<String,ArrayList<ArrayList<String>>> mapList;
     private static int uid;
     public int i = 0;
 
@@ -67,14 +83,78 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
+        connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
+
         iconFactory = new IconGenerator(getApplicationContext());
         //Array spinnerlist to Store all the details of the contact
-        contactList = new ArrayList<>();
-        //Execute GET Request
-        new GetContacts().execute();
-
+        mapList= new HashMap<>();
         //URL to return all the location in the database
         url = "http://acharyahabba.in/habba18/location.php";
+        new GetContacts().execute();
+        //Execute GET Request
+
+        mViewPager = (ViewPager) findViewById(R.id.maps_view_pager);
+        mapsAdapter = new MapsAdapter(getSupportFragmentManager());
+        mViewPager.setPageMargin((int) (getResources().getDisplayMetrics().widthPixels * -0.28));
+
+        mViewPager.setOffscreenPageLimit(3);
+
+        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override public void transformPage(View page, float position) {
+                page.setScaleX(0.9f - Math.abs(position * 0.3f));
+                page.setScaleY(0.9f - Math.abs(position * 0.3f));
+                page.setAlpha(1.0f - Math.abs(position * 0.5f));
+            }
+        });
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+
+//                String name = Test.eventList.get(position).get(1);
+//                for (int j = 0; j < mapList.get(name).size(); j++) {
+//                    mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
+//                            .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
+//                    mMarkerA.setTitle(mapList.get(name).get(j).get(0));
+//                    mMarkerA.setIcon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(mapList.get(name).get(j).get(0))));
+//                    System.out.println("prateek" + mapList.get(name).get(j).get(0));
+//
+//                }
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+//                mapList.clear();
+                if(position > 0)
+                    mGoogleMap.clear();
+                pos = position;
+                String name = Test.eventList.get(pos).get(1);
+                if (mapList.get(name).size() != 0) {
+                    for (int j = 0; j < mapList.get(name).size(); j++) {
+
+                        mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
+                                .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
+                        mMarkerA.setTitle(mapList.get(name).get(j).get(0));
+                        mMarkerA.setIcon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(mapList.get(name).get(j).get(0))));
+                        System.out.println("Arjun " + mapList.get(name));
+                    }
+
+                }
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        mViewPager.setAdapter(mapsAdapter);
+
 
         getSupportActionBar().setTitle("Map Location Activity");
 
@@ -100,6 +180,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Custom styling of google map (Dark theme)
         MapStyleOptions style = MapStyleOptions.loadRawResourceStyle(this, R.raw.style_json);
         googleMap.setMapStyle(style);
+
+        //move map camera
+        LatLng latLng1 = new LatLng(13.0845, 77.4851);
+        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1));
+        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
         //Check permission and set my marker
         mymarker();
     }
@@ -203,10 +288,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
 
-        //move map camera
-        LatLng latLng1 = new LatLng(13.0845, 77.4851);
-        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1));
-        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(18));
+
 
 
         //stop location updates
@@ -220,9 +302,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
 
     private String TAG = MapsActivity.class.getSimpleName();
-
-    //ArrayList of ArrayList to get multiple Json Values (2D JSON)
-    ArrayList<ArrayList<String>> contactList;
 
     protected void onResume() {
         super.onResume();
@@ -244,41 +323,52 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //GET request done in background
         @Override
         protected Void doInBackground(Void... arg0) {
-            //Calling the HTTPHandler
-            HttpHandler sh = new HttpHandler();
-
-            // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
-
-            Log.e(TAG, "Response from url: " + jsonStr);
-
-            if (jsonStr != null) {
+            if(connection == true ) {
                 try {
-                    String title;
-                    //Create JSON Object
-                    JSONObject jsonObj = new JSONObject(jsonStr);
-
-                    //Create Json Array
-                    JSONArray contacts = jsonObj.getJSONArray("result");
-
-                    //Fetch all the Values from the JSON OBject
-                    for (i = 0; i < contacts.length(); i++) {
-                        JSONObject c = contacts.getJSONObject(i);
-                        geid = c.getString("eid");
-                        glat = c.getString("lat");
-                        glang = c.getString("lang");
-                        gevent = c.getString("name");
-
-                        //Get all the attribute values from the Json Object
-                        if(!(geid.equals("")||glat.equals("")||glang.equals("")||gevent.equals(""))){
-                            ArrayList<String> contact = new ArrayList<>();
-                            contact.add(geid);
-                            contact.add(glat);
-                            contact.add(glang);
-                            contact.add(gevent);
-                            contactList.add(contact);
+                    HttpHandler sh = new HttpHandler();
+                    String jsonStr = sh.makeServiceCall(url);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),"Maps fetched",Toast.LENGTH_SHORT).show();
                         }
+                    });
 
+                    new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("MapsCache", jsonStr);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            String jsonString = null;
+
+            jsonString = new ReadWriteJsonFileUtils(getApplicationContext()).readJsonFileData("MapsCache");
+
+
+            Log.e(TAG, "Response from url: " + jsonString);
+
+            if (jsonString != null) {
+                try {
+                    JSONObject jsonObj = new JSONObject(jsonString);
+                    JSONArray result = jsonObj.getJSONArray("result");
+                    for (int j = 0; j < result.length(); j++) {
+                        JSONObject elem = result.getJSONObject(j);
+                        ArrayList<ArrayList<String>> details = new ArrayList<>();
+                        JSONArray event = elem.getJSONArray(Test.eventList.get(j).get(1));
+                        for (int i = 0; i < event.length(); i++) {
+                            JSONObject eventdetails = event.getJSONObject(i);
+                            String name = eventdetails.getString("name");
+                            String lat =  eventdetails.getString("lat");
+                            String lang =  eventdetails.getString("lang");
+
+                            ArrayList<String> contact = new ArrayList<>();
+                            contact.add(name);
+                            contact.add(lat);
+                            contact.add(lang);
+                            details.add(contact);
+
+                        }
+                        mapList.put(Test.eventList.get(j).get(1), details);
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
@@ -320,29 +410,24 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    String title;
-                    /*
-                    * Contact list is a array list of array list
-                    * Here Multiple values for every uid is sent
-                    * Every values of each uid is stored in a 1 dimensional arraylist
-                    * Multiple of these values are again stored in another arraylist
-                    * Hence, its a ArrayList of ArrayList
-                    * */
 
-                    /*
-                    * Format of this ArrayList is - j is for traversing multiple uid values
-                    * Insisde each array list {"uid","lat","lang","type"}
-                    * Hence I have used index 0 to fetch uid,1 to fetch Latitude, 2 to fetch Longitude,3 to fetch type i.e student or teacher
-                    * */
-
-                    for (int j = 0; j < contactList.size(); j++) {
-                        mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
-                                .position(new LatLng(Double.parseDouble(contactList.get(j).get(1)), Double.parseDouble(contactList.get(j).get(2)))).draggable(true));
-                        mMarkerA.setTitle(contactList.get(j).get(3));
-                        mMarkerA.setIcon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(contactList.get(j).get(3))));
-                        System.out.println("prateek" + contactList.get(j));
-
-                    }
+//                    if(first_time){
+//
+//                        String name = Test.eventList.get(0).get(1);
+//                        if (mapList.get(name).size() != 0) {
+//                            for (int j = 0; j < mapList.get(name).size(); j++) {
+//                                mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
+//                                        .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
+//                                mMarkerA.setTitle(mapList.get(name).get(j).get(0));
+//                                mMarkerA.setIcon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(mapList.get(name).get(j).get(0))));
+//                                System.out.println("Arjun " + mapList.get(name));
+//                            }
+//
+//                        }
+//
+//                        first_time = false;
+//
+//                    }
 
                 }
 

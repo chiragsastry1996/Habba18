@@ -5,49 +5,31 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:id="@+id/title"
-        android:text="akjsdfhksjdhf"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="@android:color/white"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:background="@drawable/background_gradient"
-        android:textAlignment="center"/>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/cards"
+    <RelativeLayout
+        android:id="@+id/relative_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginRight="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="190dp"
-        android:elevation="24dp"
-        app:cardBackgroundColor="#8b8b8b8b"
-        app:cardElevation="24dp">
+
+        android:orientation="vertical">
 
         <com.github.mmin18.widget.RealtimeBlurView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:realtimeBlurRadius="100dp"
-            app:realtimeOverlayColor="@android:color/transparent"/>
+            app:realtimeOverlayColor="#3cb0b0b0"/>
 
-        <RelativeLayout
-            android:id="@+id/relative_layout"
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:src="#3cb0b0b0"/>
 
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="#3cb0b0b0"/>
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
 
             <LinearLayout
@@ -64,15 +46,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/title"
-                    android:text="@string/AboutUs"/>
+                    android:layout_below="@+id/title"/>
 
             </LinearLayout>
 
-            </ScrollView>
+        </ScrollView>
 
-        </RelativeLayout>
-
-    </android.support.v7.widget.CardView>
+    </RelativeLayout>
 
 </RelativeLayout>

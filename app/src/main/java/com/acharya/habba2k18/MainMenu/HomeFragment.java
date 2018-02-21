@@ -1,11 +1,16 @@
 package com.acharya.habba2k18.MainMenu;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -30,7 +35,9 @@ public class HomeFragment extends Fragment {
     private CarouselView carouselView;
     private static final String REGISTER_URL = "http://acharyahabba.in/habba18/firebase/register.php";
 
-    private String[] sampleImages = {"http://acharyahabba.in/habba18/images/slider1.jpg","http://acharyahabba.in/habba18/images/slider2.jpg","http://acharyahabba.in/habba18/images/slider3.jpg","http://acharyahabba.in/habba18/images/slider4.jpg"};
+    private String[] sampleImages = {"http://acharyahabba.in/habba18/images/slider1.jpg",
+            "http://acharyahabba.in/habba18/images/slider2.jpg","http://acharyahabba.in/habba18/images/slider3.jpg",
+            "http://acharyahabba.in/habba18/images/slider4.jpg"};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +53,14 @@ public class HomeFragment extends Fragment {
                     channelName, NotificationManager.IMPORTANCE_LOW));
         }
 
+        if (ContextCompat.checkSelfPermission(getActivity(),
+                Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(),
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                    99);
+        }
+
         setUpViews();
         return parentView;
 
@@ -54,11 +69,19 @@ public class HomeFragment extends Fragment {
     private void setUpViews() {
         MainActivity parentActivity = (MainActivity) getActivity();
 
-        FirebaseMessaging.getInstance().subscribeToTopic("news");
-        String token = FirebaseInstanceId.getInstance().getToken();
+        try {
 
-        Log.d("token", token);
-        registerToken(token);
+            FirebaseMessaging.getInstance().subscribeToTopic("news");
+            String token = FirebaseInstanceId.getInstance().getToken();
+
+            Log.d("token", token);
+            registerToken(token);
+
+        }catch (Exception e) {
+            System.out.println("Token Error");
+        }
+
+
 
         carouselView = (CarouselView) parentView.findViewById(R.id.carouselView);
         carouselView.setPageCount(sampleImages.length);

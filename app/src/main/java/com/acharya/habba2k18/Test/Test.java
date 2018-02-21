@@ -39,7 +39,7 @@ public class Test extends AppCompatActivity {
     private static long time;
     ProgressBar progressBar;
     public String url = "http://acharyahabba.in/habba18/json.php";
-    public boolean connection = false, dbchange = false,glide_complete=false, data_complete = false;
+    public static boolean connection = false, dbchange = false,glide_complete=false, data_complete = false;
     public static ArrayList<ArrayList<String>> eventList;
     public static HashMap<String,String> dbChangeList;
     public static HashMap<String,HashMap<String,ArrayList<String>>> subcatList;
@@ -173,6 +173,8 @@ public class Test extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent intent = new Intent(Test.this, Error.class);
+                        intent.putExtra("error_title","No Data Available");
+                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
                         startActivity(intent);
                         finish();
                     }
@@ -269,11 +271,13 @@ public class Test extends AppCompatActivity {
                         String id = c.getString("id");
                         String name = c.getString("name");
                         String url = c.getString("url");
+                        String logo = c.getString("image_logo");
 
                         ArrayList<String> contact = new ArrayList<>();
                         contact.add(id);
                         contact.add(name);
                         contact.add(url);
+                        contact.add(logo);
 
                         eventList.add(contact);
                     }
@@ -296,11 +300,6 @@ public class Test extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(Test.this, Error.class);
-                        intent.putExtra("error_title","No Data Available");
-                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
-                        startActivity(intent);
-                        finish();
                     }
                 });
 
@@ -438,11 +437,6 @@ public class Test extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Intent intent = new Intent(Test.this, Error.class);
-                        intent.putExtra("error_title","No Data Available");
-                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
-                        startActivity(intent);
-                        finish();
                     }
                 });
             }

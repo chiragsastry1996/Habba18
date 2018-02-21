@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
@@ -15,6 +16,7 @@ import com.acharya.habba2k18.R;
 public class AboutUs extends AppCompatActivity {
 
     ViewPager mViewPager;
+    TextView title;
     AboutUsAdapter aboutUsAdapter;
 
 
@@ -25,10 +27,13 @@ public class AboutUs extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
+        title = (TextView)findViewById(R.id.title);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
 
         mViewPager = (ViewPager)findViewById(R.id.view_pager_aboutus);
         aboutUsAdapter = new AboutUsAdapter(getSupportFragmentManager());
@@ -38,6 +43,23 @@ public class AboutUs extends AppCompatActivity {
                         page.setScaleX(1f - Math.abs(position * 0.3f));
                         page.setScaleY(1f - Math.abs(position * 0.1f));
                         page.setAlpha(1.0f - Math.abs(position * 0.5f));
+            }
+        });
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(position == 0) title.setText("About Habba");
+                if(position == 1) title.setText("About Acharya");
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
 
