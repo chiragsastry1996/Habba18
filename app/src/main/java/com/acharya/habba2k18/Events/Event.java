@@ -1,11 +1,18 @@
 package com.acharya.habba2k18.Events;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -18,6 +25,9 @@ import com.acharya.habba2k18.Test.Test;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.bumptech.glide.request.transition.Transition;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
@@ -29,14 +39,114 @@ public class Event extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     public int currentposition;
     Button first, three_prev, middle, three_next, last;
-
-
+    final String PREFS_EVENTS = "MyEventsFile";
+    float taptarget2;
+    float taptarget4;
+    float taptarget5;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         getSupportActionBar().hide();
+
+
+        final Display display = getWindowManager().getDefaultDisplay();
+        taptarget2 = display.getWidth()/3.5f;
+        taptarget4 = display.getWidth()/1.45f;
+        taptarget5 = display.getWidth()/1.1f;
+        final Rect TapTargetbutton1 = new Rect(0,0,0,0);
+        TapTargetbutton1.offset(display.getWidth()/9,display.getHeight());
+        final Rect TapTargetbutton2 = new Rect(0,0,0,0);
+        TapTargetbutton2.offset((int) taptarget2,display.getHeight());
+        final Rect TapTargetbutton3 = new Rect(0,0,0,0);
+        TapTargetbutton3.offset(display.getWidth()/2,display.getHeight());
+        final Rect TapTargetbutton4 = new Rect(0,0,0,0);
+        TapTargetbutton4.offset((int) taptarget4,display.getHeight());
+        final Rect TapTargetbutton5 = new Rect(0,0,0,0);
+        TapTargetbutton5.offset((int) taptarget5,display.getHeight());
+        final TapTargetSequence sequence = new TapTargetSequence(this)
+                .targets(
+                        TapTarget.forBounds(TapTargetbutton1,"The First Button", "Click on this to go to the first category")
+                        .dimColor(android.R.color.holo_blue_dark)  //don't remove android
+                        .outerCircleColor(R.color.colorAccent)
+                        .targetCircleColor(R.color.colorPrimaryDark)
+                                .targetRadius(50)
+                        .transparentTarget(true)
+                                .cancelable(false)
+                        .textColor(R.color.colorPrimary)
+                        .id(1),
+                        TapTarget.forBounds(TapTargetbutton2,"The Second Button", "Click on this to skip three categories to the left")
+                                .dimColor(android.R.color.holo_blue_dark)  //don't remove android
+                                .outerCircleColor(R.color.colorAccent)
+                                .targetCircleColor(R.color.colorPrimaryDark)
+                                .transparentTarget(true)
+                                .targetRadius(50)
+                                .cancelable(false)
+                                .textColor(R.color.colorPrimary)
+                                .id(2),
+                        TapTarget.forBounds(TapTargetbutton3,"The Third Button", "Click on this to go to the middle category ")
+                                .dimColor(android.R.color.holo_blue_dark)  //don't remove android
+                                .outerCircleColor(R.color.colorAccent)
+                                .targetCircleColor(R.color.colorPrimaryDark)
+                                .transparentTarget(true)
+                                .targetRadius(50)
+                                .cancelable(false)
+                                .textColor(R.color.colorPrimary)
+                                .id(3),
+                        TapTarget.forBounds(TapTargetbutton4,"The Fourth Button", "Click on this to skip three categories to the right")
+                                .dimColor(android.R.color.holo_blue_dark)  //don't remove android
+                                .outerCircleColor(R.color.colorAccent)
+                                .targetCircleColor(R.color.colorPrimaryDark)
+                                .transparentTarget(true)
+                                .targetRadius(50)
+                                .cancelable(false)
+                                .textColor(R.color.colorPrimary)
+                                .id(4),
+                        TapTarget.forBounds(TapTargetbutton5,"The Fifth Button", "Click on this to go to the last category")
+                                .dimColor(android.R.color.holo_blue_dark)  //don't remove android
+                                .outerCircleColor(R.color.colorAccent)
+                                .targetCircleColor(R.color.colorPrimaryDark)
+                                .transparentTarget(true)
+                                .targetRadius(50)
+                                .cancelable(false)
+                                .textColor(R.color.colorPrimary)
+                                .id(5)
+
+                ).listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+                        //do nothing
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                    Log.d("TapTargetView","Clicked on"+lastTarget.id());
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+                    final AlertDialog dialog = new AlertDialog.Builder(Event.this)
+                            .setTitle("Uh oh")
+                            .setMessage("You canceled the sequence")
+                            .setPositiveButton("Oops", null).show();
+                        TapTargetView.showFor(dialog,
+                                TapTarget.forView(dialog.getButton(DialogInterface.BUTTON_POSITIVE), "Uh oh!", "You canceled the sequence at step " + lastTarget.id())
+                                        .cancelable(false)
+                                        .tintTarget(false), new TapTargetView.Listener() {
+                                    @Override
+                                    public void onTargetClick(TapTargetView view) {
+                                        super.onTargetClick(view);
+                                        dialog.dismiss();
+                                    }
+                                });
+                    }
+                });  SharedPreferences settings = getSharedPreferences(PREFS_EVENTS, 0);
+        if (settings.getBoolean("my_first_time", true)) {
+            sequence.start();
+            settings.edit().putBoolean("my_first_time", false).apply();
+        }
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance

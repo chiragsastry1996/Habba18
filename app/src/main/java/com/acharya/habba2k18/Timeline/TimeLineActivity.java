@@ -2,7 +2,9 @@ package com.acharya.habba2k18.Timeline;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -13,6 +15,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Display;
 import android.view.MenuItem;
 import android.view.Window;
 import android.view.WindowManager;
@@ -27,6 +30,8 @@ import com.acharya.habba2k18.Test.Test;
 import com.acharya.habba2k18.Timeline.model.OrderStatus;
 import com.acharya.habba2k18.Timeline.model.Orientation;
 import com.acharya.habba2k18.Timeline.model.TimeLineModel;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -59,12 +64,19 @@ public class TimeLineActivity extends AppCompatActivity {
     public int size, oldDate = 1, oldMonth = 1, oldYear = 1971;
     public String url, url1 = "http://acharyahabba.in/habba18/datespan.php", tmstmp;
     ArrayList<ArrayList<String>> timelineList;
-
+    final String PREFS_TIMELINE = "MyTimeline";
+    float taptargetcalheight;
+    float taptargetnotiheight;
+    float taptargetnotiwidth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_timeline);
 
+        final Display display = getWindowManager().getDefaultDisplay();
+        taptargetcalheight = display.getHeight()/1.3f;
+        taptargetnotiheight =display.getHeight()/2.5f;
+        taptargetnotiwidth = display.getWidth()/2;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -77,6 +89,54 @@ public class TimeLineActivity extends AppCompatActivity {
         final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        final Rect TapTargetbutton1 = new Rect(0,0,0,0);
+        TapTargetbutton1.offset((int) taptargetnotiwidth,(int) taptargetnotiheight);
+        final Rect TapTargetbutton2 = new Rect(0,0,0,0);
+        TapTargetbutton2.offset(display.getWidth()/2, (int) taptargetcalheight);
+
+        final TapTargetSequence sequence = new TapTargetSequence(this)
+                .targets(
+                        TapTarget.forBounds(TapTargetbutton1,"Notice the dates with dots","These days have events on those dates")
+                        .dimColor(android.R.color.black)
+                        .outerCircleColor(R.color.colorAccent)
+                        .targetCircleColor(android.R.color.black)
+                        .targetRadius(50)
+                                .transparentTarget(true)
+                        .textColor(android.R.color.black)
+                                .cancelable(false)
+                        .id(1),
+                        TapTarget.forBounds(TapTargetbutton2,"Tap here to see the feed","These cards give you a small sneak peak of the events of the day")
+                                .dimColor(android.R.color.black)
+                                .outerCircleColor(R.color.colorAccent)
+                                .targetCircleColor(android.R.color.black)
+                                .targetRadius(50)
+                                .transparentTarget(true)
+                                .textColor(android.R.color.black)
+                                .cancelable(false)
+                                .id(2)
+
+                ).listener(new TapTargetSequence.Listener() {
+                    @Override
+                    public void onSequenceFinish() {
+
+                    }
+
+                    @Override
+                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+
+                    }
+
+                    @Override
+                    public void onSequenceCanceled(TapTarget lastTarget) {
+
+                    }
+                });
+        SharedPreferences settings = getSharedPreferences(PREFS_TIMELINE,0);
+        if(settings.getBoolean("my_first_time",true))
+        {
+            sequence.start();
+            settings.edit().putBoolean("my_first_time",false).apply();
+        }
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
