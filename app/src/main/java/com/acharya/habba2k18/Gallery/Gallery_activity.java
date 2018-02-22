@@ -34,7 +34,7 @@ public class Gallery_activity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private String TAG = Gallery_activity.class.getSimpleName();
-    private static final String endpoint = "http://acharyahabba.in/habba18/gallery.json";           // the url should atleast have 2 urls, medium and large. Eg: See this json https://api.androidhive.info/json/glide.json
+    private static final String endpoint = "http://acharyahabba.in/habba18/gallery.php";           // the url should atleast have 2 urls, medium and large. Eg: See this json https://api.androidhive.info/json/glide.json
     private ArrayList<Image> images;
     private ProgressDialog pDialog;
     private GalleryAdapter mAdapter;

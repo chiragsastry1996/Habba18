@@ -115,8 +115,8 @@ public class SlideshowDialogFragment extends DialogFragment {
             Image image = images.get(position);
 
             Glide.with(getActivity()).load(image.getMedium())                                   //Change this to getlarge Eg. image.getLarge()
-                    .thumbnail(0.5f)
-                    .apply(new RequestOptions().override(100, 100).placeholder(R.drawable.loader)
+                 //   .thumbnail(0.5f)
+                    .apply(new RequestOptions().placeholder(R.drawable.loader)
                     .diskCacheStrategy(DiskCacheStrategy.ALL))
                     .into(imageViewPreview);
 

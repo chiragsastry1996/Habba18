@@ -309,8 +309,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 //If chose not to switch on GPS, exit the app
                 .setNegativeButton("No", new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
-                        finish();
-                        System.exit(0);
+//                        finish();
+//                        System.exit(0);
                     }
                 });
         final AlertDialog alert = builder.create();

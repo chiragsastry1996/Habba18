@@ -79,7 +79,6 @@ public class ScrollViewPager extends Fragment {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 Glide.with(getContext())
                         .load(scrollEvents.get(position).get(2))
-                        .apply(new RequestOptions().placeholder(R.drawable.dynamic_placeholder))
                         .transition(DrawableTransitionOptions.withCrossFade(500))
                         .into(imageView);
             }

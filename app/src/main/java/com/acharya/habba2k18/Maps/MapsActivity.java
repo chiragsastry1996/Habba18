@@ -158,7 +158,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mViewPager.setAdapter(mapsAdapter);
 
 
-        getSupportActionBar().setTitle("Map Location Activity");
+     //   getSupportActionBar().setTitle("Map Location Activity");
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFrag.getMapAsync(this);
@@ -249,7 +249,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         //Hide Action Bar
-        getSupportActionBar().hide();
+       // getSupportActionBar().hide();
 
         //Setting Marker to my current Location
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());

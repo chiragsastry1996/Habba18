@@ -219,31 +219,51 @@ public class Event extends AppCompatActivity {
         three_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            try{
                 int position = mViewPager.getCurrentItem();
                 if(position-3 <= 0)
-                mViewPager.setCurrentItem(0,true);
+                    mViewPager.setCurrentItem(0,true);
                 else  mViewPager.setCurrentItem(position-3,true);
+            }catch (Exception e) {
+                mViewPager.setCurrentItem(0,true);
+            }
+
             }
         });
         middle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            try{
                 mViewPager.setCurrentItem((Test.eventList.size()-1)/2,true);
+            }catch (Exception e) {
+                mViewPager.setCurrentItem(0,true);
+            }
+
             }
         });
         three_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            try{
                 int position = mViewPager.getCurrentItem();
                 if(position+3 >= Test.eventList.size()-1)
                     mViewPager.setCurrentItem(Test.eventList.size()-1,true);
                 else  mViewPager.setCurrentItem(position+3,true);
+            }catch (Exception e) {
+                mViewPager.setCurrentItem(0,true);
+            }
+
             }
         });
         last.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+            try{
                 mViewPager.setCurrentItem(Test.eventList.size()-1,true);
+            }catch (Exception e) {
+                mViewPager.setCurrentItem(0,true);
+            }
+
             }
         });
 

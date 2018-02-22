@@ -41,8 +41,8 @@ public class IntroFragment extends Fragment{
         view = inflater.inflate(layouts[position], container, false);
 
         image_intro = view.findViewById(R.id.image_intro);
-        title_intro = view.findViewById(R.id.title_intro);
-        title_body = view.findViewById(R.id.title_body);
+//        title_intro = view.findViewById(R.id.title_intro);
+//        title_body = view.findViewById(R.id.title_body);
         fragmentContainer = view.findViewById(R.id.container);
         setUpFragmentData();
         return view;

@@ -97,22 +97,22 @@ public class Notifications extends AppCompatActivity {
                     JSONObject jsonObj = new JSONObject(jsonStr);
 
                     //Create Json Array
-                    JSONArray contacts =  jsonObj.getJSONArray("feed");
+                    JSONArray contacts =  jsonObj.getJSONArray("result");
 
                     //Fetch all the Values from the JSON OBject
                     for (int i = 0; i < contacts.length(); i++) {
                         JSONObject c = contacts.getJSONObject(i);
-                        String name = c.getString("heading");
-                        String caption = c.getString("caption");
-                        String image = c.getString("resources");
+                        String id = c.getString("id");
+                        String title = c.getString("title");
+                        String message = c.getString("message");
 
 
                         //Get all the attribute values from the Json Object
                         ArrayList<String> contact = new ArrayList<>();
 
-                        contact.add(name);
-                        contact.add(caption);
-                        contact.add(image);
+                        contact.add(id);
+                        contact.add(title);
+                        contact.add(message);
 
                         ServerDatatList.add(contact);
                     }
@@ -156,7 +156,7 @@ public class Notifications extends AppCompatActivity {
                     NotificationList = new ArrayList<>();
 
                     for (int j = 0; j < ServerDatatList.size(); j++)
-                        NotificationList.add(new NotificationModel(ServerDatatList.get(j).get(0), ServerDatatList.get(j).get(1), ServerDatatList.get(j).get(2)));
+                        NotificationList.add(new NotificationModel(ServerDatatList.get(j).get(1), ServerDatatList.get(j).get(2)));
                     NotificationAdapter = new NotificationAdapter(Notifications.this, NotificationList);
                     recyclerView = (RecyclerView) findViewById(R.id.notification_list_view);
                     recyclerView.setAdapter(NotificationAdapter);

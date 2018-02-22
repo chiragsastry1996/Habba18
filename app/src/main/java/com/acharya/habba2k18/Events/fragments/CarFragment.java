@@ -75,7 +75,7 @@ public class CarFragment extends Fragment{
 
                 if(name.equals("Dance"))
                 {
-                    String url = "http://www.google.com";
+                    String url = "http://dancetranceindia.com/";
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     startActivity(i);
