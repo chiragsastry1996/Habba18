@@ -3,6 +3,7 @@ package com.acharya.habba2k18.Feed;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -79,5 +80,16 @@ public class YoutubeFragment extends Fragment {
         });
 
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+       FeedActivity.toolbar2.setVisibility(View.GONE);
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        FeedActivity.toolbar2.setVisibility(View.VISIBLE);
     }
 }

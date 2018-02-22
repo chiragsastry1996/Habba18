@@ -34,7 +34,7 @@ public class Notifications extends AppCompatActivity {
     private List<NotificationModel> NotificationList;
     private NotificationAdapter NotificationAdapter;
     private RecyclerView recyclerView;
-    private static final String url ="http://acharyahabba.in/habba18/feeds.php";
+    private static final String url ="http://acharyahabba.in/habba18/notification.php";
     public ArrayList<ArrayList<String>> ServerDatatList;
     private static final String TAG = "Notifications";
     @Override

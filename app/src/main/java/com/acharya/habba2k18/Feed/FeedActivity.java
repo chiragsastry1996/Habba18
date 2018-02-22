@@ -13,6 +13,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class FeedActivity extends AppCompatActivity {
     private FeedAdapter feedAdapter;
     private RecyclerView recyclerView;
     public boolean connection = false, dbchange = true;
+    public static android.support.v7.widget.Toolbar toolbar2;
     private static final String url ="http://acharyahabba.in/habba18/feeds.php";
 
     @Override
@@ -52,12 +54,10 @@ public class FeedActivity extends AppCompatActivity {
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
-        getSupportActionBar().hide();
-
         final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
         connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
 
-
+        toolbar2 = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar2);
         recyclerView = (RecyclerView) findViewById(R.id.names_list_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(mLayoutManager);
@@ -184,14 +184,6 @@ public class FeedActivity extends AppCompatActivity {
             });
         }
 
-
-    }
-
-    @Override
-    public void onBackPressed() {
-            Intent i8 = new Intent(FeedActivity.this, MainActivity.class);
-            startActivity(i8);
-            finish();
 
     }
 

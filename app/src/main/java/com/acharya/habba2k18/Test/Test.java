@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.acharya.habba2k18.Error.Error;
 import com.acharya.habba2k18.Events.HttpHandler;
 import com.acharya.habba2k18.Feed.FeedActivity;
+import com.acharya.habba2k18.IntroSlider.IntroSlider;
 import com.acharya.habba2k18.MainMenu.MainActivity;
 import com.acharya.habba2k18.R;
 
@@ -89,7 +90,7 @@ public class Test extends AppCompatActivity {
                         gifFromResource.stop();
                         progressBar.setVisibility(View.VISIBLE);
                         if(glide_complete && data_complete) {
-                            Intent intent = new Intent(Test.this, MainActivity.class);
+                            Intent intent = new Intent(Test.this, IntroSlider.class);
                             startActivity(intent);
                             finish();
                         }
@@ -456,7 +457,7 @@ public class Test extends AppCompatActivity {
                     progressBar.setVisibility(View.GONE);
                     data_complete = true;
                     if(glide_complete && data_complete) {
-                        Intent intent = new Intent(Test.this, MainActivity.class);
+                        Intent intent = new Intent(Test.this, IntroSlider.class);
                         startActivity(intent);
                         finish();
 

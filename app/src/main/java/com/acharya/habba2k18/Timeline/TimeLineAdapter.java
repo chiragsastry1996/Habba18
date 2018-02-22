@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.acharya.habba2k18.R;
 import com.acharya.habba2k18.Scroll.Scroll;
@@ -60,19 +61,25 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineViewHolder> {
     @Override
     public void onBindViewHolder(TimeLineViewHolder holder, final int position) {
 
+        TimeLineModel timeLineModel = mFeedList.get(position);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(mContext, Scroll.class);
-                intent1.putExtra("event", mFeedList.get(position).getName());
-                intent1.putExtra("category", mFeedList.get(position).getcName());
-                mContext.startActivity(intent1);
+                if(mFeedList.get(position).getName().equals("0")) {
+                    Toast.makeText(mContext,"No events on this date!!",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent1 = new Intent(mContext, Scroll.class);
+                    intent1.putExtra("event", mFeedList.get(position).getName());
+                    intent1.putExtra("category", mFeedList.get(position).getcName());
+                    mContext.startActivity(intent1);
+                }
 
             }
         });
 
-        TimeLineModel timeLineModel = mFeedList.get(position);
+
 
         if (timeLineModel.getStatus() == OrderStatus.INACTIVE) {
             holder.mTimelineView.setMarker(VectorDrawableUtils.getDrawable(mContext, R.drawable.ic_marker_inactive, android.R.color.darker_gray));

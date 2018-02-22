@@ -42,15 +42,15 @@
         <activity
             android:name=".Scroll.Scroll"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Timeline.TimeLineActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!--
@@ -85,7 +85,6 @@
             android:configChanges="orientation|screenSize"
             android:launchMode="singleInstance"
             android:screenOrientation="portrait">
-
         </activity>
         <activity
             android:name=".Registration.Registration"
@@ -96,27 +95,28 @@
         <activity
             android:name=".Scroll.EventRegistration"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Feed.FeedActivity"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
-            android:launchMode="singleInstance">
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Gallery.Gallery_activity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance"
+            android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Notification.Notifications"
-            android:launchMode="singleInstance"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait">
         </activity>
 
@@ -151,14 +151,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Error.Error"
-                  android:launchMode="singleInstance">
+        <activity
+            android:name=".Error.Error"
+            android:launchMode="singleInstance">
         </activity>
-        <activity android:name=".AboutUs.AboutUs"
-                  android:launchMode="singleInstance">
+        <activity
+            android:name=".AboutUs.AboutUs"
+            android:launchMode="singleInstance">
         </activity>
-        <activity android:name=".Devs.Dev"
-                  android:launchMode="singleInstance">
+        <activity
+            android:name=".Devs.Dev"
+            android:launchMode="singleInstance">
+        </activity>
+        <activity android:name=".IntroSlider.IntroSlider">
         </activity>
     </application>
 
