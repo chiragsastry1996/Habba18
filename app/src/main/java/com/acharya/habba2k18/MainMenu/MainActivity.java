@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         resideMenu = new ResideMenu(this);
-        resideMenu.setBackground(R.mipmap.bgimage);
+        resideMenu.setBackground(R.mipmap.back);
         resideMenu.attachToActivity(this);
         // resideMenu.setMenuListener(menuListener);
         resideMenu.setScaleValue(0.6f);
@@ -230,6 +230,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         99);
                             }
                         }
+
+//                        Toast.makeText(getApplicationContext(),"under development",Toast.LENGTH_LONG).show();
 
 
                     }

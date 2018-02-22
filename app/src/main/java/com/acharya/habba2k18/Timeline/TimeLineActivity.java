@@ -74,9 +74,9 @@ public class TimeLineActivity extends AppCompatActivity {
         setContentView(R.layout.activity_timeline);
 
         final Display display = getWindowManager().getDefaultDisplay();
-        taptargetcalheight = display.getHeight()/1.3f;
-        taptargetnotiheight =display.getHeight()/2.5f;
-        taptargetnotiwidth = display.getWidth()/2;
+        taptargetcalheight = display.getHeight()/3f; //height of the top taptargetview
+        taptargetnotiheight =display.getHeight()/1.7f;//height of the bottom taptargetview
+        taptargetnotiwidth = display.getWidth()/2.2f;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -90,9 +90,9 @@ public class TimeLineActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         final Rect TapTargetbutton1 = new Rect(0,0,0,0);
-        TapTargetbutton1.offset((int) taptargetnotiwidth,(int) taptargetnotiheight);
+        TapTargetbutton1.offset((int) taptargetnotiwidth,(int) taptargetcalheight);
         final Rect TapTargetbutton2 = new Rect(0,0,0,0);
-        TapTargetbutton2.offset(display.getWidth()/2, (int) taptargetcalheight);
+        TapTargetbutton2.offset(display.getWidth()/5, (int) taptargetnotiheight);
 
         final TapTargetSequence sequence = new TapTargetSequence(this)
                 .targets(
@@ -100,7 +100,7 @@ public class TimeLineActivity extends AppCompatActivity {
                         .dimColor(android.R.color.black)
                         .outerCircleColor(R.color.colorAccent)
                         .targetCircleColor(android.R.color.black)
-                        .targetRadius(50)
+                        .targetRadius(120)
                                 .transparentTarget(true)
                         .textColor(android.R.color.black)
                                 .cancelable(false)
@@ -131,6 +131,7 @@ public class TimeLineActivity extends AppCompatActivity {
 
                     }
                 });
+
         SharedPreferences settings = getSharedPreferences(PREFS_TIMELINE,0);
         if(settings.getBoolean("my_first_time",true))
         {

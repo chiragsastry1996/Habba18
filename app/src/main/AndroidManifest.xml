@@ -23,16 +23,19 @@
         <activity
             android:name=".MainMenu.MainActivity"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".Events.Event"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".CardView.CardView"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
@@ -40,12 +43,14 @@
             android:name=".Scroll.Scroll"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Timeline.TimeLineActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <!--
@@ -78,32 +83,39 @@
         <activity
             android:name=".Maps.MapsActivity"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait">
+
         </activity>
         <activity
             android:name=".Registration.Registration"
             android:configChanges="orientation|screenSize"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Scroll.EventRegistration"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Feed.FeedActivity"
             android:configChanges="orientation|screenSize"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:launchMode="singleInstance">
         </activity>
         <activity
             android:name=".Gallery.Gallery_activity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
+            android:launchMode="singleInstance"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity
             android:name=".Notification.Notifications"
+            android:launchMode="singleInstance"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
         </activity>
@@ -131,6 +143,7 @@
 
         <activity
             android:name=".Test.Test"
+            android:launchMode="singleInstance"
             android:theme="@style/Theme.AppCompat.Translucent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -138,11 +151,14 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Error.Error">
+        <activity android:name=".Error.Error"
+                  android:launchMode="singleInstance">
         </activity>
-        <activity android:name=".AboutUs.AboutUs">
+        <activity android:name=".AboutUs.AboutUs"
+                  android:launchMode="singleInstance">
         </activity>
-        <activity android:name=".Devs.Dev">
+        <activity android:name=".Devs.Dev"
+                  android:launchMode="singleInstance">
         </activity>
     </application>
 

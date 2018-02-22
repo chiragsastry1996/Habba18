@@ -93,7 +93,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //URL to return all the location in the database
         url = "http://acharyahabba.in/habba18/location.php";
         new GetContacts().execute();
-        //Execute GET Request
+
 
         mViewPager = (ViewPager) findViewById(R.id.maps_view_pager);
         mapsAdapter = new MapsAdapter(getSupportFragmentManager());
@@ -135,6 +135,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 String name = Test.eventList.get(pos).get(1);
                 if (mapList.get(name).size() != 0) {
                     for (int j = 0; j < mapList.get(name).size(); j++) {
+
+
 
                         mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
@@ -361,11 +363,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             String lat =  eventdetails.getString("lat");
                             String lang =  eventdetails.getString("lang");
 
-                            ArrayList<String> contact = new ArrayList<>();
-                            contact.add(name);
-                            contact.add(lat);
-                            contact.add(lang);
-                            details.add(contact);
+                            if(!(name.length() == 0 || lat.length() == 0 || lang.length() == 0)) {
+                                ArrayList<String> contact = new ArrayList<>();
+                                contact.add(name);
+                                contact.add(lat);
+                                contact.add(lang);
+                                details.add(contact);
+                            }
+
+
 
                         }
                         mapList.put(Test.eventList.get(j).get(1), details);
@@ -411,23 +417,23 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 @Override
                 public void run() {
 
-//                    if(first_time){
-//
-//                        String name = Test.eventList.get(0).get(1);
-//                        if (mapList.get(name).size() != 0) {
-//                            for (int j = 0; j < mapList.get(name).size(); j++) {
-//                                mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
-//                                        .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
-//                                mMarkerA.setTitle(mapList.get(name).get(j).get(0));
-//                                mMarkerA.setIcon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(mapList.get(name).get(j).get(0))));
-//                                System.out.println("Arjun " + mapList.get(name));
-//                            }
-//
-//                        }
-//
-//                        first_time = false;
-//
-//                    }
+                    if(first_time){
+
+                        String name = Test.eventList.get(0).get(1);
+                        if (mapList.get(name).size() != 0) {
+                            for (int j = 0; j < mapList.get(name).size(); j++) {
+                                mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
+                                        .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
+                                mMarkerA.setTitle(mapList.get(name).get(j).get(0));
+                                mMarkerA.setIcon(BitmapDescriptorFactory.fromBitmap(iconFactory.makeIcon(mapList.get(name).get(j).get(0))));
+                                System.out.println("Arjun " + mapList.get(name));
+                            }
+
+                        }
+
+                        first_time = false;
+
+                    }
 
                 }
 
