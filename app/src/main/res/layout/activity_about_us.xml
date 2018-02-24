@@ -5,18 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.acharya.habba2k18.AboutUs.AboutUs">
+    tools:context="com.acharya.habbaregistration.AboutUs.AboutUs">
 
     <TextView
         android:id="@+id/title"
-        android:text="akjsdfhksjdhf"
-        android:gravity="center"
-        android:textSize="25sp"
-        android:textColor="@android:color/white"
         android:layout_width="match_parent"
         android:layout_height="250dp"
         android:background="@drawable/background_gradient"
-        android:textAlignment="center"/>
+        android:gravity="center"
+        android:text="akjsdfhksjdhf"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"/>
 
     <android.support.v4.view.ViewPager
         android:id="@+id/view_pager_aboutus"
@@ -25,5 +25,50 @@
         android:layout_marginTop="190dp">
 
     </android.support.v4.view.ViewPager>
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:minHeight="?attr/actionBarSize"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_alignParentBottom="true"
+        android:background="#8b8b8b8b"
+        android:layout_width="match_parent"
+        android:layout_height="55dp">
+
+        <ImageView
+            android:id="@+id/facebook"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/facebook" />
+        <ImageView
+            android:id="@+id/instagram"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/instagram" />
+        <ImageView
+            android:id="@+id/snapchat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/snapchat" />
+        <ImageView
+            android:id="@+id/twitter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:srcCompat="@drawable/twitter" />
+
+    </android.support.v7.widget.Toolbar>
 
 </RelativeLayout>

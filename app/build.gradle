@@ -4,12 +4,12 @@ android {
     compileSdkVersion 27
     buildToolsVersion "27.0.0"
     defaultConfig {
-        applicationId "com.acharya.habba2k18"
+        applicationId "com.acharya.habbaregistration"
         minSdkVersion 17
         targetSdkVersion 27
         renderscriptTargetApi 27
         renderscriptSupportModeEnabled true
-        versionCode 1
+        versionCode 9
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }

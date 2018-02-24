@@ -6,12 +6,14 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".Timeline.TimeLineActivity"
+                android:background="@android:color/transparent"
     tools:showIn="@layout/activity_timeline">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:padding="10dp"
         android:clipToPadding="false"/>
 

@@ -16,13 +16,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="center"
-            android:src="@drawable/background_gradient"/>
+            android:src="@drawable/background_gradient1_rect"/>
 
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:src="@drawable/dance"
+            android:src="@drawable/notification"
             android:scaleX="0.4"
             android:scaleY="0.4"/>
 

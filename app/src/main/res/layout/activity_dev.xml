@@ -6,16 +6,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_gradient"
-    tools:context="com.acharya.habba2k18.Devs.Dev">
+    tools:context="com.acharya.habbaregistration.Devs.Dev">
 
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Developers"
-        android:textSize="50sp"
+        android:textSize="40sp"
         android:id="@+id/texdev"
         android:gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:textColor="@android:color/background_light" />
 
 
@@ -158,69 +159,6 @@
                         android:onClick="mail"
                         android:tag="aditya.das8.ad@gmail.com"/>
 
-                </RelativeLayout>
-
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:id="@+id/c3"
-                android:background="@android:color/transparent"
-                app:cardBackgroundColor="#70000000">
-
-                <com.github.mmin18.widget.RealtimeBlurView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:realtimeBlurRadius="100dp"
-                    app:realtimeOverlayColor="@android:color/transparent"/>
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:background="@android:color/transparent"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingLeft="5dp"
-                    >
-
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:src="@drawable/raghav"
-                        android:id="@+id/face3"
-                        android:background="@android:color/transparent" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Raghav C.S\nApp Developer\nInformation Science"
-                        android:layout_centerVertical="true"
-                        android:textColor="@android:color/background_light"
-                        android:layout_toEndOf="@+id/face3"
-                        android:background="@android:color/transparent"
-                        />
-
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        app:srcCompat="@drawable/callerblue"
-                        android:layout_centerVertical="true"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="10dp"
-                        android:id="@+id/imageView3"
-                        android:background="@android:color/transparent"
-                        android:onClick="call"
-                        android:tag="9740358104"/>
-                    <ImageView
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:layout_toStartOf="@id/imageView3"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/mail"
-                        android:onClick="mail"
-                        android:tag="csraghav7@gmail.com"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -427,7 +365,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/hrushi"
+                        android:src="@drawable/ashwin"
                         android:background="@android:color/transparent"
                         android:id="@+id/face7"/>
 
@@ -451,7 +389,7 @@
                         android:id="@+id/imageView7"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9538757478"/>
+                        android:tag="9663574422"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -459,7 +397,70 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/mail"
                         android:onClick="mail"
-                        android:tag="hrushikeshchoudary@gmail.com"/>
+                        android:tag="d3fkonmusic@gmail.com"/>
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/c3"
+                android:background="@android:color/transparent"
+                app:cardBackgroundColor="#70000000">
+
+                <com.github.mmin18.widget.RealtimeBlurView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:realtimeBlurRadius="100dp"
+                    app:realtimeOverlayColor="@android:color/transparent"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingLeft="5dp"
+                    >
+
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@drawable/raghav"
+                        android:id="@+id/face3"
+                        android:background="@android:color/transparent" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Raghav Chengad\nWeb Developer\nInformation Science"
+                        android:layout_centerVertical="true"
+                        android:textColor="@android:color/background_light"
+                        android:layout_toEndOf="@+id/face3"
+                        android:background="@android:color/transparent"
+                        />
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        app:srcCompat="@drawable/callerblue"
+                        android:layout_centerVertical="true"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:id="@+id/imageView3"
+                        android:background="@android:color/transparent"
+                        android:onClick="call"
+                        android:tag="9740358104"/>
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_toStartOf="@id/imageView3"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/mail"
+                        android:onClick="mail"
+                        android:tag="csraghav7@gmail.com"/>
                 </RelativeLayout>
 
             </android.support.v7.widget.CardView>
@@ -488,7 +489,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/nikhil"
+                        android:src="@drawable/rajat"
                         android:background="@android:color/transparent"
                         android:id="@+id/face8"/>
 
@@ -511,7 +512,7 @@
                         android:id="@+id/imageView8"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9738863810"/>
+                        android:tag="7417352894"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -519,7 +520,7 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/mail"
                         android:onClick="mail"
-                        android:tag="nktalwar15@gmail.com"/>
+                        android:tag="rajat.beis.15@acharya.ac.in"/>
 
                 </RelativeLayout>
 
@@ -549,7 +550,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/nikhil"
+                        android:src="@drawable/ananth"
                         android:background="@android:color/transparent"
                         android:id="@+id/face9"/>
 
@@ -572,7 +573,7 @@
                         android:id="@+id/imageView9"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9738863810"/>
+                        android:tag="8277172590"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -580,7 +581,7 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/mail"
                         android:onClick="mail"
-                        android:tag="nktalwar15@gmail.com"/>
+                        android:tag="ananth.becs.14@acharya.ac.in"/>
 
                 </RelativeLayout>
 
@@ -610,7 +611,7 @@
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
-                        android:src="@drawable/nikhil"
+                        android:src="@drawable/prashanth"
                         android:background="@android:color/transparent"
                         android:id="@+id/face10"/>
 
@@ -633,7 +634,7 @@
                         android:id="@+id/imageView10"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9738863810"/>
+                        android:tag="8546805196"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -641,7 +642,7 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/mail"
                         android:onClick="mail"
-                        android:tag="nktalwar15@gmail.com"/>
+                        android:tag="prashanth.beis.15@acharya.ac.in"/>
 
                 </RelativeLayout>
 

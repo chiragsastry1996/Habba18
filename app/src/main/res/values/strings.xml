@@ -34,10 +34,71 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="last"><![CDATA[-->>]]></string>
     <string name="jump3"><![CDATA[>]]></string>
-    <string name="middle">o</string>
+    <string name="middle">O</string>
     <string name="back3"><![CDATA[<]]></string>
     <string name="first"><![CDATA[<<--]]></string>
     <string name="title_activity_maps2">Map</string>
-    <string name="About_Acharya">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="About_Habba">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <string name="About_Acharya">\n" Nurturing Aspirations Supporting Growth "\n
+
+\nThe Sanskrit word "Acharya", which means "TEACHER", epitomizes the quintessential values of our institution, where traditional respect for teachers is of paramount importance. At our 28th year, we at Acharya Institutes, Bangalore are proud to be the choice of students from around the world.\n\n
+
+\nGrowing Stature of Acharya\n\n
+
+\n 120 acres of WiFi Campus
+\n 13 Educational Institutions
+\n 15 research centers
+\n Nearly 100 programs in over 50 Academic Streams
+\n Over 12,000 students for 70 countries
+\n 1000+ teaching, technical and administration staff
+\n Affiliated to VTU, BU, RGUHS and KSLU
+\n Approved by AICTE, Council of Architecture, KSNC, INC, NCTE, PCI and Bar Council of India
+\n NBA, NAAC accredited
+\n Technical and Academic association with leading industry and corporate
+\n Collaboration with many academic and research organizations
+
+We are –\n
+A student centric campus that attracts over 4000 aspiring youth each year from across the globe.\n
+We have –\n
+An atmosphere of academic excellence that draws best teaching faculty into it\n
+We instill –\n
+Time tested values in grooming youth into responsible human beings\n
+We create –\n
+An encouraging and competitive environment that enables academic growth \n\n
+
+Our Motto\n\n
+
+"Nurturing Aspirations Supporting Growth"\n\n
+
+Our Vision\n\n
+
+"Acharya Institutes, Committed to the cause of value-based education in all disciplines, envisions itself as a fountainhead of innovative human enterprise, with inspirational initiatives for Academic Excellence"</string>
+    <string name="About_Habba">Arguably called the mother of all fests, Acharya Habba is the
+annual techno-cultural fest organized by Acharya Institutes,
+Bangalore. Spanning over a duration of a month, it draws about
+25,000+ students from more than 300 colleges across
+Karnataka. Home to a multi-ethnicity crowd, the campus offers
+a host of opportunities for various groups from various
+interests to come together and be a part of the biggest fest in
+Bangalore. A strong minded group of individuals join hands to
+organize the 60+ events that span across a period of one
+month. Be it Music, Dance, Dramatics or Fashion, we got it all!
+More than a decade old, Habba commands respect and is a
+major crowd puller for all colleges in Karnataka. With its wide
+variety of events and shows, it has something for everyone’s
+taste and talent. Also on its attractive “resume”, is the honor of
+being a launch pad to many celebrities and artistes and
+continues to be a fan favorite for people to see their celebrities
+perform and interact live. Not only that, we are also home to
+one of the hottest and most happening music nights. The
+exciting line ups of one of the best EDM artists in their fields
+brings in thousands of people to watch and dance to the
+exhilarating atmosphere Habba provides. Habba promises to be
+an engaging experience for people of all ages and passions.
+There’s something for everyone who is a part of Habba, not
+matter what the magnitude of contribution is. That’s the
+
+beauty of Acharya Habba. The most awaited fest of Bangalore is
+here and it never disappoints!</string>
+    <string name="left_arrow"><![CDATA[<<]]></string>
+    <string name="right_arrow"><![CDATA[>>]]></string>
 </resources>

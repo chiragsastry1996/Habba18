@@ -36,16 +36,18 @@
                     android:id="@+id/event_name"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
                     android:textColor="@color/white"
                     android:textSize="@dimen/feed_item_profile_name"
+                    android:layout_marginBottom="5dp"
                     android:textStyle="bold"/>
 
                 <TextView
                     android:id="@+id/message_notification"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:autoLink="web"
-
                     android:textColor="@color/white"/>
 
             </LinearLayout>

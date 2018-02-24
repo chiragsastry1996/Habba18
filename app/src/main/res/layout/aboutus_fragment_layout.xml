@@ -19,7 +19,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:realtimeBlurRadius="100dp"
-            app:realtimeOverlayColor="#3cb0b0b0"/>
+            app:realtimeOverlayColor="#8d8d8d8d"/>
 
 
         <ImageView
@@ -29,7 +29,8 @@
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="?attr/actionBarSize">
 
 
             <LinearLayout
@@ -42,8 +43,9 @@
                 <TextView
                     android:id="@+id/body"
                     android:textColor="@android:color/white"
-                    android:paddingTop="15dp"
+                    android:paddingTop="18dp"
                     android:layout_width="wrap_content"
+                    android:textSize="16dp"
                     android:layout_height="match_parent"
                     android:layout_alignParentStart="true"
                     android:layout_below="@+id/title"/>

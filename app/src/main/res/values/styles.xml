@@ -3,7 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Base.Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#66ffff</item>
+        <item name="colorPrimary">#ffffff</item>
         <item name="colorPrimaryDark">#3399ff</item>
         <item name="colorAccent">#330066</item>
         <item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>

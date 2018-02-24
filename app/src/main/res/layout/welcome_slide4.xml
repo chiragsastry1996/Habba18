@@ -15,26 +15,30 @@
 
         <TextView
             android:id="@+id/title_intro"
-            android:text="You are good to go!!!"
+            android:text="done!!"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAllCaps="true"
+            android:textSize="25sp"
+            android:layout_marginBottom="20dp"
             />
 
         <ImageView
             android:id="@+id/image_intro"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@mipmap/ic_launcher_round"/>
+            android:src="@drawable/slider_done"/>
 
 
         <TextView
             android:id="@+id/title_body"
-            android:text="blaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
-                aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+            android:layout_marginTop="20dp"
+            android:text="You are good to go!!!"
             android:textColor="@android:color/white"
             android:layout_width="wrap_content"
             android:textAlignment="center"
+            android:textSize="18sp"
             android:layout_height="wrap_content"/>
 
     </LinearLayout>

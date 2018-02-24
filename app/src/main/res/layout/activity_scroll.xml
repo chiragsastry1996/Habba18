@@ -208,13 +208,14 @@
                                 android:layout_alignParentBottom="true"
                                 android:layout_toEndOf="@id/textView7"
                                 android:layout_toRightOf="@id/textView7"
-                                android:src="@mipmap/ic_launcher"/>
+                                android:src="@drawable/callerblue"/>
 
                             <ImageView
                                 android:id="@+id/whatsapp_button"
+                                android:layout_marginLeft="5dp"
                                 android:layout_width="25dp"
                                 android:layout_height="25dp"
-                                android:src="@mipmap/ic_launcher_round"
+                                android:src="@drawable/whatsapp"
                                 android:layout_alignParentBottom="true"
                                 android:layout_toEndOf="@id/callerbut"
                                 android:layout_toRightOf="@id/callerbut"/>
@@ -277,15 +278,15 @@
                                 android:text="Venue"
                                 android:textColor="@android:color/white"
                                 android:textSize="20sp"/>
-
                             <ImageView
                                 android:id="@+id/button_navigate"
                                 android:layout_width="25dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_height="25dp"
                                 android:layout_alignParentBottom="true"
                                 android:layout_toEndOf="@id/textView11"
                                 android:layout_toRightOf="@id/textView11"
-                                android:src="@mipmap/ic_launcher"/>
+                                android:src="@drawable/map"/>
 
                         </RelativeLayout>
 

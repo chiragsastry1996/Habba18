@@ -1,39 +1,39 @@
 {
   "project_info": {
-    "project_number": "125526335019",
-    "firebase_url": "https://habba-2k18.firebaseio.com",
-    "project_id": "habba-2k18",
-    "storage_bucket": "habba-2k18.appspot.com"
+    "project_number": "378959478937",
+    "firebase_url": "https://habbaregistration.firebaseio.com",
+    "project_id": "habbaregistration",
+    "storage_bucket": "habbaregistration.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:125526335019:android:074dd840b1d14ca9",
+        "mobilesdk_app_id": "1:378959478937:android:5e819c45ee2a3a0c",
         "android_client_info": {
-          "package_name": "com.acharya.habba2k18"
+          "package_name": "com.acharya.habbaregistration"
         }
       },
       "oauth_client": [
         {
-          "client_id": "125526335019-22lvoo230hk4u2j4dgkol6kvn61ro1qf.apps.googleusercontent.com",
+          "client_id": "378959478937-jrtm44uh88jeide8o1kr15hdqcqm2ieh.apps.googleusercontent.com",
           "client_type": 3
         },
         {
-          "client_id": "125526335019-h1178if3ekl4v890tj7j6s50l8tkbje8.apps.googleusercontent.com",
-          "client_type": 3
-        },
-        {
-          "client_id": "125526335019-30fc1u735uhk80bsvrpufa4ttpv2kqm9.apps.googleusercontent.com",
+          "client_id": "378959478937-ajpr6r2560u1g647gjapp416dpf6g1p5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.acharya.habba2k18",
+            "package_name": "com.acharya.habbaregistration",
             "certificate_hash": "93f7d32fdef2bb445f89a3d5ef7191e03b153700"
           }
+        },
+        {
+          "client_id": "378959478937-nas5p0ijj09tjr5fqinomr4qo9eblvus.apps.googleusercontent.com",
+          "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBeTHSobAkknyt6i8OcP6JJST0cujof9SE"
+          "current_key": "AIzaSyDZMD76BmE86Hv5CaTWX8Co4TYJR7TlTMg"
         }
       ],
       "services": {
@@ -41,11 +41,16 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "378959478937-jrtm44uh88jeide8o1kr15hdqcqm2ieh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
-          "status": 1
+          "status": 2
         }
       }
     }
