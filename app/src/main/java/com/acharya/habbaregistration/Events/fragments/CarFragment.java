@@ -56,7 +56,12 @@ public class CarFragment extends Fragment{
         final String name = Test.eventList.get(position).get(1);
                 carName.setText(name);
 
-        String numberOfEvents = String.valueOf(Test.subcatList.get(name).size());
+        String numberOfEvents = "0";
+        try {
+            numberOfEvents = String.valueOf(Test.subcatList.get(name).size());
+        } catch (Exception e){
+            //Don nothing
+        }
         if(Integer.parseInt(numberOfEvents)<10)
                 eventNumber.setText("0"+numberOfEvents + " Events");
         else eventNumber.setText(numberOfEvents + " Events");

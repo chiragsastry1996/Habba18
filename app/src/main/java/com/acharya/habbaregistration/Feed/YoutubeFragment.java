@@ -66,7 +66,7 @@ public class YoutubeFragment extends Fragment {
             public void onInitializationFailure(Provider provider, YouTubeInitializationResult error) {
                 // YouTube error
                 String errorMessage = error.toString();
-                Toast.makeText(getActivity(), errorMessage, Toast.LENGTH_LONG).show();
+
                 Log.d("errorMessage:", errorMessage);
             }
         });

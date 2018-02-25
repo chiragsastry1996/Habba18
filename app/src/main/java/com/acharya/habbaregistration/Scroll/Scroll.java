@@ -18,7 +18,6 @@ import com.acharya.habbaregistration.R;
 import com.acharya.habbaregistration.Test.Test;
 import com.acharya.habbaregistration.Timeline.TimeLineActivity;
 import com.bumptech.glide.Glide;
-import com.google.firebase.analytics.FirebaseAnalytics;
 
 public class Scroll extends AppCompatActivity {
     public String eventname,category;
@@ -39,9 +38,8 @@ public class Scroll extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_scroll);
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -58,6 +56,7 @@ public class Scroll extends AppCompatActivity {
                 Intent activityChangeIntent = new Intent(Scroll.this, EventRegistration.class);
                 activityChangeIntent.putExtra("event", name);
                 activityChangeIntent.putExtra("amount", amount);
+                overridePendingTransitionExit();
                 startActivity(activityChangeIntent);
             }
         });
@@ -147,10 +146,17 @@ public class Scroll extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+        overridePendingTransition(R.anim.slide_from_left,R.anim.slide_to_right);
         super.onBackPressed();
         Intent i8 = new Intent(Scroll.this, TimeLineActivity.class);
+        overridePendingTransitionExit();
         startActivity(i8);
         finish();
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
     }

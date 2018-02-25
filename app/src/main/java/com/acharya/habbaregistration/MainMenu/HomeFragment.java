@@ -3,14 +3,20 @@ package com.acharya.habbaregistration.MainMenu;
 import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +32,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.signature.MediaStoreSignature;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.special.ResideMenu.ResideMenu;
@@ -44,7 +53,6 @@ public class HomeFragment extends Fragment {
     private CarouselView carouselView;
     Button left, right;
     private static final String REGISTER_URL = "http://acharyahabba.in/habba18/firebase/register.php";
-
     private String[] sampleImages = {"http://acharyahabba.in/habba18/images/sliders1.jpg",
             "http://acharyahabba.in/habba18/images/sliders2.jpg",
             "http://acharyahabba.in/habba18/images/sliders3.jpg",
@@ -54,6 +62,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         parentView = inflater.inflate(R.layout.home, container, false);
 
+        final Display display = getActivity().getWindowManager().getDefaultDisplay();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             // Create channel to show notifications.
@@ -73,8 +82,11 @@ public class HomeFragment extends Fragment {
                     99);
         }
 
+
+
         setUpViews();
         return parentView;
+
 
     }
 
@@ -139,6 +151,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
     }
 
     private void registerToken(String token) {
@@ -153,7 +166,7 @@ public class HomeFragment extends Fragment {
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                // Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
+
                 Log.e("error",s);
             }
 

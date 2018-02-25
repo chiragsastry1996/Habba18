@@ -5,17 +5,16 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
-import com.acharya.habbaregistration.Devs.Dev;
+import com.acharya.habbaregistration.Error.Error;
 import com.acharya.habbaregistration.Events.HttpHandler;
 import com.acharya.habbaregistration.MainMenu.MainActivity;
 import com.acharya.habbaregistration.R;
@@ -29,8 +28,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.widget.Toast.LENGTH_LONG;
-
 public class FeedActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private List<Feed> feedList;
@@ -43,6 +40,7 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_feed);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -94,6 +92,7 @@ public class FeedActivity extends AppCompatActivity {
             if(connection == true && dbchange == true) {
                 try {
                     HttpHandler sh = new HttpHandler();
+                    deleteFile("FeedCache");
                     String jsonStr = sh.makeServiceCall(url);
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("FeedCache", jsonStr);
                 } catch (Exception e) {
@@ -133,15 +132,6 @@ public class FeedActivity extends AppCompatActivity {
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
-                        }
-                    });
 
                 }
             } else {
@@ -149,10 +139,11 @@ public class FeedActivity extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "No data available!\nPlease switch on your internet",
-                                LENGTH_LONG)
-                                .show();
+                        Intent intent = new Intent(FeedActivity.this, Error.class);
+                        intent.putExtra("error_title","No Data Available");
+                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                        startActivity(intent);
+                        finish();
                     }
                 });
 
@@ -187,11 +178,18 @@ public class FeedActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             Intent i8 = new Intent(FeedActivity.this, MainActivity.class);
+            overridePendingTransitionExit();
             startActivity(i8);
             finish();
         } else {
             getSupportFragmentManager().popBackStack();
         }
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 }

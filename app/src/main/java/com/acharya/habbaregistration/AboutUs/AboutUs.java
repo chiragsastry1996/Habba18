@@ -1,5 +1,6 @@
 package com.acharya.habbaregistration.AboutUs;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -20,11 +21,14 @@ public class AboutUs extends AppCompatActivity {
     ViewPager mViewPager;
     TextView title;
     AboutUsAdapter aboutUsAdapter;
+    String url = "https://www.youtube.com/user/acharya7317";
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_about_us);
 
         getSupportActionBar().hide();
@@ -73,6 +77,8 @@ public class AboutUs extends AppCompatActivity {
         final ImageView instagram= (ImageView) findViewById(R.id.instagram);
         final ImageView snapchat= (ImageView) findViewById(R.id.snapchat);
         final ImageView twitter= findViewById(R.id.twitter);
+        final ImageView youtube = findViewById(R.id.youtube);
+        final ImageView email = findViewById(R.id.email);
         facebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -119,13 +125,44 @@ public class AboutUs extends AppCompatActivity {
                 }
             }
         });
+        youtube.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=null;
+                try {
+                    intent =new Intent(Intent.ACTION_VIEW);
+                    intent.setPackage("com.google.android.youtube");
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                } catch (ActivityNotFoundException e) {
+                    intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(url));
+                    startActivity(intent);
+                }
+            }
+        });
+        email.setOnClickListener(new View.OnClickListener() {
+                                     @Override
+                                     public void onClick(View view) {
+                                         Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                                                 "mailto","habba@acharya.ac.in", null));
+                                         startActivity(Intent.createChooser(emailIntent, "Send email..."));
+                                     }
+                                 }
+        );
     }
 
     @Override
     public void onBackPressed() {
         Intent i8 = new Intent(AboutUs.this, MainActivity.class);
+        overridePendingTransitionExit();
         startActivity(i8);
         finish();
     }
-
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+    }
 }

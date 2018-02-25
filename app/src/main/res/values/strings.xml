@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Habba 18</string>
+    <string name="app_name">Habba 2018</string>
     <string name="car_image">car_image</string>
     <string name="action_settings">Settings</string>
     <string name="action_add_favourite">Add to Favourites</string>
@@ -101,4 +101,6 @@ beauty of Acharya Habba. The most awaited fest of Bangalore is
 here and it never disappoints!</string>
     <string name="left_arrow"><![CDATA[<<]]></string>
     <string name="right_arrow"><![CDATA[>>]]></string>
+    <string name="swipe_right">SWIPE RIGHT\nIN MAIN MENU</string>
+    <string name="swipe_left">SWIPE LEFT\nIN MAIN MENU</string>
 </resources>

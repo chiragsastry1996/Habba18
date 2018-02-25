@@ -81,8 +81,8 @@ public class ScrollFragment extends Fragment{
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getActivity(), EventRegistration.class);
-                intent.putExtra("event",name);
-                intent.putExtra("amount",amount);
+                intent.putExtra("event",ScrollViewPager.scrollEvents.get(position).get(1));
+                intent.putExtra("amount",ScrollViewPager.scrollEvents.get(position).get(4));
                 startActivity(intent);
             }
         });

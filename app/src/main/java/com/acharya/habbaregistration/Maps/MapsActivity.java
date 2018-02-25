@@ -2,8 +2,11 @@ package com.acharya.habbaregistration.Maps;
 
 import android.Manifest;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Rect;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.Uri;
@@ -13,8 +16,10 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -26,6 +31,9 @@ import com.acharya.habbaregistration.MainMenu.MainActivity;
 import com.acharya.habbaregistration.R;
 import com.acharya.habbaregistration.Test.ReadWriteJsonFileUtils;
 import com.acharya.habbaregistration.Test.Test;
+import com.getkeepsafe.taptargetview.TapTarget;
+import com.getkeepsafe.taptargetview.TapTargetSequence;
+import com.getkeepsafe.taptargetview.TapTargetView;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -49,7 +57,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static android.widget.Toast.LENGTH_LONG;
 import static com.acharya.habbaregistration.R.id.map;
 
 
@@ -64,7 +71,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     LocationRequest mLocationRequest;
     GoogleApiClient mGoogleApiClient;
     public static int pos = 0;
-    public static boolean connection = false,first_time = true;
+    public static boolean connection = false, first_time = true;
     Location mLastLocation;
     Marker mCurrLocationMarker;
     Marker mMarkerA;
@@ -73,14 +80,15 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public String url;
     public static String geid, glat, glang, gevent;
     private static long back_pressed;
-    public static HashMap<String,ArrayList<ArrayList<String>>> mapList;
+    public static HashMap<String, ArrayList<ArrayList<String>>> mapList;
     private static int uid;
     public int i = 0;
-
+    final String PREFS_MAPS = "MyMapsFile";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionExit();
         setContentView(R.layout.activity_maps);
 
         final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
@@ -88,12 +96,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
+        getSupportActionBar().hide();
 
         iconFactory = new IconGenerator(getApplicationContext());
         //Array spinnerlist to Store all the details of the contact
-        mapList= new HashMap<>();
+        mapList = new HashMap<>();
         //URL to return all the location in the database
         url = "http://acharyahabba.in/habba18/location.php";
         new GetContacts().execute();
@@ -106,7 +116,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mViewPager.setOffscreenPageLimit(3);
 
         mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override public void transformPage(View page, float position) {
+            @Override
+            public void transformPage(View page, float position) {
                 page.setScaleX(0.9f - Math.abs(position * 0.3f));
                 page.setScaleY(0.9f - Math.abs(position * 0.3f));
                 page.setAlpha(1.0f - Math.abs(position * 0.5f));
@@ -133,7 +144,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             public void onPageSelected(int position) {
 
 //                mapList.clear();
-                if(position > 0)
+                if (position > 0)
                     mGoogleMap.clear();
                 pos = position;
                 String name = Test.eventList.get(pos).get(1);
@@ -141,7 +152,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                     for (int j = 0; j < mapList.get(name).size(); j++) {
 
 
-
+                        LatLng latLng1 = new LatLng(13.0845, 77.4851);
+                        mGoogleMap.moveCamera(CameraUpdateFactory.newLatLng(latLng1));
+                        mGoogleMap.animateCamera(CameraUpdateFactory.zoomTo(17));
                         mMarkerA = mGoogleMap.addMarker(new MarkerOptions()
                                 .position(new LatLng(Double.parseDouble(mapList.get(name).get(j).get(1)), Double.parseDouble(mapList.get(name).get(j).get(2)))).draggable(true));
                         mMarkerA.setTitle(mapList.get(name).get(j).get(0));
@@ -162,10 +175,56 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mViewPager.setAdapter(mapsAdapter);
 
 
-     //   getSupportActionBar().setTitle("Map Location Activity");
+        //   getSupportActionBar().setTitle("Map Location Activity");
 
         mapFrag = (SupportMapFragment) getSupportFragmentManager().findFragmentById(map);
         mapFrag.getMapAsync(this);
+        final Display display = getWindowManager().getDefaultDisplay();
+        final Rect mapguide = new Rect(0, 0, 0, 0);
+        mapguide.offset(display.getWidth() / 2, display.getHeight() / 2);
+        TapTargetSequence sequence = new TapTargetSequence(this).target(
+                TapTarget.forBounds(mapguide, "Tap on the Events", "Tap on the event markers to navigate from your current location")
+                        .dimColor(android.R.color.holo_blue_dark)  //don't remove android
+                        .outerCircleColor(R.color.tap)
+                        .targetCircleColor(R.color.colorPrimaryDark)
+                        .transparentTarget(true)
+                        .targetRadius(80)
+                        .cancelable(false)
+                        .textColor(R.color.white)
+        ).listener(new TapTargetSequence.Listener() {
+            @Override
+            public void onSequenceFinish() {
+                //do nothing
+            }
+
+            @Override
+            public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
+                Log.d("TapTargetView", "Clicked on" + lastTarget.id());
+            }
+
+            @Override
+            public void onSequenceCanceled(TapTarget lastTarget) {
+                final AlertDialog dialog = new AlertDialog.Builder(MapsActivity.this)
+                        .setTitle("Uh oh")
+                        .setMessage("You canceled the sequence")
+                        .setPositiveButton("Oops", null).show();
+                TapTargetView.showFor(dialog,
+                        TapTarget.forView(dialog.getButton(DialogInterface.BUTTON_POSITIVE), "Uh oh!", "You canceled the sequence at step " + lastTarget.id())
+                                .cancelable(false)
+                                .tintTarget(false), new TapTargetView.Listener() {
+                            @Override
+                            public void onTargetClick(TapTargetView view) {
+                                super.onTargetClick(view);
+                                dialog.dismiss();
+                            }
+                        });
+            }
+        });
+        SharedPreferences settings = getSharedPreferences(PREFS_MAPS, 0);
+        if (settings.getBoolean("my_first_time", true)) {
+            sequence.start();
+            settings.edit().putBoolean("my_first_time", false).apply();
+        }
 
     }
 
@@ -253,7 +312,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         //Hide Action Bar
-       // getSupportActionBar().hide();
+        // getSupportActionBar().hide();
 
         //Setting Marker to my current Location
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
@@ -279,7 +338,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (!(marker.getTitle().equals("me"))) {
 
                     Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
-                            Uri.parse("http://maps.google.com/maps?saddr="+location.getLatitude()+","+location.getLongitude()+"&daddr="+marker.getPosition().latitude+","+marker.getPosition().longitude));
+                            Uri.parse("http://maps.google.com/maps?saddr=" + location.getLatitude() + "," + location.getLongitude() + "&daddr=" + marker.getPosition().latitude + "," + marker.getPosition().longitude));
                     intent.setClassName("com.google.android.apps.maps", "com.google.android.maps.MapsActivity");
                     startActivity(intent);
 
@@ -292,9 +351,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
             }
         });
-
-
-
 
 
         //stop location updates
@@ -329,16 +385,11 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         //GET request done in background
         @Override
         protected Void doInBackground(Void... arg0) {
-            if(connection == true ) {
+            if (connection == true) {
                 try {
                     HttpHandler sh = new HttpHandler();
+                    deleteFile("MapsCache");
                     String jsonStr = sh.makeServiceCall(url);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),"Maps fetched",Toast.LENGTH_SHORT).show();
-                        }
-                    });
 
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("MapsCache", jsonStr);
                 } catch (Exception e) {
@@ -364,10 +415,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                         for (int i = 0; i < event.length(); i++) {
                             JSONObject eventdetails = event.getJSONObject(i);
                             String name = eventdetails.getString("name");
-                            String lat =  eventdetails.getString("lat");
-                            String lang =  eventdetails.getString("lang");
+                            String lat = eventdetails.getString("lat");
+                            String lang = eventdetails.getString("lang");
 
-                            if(!(name.length() == 0 || lat.length() == 0 || lang.length() == 0)) {
+                            if (!(name.length() == 0 || lat.length() == 0 || lang.length() == 0)) {
                                 ArrayList<String> contact = new ArrayList<>();
                                 contact.add(name);
                                 contact.add(lat);
@@ -376,42 +427,22 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             }
 
 
-
                         }
                         mapList.put(Test.eventList.get(j).get(1), details);
                     }
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
-                        }
-                    });
 
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Intent intent = new Intent(MapsActivity.this, Error.class);
-                    intent.putExtra("error_title","No Maps Data Available");
-                    intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                    intent.putExtra("error_title", "No Maps Data Available");
+                    intent.putExtra("error_message", "No Cache or Data availble\nPlease switch on your Internet and open the app again");
                     startActivity(intent);
                     finish();
 
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                LENGTH_LONG)
-                                .show();
-                    }
-                });
 
             }
 
@@ -423,14 +454,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             super.onPostExecute(result);
 
 
-
             //On UI Thread, perform Front-End tasks
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
 
                     try {
-                        if(first_time){
+                        if (first_time) {
 
                             String name = Test.eventList.get(0).get(1);
                             if (mapList.get(name).size() != 0) {
@@ -446,10 +476,10 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                             first_time = false;
 
                         }
-                    }catch (Exception e) {
+                    } catch (Exception e) {
                         Intent intent = new Intent(MapsActivity.this, Error.class);
-                        intent.putExtra("error_title","No Maps Data Available");
-                        intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                        intent.putExtra("error_title", "No Maps Data Available");
+                        intent.putExtra("error_message", "No Cache or Data availble\nPlease switch on your Internet and open the app again");
                         startActivity(intent);
                         finish();
                     }
@@ -465,16 +495,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onBackPressed() {
-        //On backpress twice within 2000 milliseconds, perform logout
-        if (back_pressed + 2000 > System.currentTimeMillis()) {
 
-            first_time = true;
-            Intent i8 = new Intent(MapsActivity.this, MainActivity.class);
-            startActivity(i8);
-            finish();
-        } else {
-            Toast.makeText(getApplicationContext(), "Press back again to go to Main Menu ", Toast.LENGTH_SHORT).show();
-            back_pressed = System.currentTimeMillis();
-        }
+
+        first_time = true;
+        Intent i8 = new Intent(MapsActivity.this, MainActivity.class);
+        overridePendingTransitionExit();
+        startActivity(i8);
+        finish();
+
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

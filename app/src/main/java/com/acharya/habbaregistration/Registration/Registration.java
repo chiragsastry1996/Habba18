@@ -1,9 +1,13 @@
 package com.acharya.habbaregistration.Registration;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -18,9 +22,11 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.acharya.habbaregistration.Error.Error;
 import com.acharya.habbaregistration.Events.HttpHandler;
 import com.acharya.habbaregistration.MainMenu.MainActivity;
 import com.acharya.habbaregistration.R;
+import com.acharya.habbaregistration.Test.ReadWriteJsonFileUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,10 +36,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-
-import static android.widget.Toast.LENGTH_LONG;
-
-
 public class Registration extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -41,9 +43,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     private EditText editTextUsername;
     private EditText editTextPhone;
     private EditText editTextEmail;
-    private RelativeLayout relative_layout;
+    private CoordinatorLayout coordinatorLayout;
     Spinner s1, s2;
     TextView textView, amountTextview;
+    private boolean connection = false;
     private static String url = null;
     private static String url1 = null;
 
@@ -55,6 +58,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionExit();
         setContentView(R.layout.activity_registration);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -66,14 +70,20 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
+        connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
+
         url = "http://acharyahabba.in/habba18/events.php";
         spinnerlist = new ArrayList<>();
-        new GetContacts().execute();
+        if(connection){
+            new GetContacts().execute();
+        }
 
-        relative_layout = (RelativeLayout)findViewById(R.id.relative_layout);
+
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextUsername = (EditText) findViewById(R.id.editTextUserName);
         editTextPhone = (EditText) findViewById(R.id.editPhone);
+        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coordinator);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         s1 = (Spinner) findViewById(R.id.spinner);
         s2 = (Spinner) findViewById(R.id.spinner2);
@@ -91,7 +101,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         if (v == buttonRegister) {
-            registerUser();
+            if(connection) {
+                registerUser();
+            }
+            else {
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "No Internet Connection\nPlease switch on internet to register", Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+            }
+
         }
     }
 
@@ -144,7 +163,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, s, Snackbar.LENGTH_LONG);
+
+                snackbar.show();
             }
 
             @Override
@@ -184,16 +207,29 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
+
+
+            try {
+                HttpHandler sh = new HttpHandler();
+                String jsonStr = sh.makeServiceCall(url);
+                deleteFile("MainEvent");
+                new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("MainEvent", jsonStr);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String jsonString = null;
+
+            jsonString = new ReadWriteJsonFileUtils(getApplicationContext()).readJsonFileData("MainEvent");
 
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url);
 
-            Log.e(TAG, "Response from url: " + jsonStr);
 
-            if (jsonStr != null) {
+            Log.e(TAG, "Response from url: " + jsonString);
+
+            if (jsonString != null) {
                 try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    JSONObject jsonObj = new JSONObject(jsonString);
 
                     JSONArray contacts = jsonObj.getJSONArray("result");
                     for (int i = 0; i < contacts.length(); i++) {
@@ -208,25 +244,18 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
+                            Intent intent = new Intent(Registration.this, Error.class);
+                            intent.putExtra("error_title","No Data Available");
+                            intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                            startActivity(intent);
+                            finish();
                         }
                     });
 
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                LENGTH_LONG)
-                                .show();
-                    }
-                });
+
 
             }
 
@@ -294,16 +323,30 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         @Override
         protected Void doInBackground(Void... arg0) {
-            HttpHandler sh = new HttpHandler();
+
+
+
+            try {
+                HttpHandler sh = new HttpHandler();
+                String jsonStr = sh.makeServiceCall(url1);
+                deleteFile("SubEvent");
+                new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("SubEvent", jsonStr);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            String jsonString = null;
+
+            jsonString = new ReadWriteJsonFileUtils(getApplicationContext()).readJsonFileData("SubEvent");
 
             // Making a request to url and getting response
-            String jsonStr = sh.makeServiceCall(url1);
 
-            Log.e(TAG, "Response from url: " + jsonStr);
 
-            if (jsonStr != null) {
+            Log.e(TAG, "Response from url: " + jsonString);
+
+            if (jsonString != null) {
                 try {
-                    JSONObject jsonObj = new JSONObject(jsonStr);
+                    JSONObject jsonObj = new JSONObject(jsonString);
 
                     JSONArray contacts = jsonObj.getJSONArray("result1");
                     for(int i = 0; i<contacts.length(); i++) {
@@ -316,28 +359,12 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
-                        }
-                    });
+
 
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                LENGTH_LONG)
-                                .show();
-                    }
-                });
+
 
             }
 
@@ -369,9 +396,16 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onBackPressed() {
         Intent i8 = new Intent(Registration.this, MainActivity.class);
+        overridePendingTransitionExit();
         startActivity(i8);
         finish();
 
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 }

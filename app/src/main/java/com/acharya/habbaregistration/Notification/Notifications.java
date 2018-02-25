@@ -11,8 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
+import com.acharya.habbaregistration.Error.Error;
 import com.acharya.habbaregistration.Events.HttpHandler;
 import com.acharya.habbaregistration.MainMenu.MainActivity;
 import com.acharya.habbaregistration.R;
@@ -25,8 +25,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import static android.widget.Toast.LENGTH_LONG;
-
 public class Notifications extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private List<NotificationModel> NotificationList;
@@ -38,6 +36,7 @@ public class Notifications extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_notifications);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -119,26 +118,17 @@ public class Notifications extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
+                            Intent intent = new Intent(Notifications.this, Error.class);
+                            intent.putExtra("error_title","No Data Available");
+                            intent.putExtra("error_message","No Cache or Data availble\nPlease switch on your Internet and open the app again");
+                            startActivity(intent);
+                            finish();
                         }
                     });
 
                 }
             } else {
                 Log.e(TAG, "Couldn't get json from server.");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Toast.makeText(getApplicationContext(),
-                                "Couldn't get json from server. Check LogCat for possible errors!",
-                                LENGTH_LONG)
-                                .show();
-                    }
-                });
-
             }
 
             return null;
@@ -168,9 +158,16 @@ public class Notifications extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i8 = new Intent(Notifications.this, MainActivity.class);
+        overridePendingTransitionExit();
         startActivity(i8);
         finish();
 
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 }

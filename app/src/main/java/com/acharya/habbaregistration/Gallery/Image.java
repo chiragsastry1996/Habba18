@@ -2,10 +2,6 @@ package com.acharya.habbaregistration.Gallery;
 
 import java.io.Serializable;
 
-/**
- * Created by adity on 1/24/2018.
- */
-
 public class Image implements Serializable {
     private String name;
     private String small, medium, large;

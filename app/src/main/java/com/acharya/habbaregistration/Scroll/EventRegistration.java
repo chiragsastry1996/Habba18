@@ -1,9 +1,13 @@
 package com.acharya.habbaregistration.Scroll;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +31,8 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
     private EditText editTextUsername;
     private EditText editTextPhone;
     private EditText editTextEmail;
+    private boolean connection = false;
+    private CoordinatorLayout coordinatorLayout;
     private ImageView imageView;
 
 
@@ -51,6 +57,10 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
 
         getSupportActionBar().hide();
 
+        final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
+        connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
+
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
         Intent mIntent = getIntent();
@@ -67,7 +77,7 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
         editTextUsername = (EditText) findViewById(R.id.editTextUserName);
         editTextPhone = (EditText) findViewById(R.id.editPhone);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
-
+        coordinatorLayout = (CoordinatorLayout)findViewById(R.id.coordinator);
         textView = (TextView) findViewById(R.id.textView);
         eventTextview = (TextView)findViewById(R.id.event);
         amountTextview = (TextView)findViewById(R.id.amount);
@@ -85,47 +95,58 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
 
     }
 
+
     @Override
     public void onClick(View v) {
         if (v == buttonRegister) {
-            registerUser();
+            if(connection) {
+                registerUser();
+            }
+            else {
+                Snackbar snackbar = Snackbar
+                        .make(coordinatorLayout, "No Internet Connection\nPlease switch on internet to register", Snackbar.LENGTH_LONG);
+
+                snackbar.show();
+            }
+
         }
     }
 
     private void registerUser() {
 
-        String name = editTextName.getText().toString().trim().toLowerCase();
-        if (editTextName.getText().toString().trim().equals("")) {
-            editTextName.setError("First name is required!");
+            String name = editTextName.getText().toString().trim().toLowerCase();
+            if (editTextName.getText().toString().trim().equals("")) {
+                editTextName.setError("First name is required!");
 
-            editTextName.setHint("Please enter your name");
-        }
-        String clg = editTextUsername.getText().toString().trim().toLowerCase();
+                editTextName.setHint("Please enter your name");
+            }
+            String clg = editTextUsername.getText().toString().trim().toLowerCase();
 
-        if (editTextUsername.getText().toString().trim().equals("")) {
-            editTextUsername.setError("College name is required!");
+            if (editTextUsername.getText().toString().trim().equals("")) {
+                editTextUsername.setError("College name is required!");
 
-            // editTextUsername.setHint("Please enter your College's name");
-        }
-        String number = editTextPhone.getText().toString().trim().toLowerCase();
+                // editTextUsername.setHint("Please enter your College's name");
+            }
+            String number = editTextPhone.getText().toString().trim().toLowerCase();
 
-        if (editTextPhone.getText().toString().trim().equals("")) {
-            editTextPhone.setError("Phone number is required!");
+            if (editTextPhone.getText().toString().trim().equals("")) {
+                editTextPhone.setError("Phone number is required!");
 
-            // editTextPhone.setHint("Please enter your phone number");
-        }
+                // editTextPhone.setHint("Please enter your phone number");
+            }
 
-        String email = editTextEmail.getText().toString().trim().toLowerCase();
+            String email = editTextEmail.getText().toString().trim().toLowerCase();
 
-        if (editTextEmail.getText().toString().trim().equals("")) {
-            editTextEmail.setError("Email address is required!");
+            if (editTextEmail.getText().toString().trim().equals("")) {
+                editTextEmail.setError("Email address is required!");
 
-            editTextEmail.setHint("Please enter your email address");
-        }
+                editTextEmail.setHint("Please enter your email address");
+            }
 
-        String sctg = event;
+            String sctg = event;
 
-        register(name, clg, number, email, sctg);
+            register(name, clg, number, email, sctg);
+
     }
 
     private void register(String name, String clg, String number, String email, String sctg) {
@@ -141,7 +162,14 @@ public class EventRegistration extends AppCompatActivity implements View.OnClick
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
-                Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+              //  Toast.makeText(getApplicationContext(), s, Toast.LENGTH_LONG).show();
+                if(connection) {
+                    Snackbar snackbar = Snackbar
+                            .make(coordinatorLayout, s, Snackbar.LENGTH_LONG);
+
+                    snackbar.show();
+                }
+
             }
 
             @Override

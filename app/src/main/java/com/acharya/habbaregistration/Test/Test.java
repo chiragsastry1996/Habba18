@@ -134,6 +134,7 @@ public class Test extends AppCompatActivity {
             if(connection) {
                 try {
                     HttpHandler sh = new HttpHandler();
+                    deleteFile("EventVersion");
                     String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/dbchange.php");
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("EventVersion", jsonStr);
                 } catch (Exception e) {
@@ -165,15 +166,7 @@ public class Test extends AppCompatActivity {
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
-                        }
-                    });
+
 
                 }
             } else {
@@ -213,7 +206,7 @@ public class Test extends AppCompatActivity {
                     String current_mainc_version = dbChangeList.get("mainc");
                     if((!mainc_version.equals(current_mainc_version)||(!subcat_version.equals(current_subcat_version)))){
                         dbchange = true;
-                        Toast.makeText(getApplicationContext(),"DB changed",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Churning new events",Toast.LENGTH_SHORT).show();
                     }
                     new GetEvents().execute();
                     System.out.println("ssss "+ mainc_version+subcat_version+current_mainc_version+current_subcat_version);
@@ -250,15 +243,17 @@ public class Test extends AppCompatActivity {
             if(connection == true && dbchange == true) {
                 try {
                     HttpHandler sh = new HttpHandler();
-                    String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/events.php");
+                    deleteFile("EventsCache");
+                    String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/events2.php");
+                    new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("EventsCache", jsonStr);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),"Event fetched",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"App is feeling refreshed",Toast.LENGTH_SHORT).show();
                         }
                     });
 
-                    new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("EventCache", jsonStr);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -266,13 +261,14 @@ public class Test extends AppCompatActivity {
 
             String jsonString = null;
 
-            jsonString = new ReadWriteJsonFileUtils(getApplicationContext()).readJsonFileData("EventCache");
+            jsonString = new ReadWriteJsonFileUtils(getApplicationContext()).readJsonFileData("EventsCache");
 
 
             Log.e(TAG, "Response from url: " + jsonString);
 
             if (jsonString != null) {
                 try {
+
                     JSONObject jsonObj = new JSONObject(jsonString);
 
 
@@ -295,15 +291,7 @@ public class Test extends AppCompatActivity {
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
-                        }
-                    });
+
 
                 }
             } else {
@@ -356,11 +344,12 @@ public class Test extends AppCompatActivity {
             if(connection == true && dbchange == true) {
                 try {
                     HttpHandler sh = new HttpHandler();
+                    deleteFile("MainCache");
                     String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/json.php");
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),"Subcat fetched",Toast.LENGTH_SHORT).show();
+
                         }
                     });
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("MainCache", jsonStr);
@@ -432,15 +421,7 @@ public class Test extends AppCompatActivity {
 
                 } catch (final JSONException e) {
                     Log.e(TAG, "Json parsing error: " + e.getMessage());
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),
-                                    "Json parsing error: " + e.getMessage(),
-                                    LENGTH_LONG)
-                                    .show();
-                        }
-                    });
+
 
                 }
             } else {

@@ -2,9 +2,7 @@ package com.acharya.habbaregistration.Timeline;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.graphics.Color;
-import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,23 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Toast;
 
-
-import com.acharya.habbaregistration.Events.Event;
 import com.acharya.habbaregistration.MainMenu.MainActivity;
 import com.acharya.habbaregistration.R;
 import com.acharya.habbaregistration.Test.Test;
 import com.acharya.habbaregistration.Timeline.model.OrderStatus;
 import com.acharya.habbaregistration.Timeline.model.Orientation;
 import com.acharya.habbaregistration.Timeline.model.TimeLineModel;
-import com.getkeepsafe.taptargetview.TapTarget;
-import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import com.prolificinteractive.materialcalendarview.OnDateSelectedListener;
@@ -41,8 +32,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-
-import static android.widget.Toast.LENGTH_LONG;
 
 
 public class TimeLineActivity extends AppCompatActivity {
@@ -58,19 +47,13 @@ public class TimeLineActivity extends AppCompatActivity {
     public int size, oldDate = 1, oldMonth = 1, oldYear = 1971;
     public String url, url1 = "http://acharyahabba.in/habba18/datespan.php", tmstmp;
     ArrayList<ArrayList<String>> timelineList;
-    final String PREFS_TIMELINE = "MyTimeline";
-    float taptargetcalheight;
-    float taptargetnotiheight;
-    float taptargetnotiwidth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_timeline);
 
-        final Display display = getWindowManager().getDefaultDisplay();
-        taptargetcalheight = display.getHeight()/3f; //height of the top taptargetview
-        taptargetnotiheight =display.getHeight()/1.7f;//height of the bottom taptargetview
-        taptargetnotiwidth = display.getWidth()/2.2f;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -83,57 +66,7 @@ public class TimeLineActivity extends AppCompatActivity {
 
 
 //        final Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//            getSupportActionBar().hide();
-
-        final Rect TapTargetbutton1 = new Rect(0,0,0,0);
-        TapTargetbutton1.offset((int) taptargetnotiwidth,(int) taptargetcalheight);
-        final Rect TapTargetbutton2 = new Rect(0,0,0,0);
-        TapTargetbutton2.offset(display.getWidth()/5, (int) taptargetnotiheight);
-
-        final TapTargetSequence sequence = new TapTargetSequence(this)
-                .targets(
-                        TapTarget.forBounds(TapTargetbutton1,"Notice the dates with dots","These days have events on those dates")
-                        .dimColor(android.R.color.black)
-                        .outerCircleColor(R.color.colorAccent)
-                        .targetCircleColor(android.R.color.black)
-                        .targetRadius(120)
-                                .transparentTarget(true)
-                        .textColor(android.R.color.black)
-                                .cancelable(false)
-                        .id(1),
-                        TapTarget.forBounds(TapTargetbutton2,"Tap here to see the feed","These cards give you a small sneak peak of the events of the day")
-                                .dimColor(android.R.color.black)
-                                .outerCircleColor(R.color.colorAccent)
-                                .targetCircleColor(android.R.color.black)
-                                .targetRadius(50)
-                                .transparentTarget(true)
-                                .textColor(android.R.color.black)
-                                .cancelable(false)
-                                .id(2)
-
-                ).listener(new TapTargetSequence.Listener() {
-                    @Override
-                    public void onSequenceFinish() {
-
-                    }
-
-                    @Override
-                    public void onSequenceStep(TapTarget lastTarget, boolean targetClicked) {
-
-                    }
-
-                    @Override
-                    public void onSequenceCanceled(TapTarget lastTarget) {
-
-                    }
-                });
-
-        SharedPreferences settings = getSharedPreferences(PREFS_TIMELINE,0);
-        if(settings.getBoolean("my_first_time",true))
-        {
-            sequence.start();
-            settings.edit().putBoolean("my_first_time",false).apply();
-        }
+//        setSupportActionBar(toolbar);
 
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -178,7 +111,7 @@ public class TimeLineActivity extends AppCompatActivity {
 
                 String searchDate = date.getYear() + "-" + mon + "-" + dat;
 
-//                toolbar.setTitle(searchDate);
+            //    toolbar.setTitle(searchDate);
 
 
                 for (int i = 0; i < Test.timeline.size(); i++) {
@@ -273,18 +206,24 @@ public class TimeLineActivity extends AppCompatActivity {
                 Timestamp timestamp = new Timestamp(parsedTimeStamp.getTime());
                 timestampsList.add(timestamp);
             } catch (Exception e) {
-                Toast.makeText(getApplicationContext(), "Some events don't have time\nUpload time in events", LENGTH_LONG).show();
+
                 Log.e("TimeStap parsing error", e.toString());
             }
 
         }
 
-        for (int j = 0; j < timestampsList.size(); j++) {
+        try {
+            for (int j = 0; j < timestampsList.size(); j++) {
 
-            calendarDays.add(CalendarDay.from(timestampsList.get(j).getYear() - 100 + 2000, timestampsList.get(j).getMonth(), timestampsList.get(j).getDate()));
+                calendarDays.add(CalendarDay.from(timestampsList.get(j).getYear() - 100 + 2000, timestampsList.get(j).getMonth(), timestampsList.get(j).getDate()));
 
+            }
+            calendarView.addDecorator(new EventDecorator(Color.parseColor("#c8ad00"), calendarDays));
+        }catch (Exception e){
+            //Do nothing
         }
-        calendarView.addDecorator(new EventDecorator(Color.parseColor("#c8ad00"), calendarDays));
+
+
 
     }
 
@@ -304,23 +243,35 @@ public class TimeLineActivity extends AppCompatActivity {
 
     private void setDataListItems() {
 
-        if (timelineList.size() < 1) {
-            mDataList.add(new TimeLineModel("No events at this date", "0000-00-00 00:00", OrderStatus.COMPLETED, "0", "0"));
-        } else if (timelineList.size() > 0) {
-            for (int j = 0; j < timelineList.size(); j++) {
-                mDataList.add(new TimeLineModel(timelineList.get(j).get(0), timelineList.get(j).get(1), OrderStatus.ACTIVE, timelineList.get(j).get(2), timelineList.get(j).get(3)));
-                System.out.println("ttttt " + timelineList.get(j).get(0) + timelineList.get(j).get(1));
-            }
+        try{
+            if (timelineList.size() < 1) {
+                mDataList.add(new TimeLineModel("No events at this date", "0000-00-00 00:00", OrderStatus.COMPLETED, "0", "0"));
+            } else if (timelineList.size() > 0) {
+                for (int j = 0; j < timelineList.size(); j++) {
+                    mDataList.add(new TimeLineModel(timelineList.get(j).get(0), timelineList.get(j).get(1), OrderStatus.ACTIVE, timelineList.get(j).get(2), timelineList.get(j).get(3)));
+                    System.out.println("ttttt " + timelineList.get(j).get(0) + timelineList.get(j).get(1));
+                }
 
+            }
+        }catch (Exception e) {
+            //Do nothing
         }
+
     }
 
     @Override
     public void onBackPressed() {
         Intent i8 = new Intent(TimeLineActivity.this, MainActivity.class);
+        overridePendingTransitionExit();
         startActivity(i8);
         finish();
 
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 }

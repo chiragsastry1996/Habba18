@@ -29,45 +29,85 @@
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:minHeight="?attr/actionBarSize"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
         android:layout_alignParentBottom="true"
         android:background="#8b8b8b8b"
         android:layout_width="match_parent"
         android:layout_height="55dp">
 
-        <ImageView
-            android:id="@+id/facebook"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@drawable/facebook" />
-        <ImageView
-            android:id="@+id/instagram"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@drawable/instagram" />
-        <ImageView
-            android:id="@+id/snapchat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@drawable/snapchat" />
-        <ImageView
-            android:id="@+id/twitter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            app:srcCompat="@drawable/twitter" />
+            android:orientation="horizontal"
+            android:weightSum="1.2">
+
+            <ImageView
+                android:id="@+id/facebook"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="0.2"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:srcCompat="@drawable/facebook"/>
+
+            <ImageView
+                android:id="@+id/instagram"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="0.2"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:srcCompat="@drawable/instagram"/>
+
+            <ImageView
+                android:id="@+id/snapchat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="0.2"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:srcCompat="@drawable/snapchat"/>
+
+            <ImageView
+                android:id="@+id/twitter"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="0.2"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:srcCompat="@drawable/twitter"/>
+
+            <ImageView
+                android:id="@+id/youtube"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_weight="0.2"
+                android:scaleX="0.8"
+                android:scaleY="0.8"
+                app:srcCompat="@drawable/youtube"/>
+
+            <ImageView
+                android:id="@+id/email"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="0.2"
+                app:srcCompat="@drawable/mail" />
+
+        </LinearLayout>
+
+
+
+
 
     </android.support.v7.widget.Toolbar>
 

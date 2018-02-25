@@ -19,6 +19,7 @@ public class Dev extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_dev);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -34,6 +35,7 @@ public class Dev extends AppCompatActivity {
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
             String number = view.getTag().toString();
             callIntent.setData(Uri.parse("tel:"+number));
+
             startActivity(callIntent);
         } catch (ActivityNotFoundException activityException) {
             Toast.makeText(getApplicationContext(), "Call has failed", Toast.LENGTH_LONG).show();
@@ -59,7 +61,14 @@ public class Dev extends AppCompatActivity {
     public void onBackPressed() {
         Intent i8 = new Intent(Dev.this, MainActivity.class);
         startActivity(i8);
+        overridePendingTransitionExit();
         finish();
 
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

@@ -34,7 +34,6 @@ import android.widget.Toast;
 
 import com.acharya.habbaregistration.Registration.Registration;
 import com.acharya.habbaregistration.Timeline.TimeLineActivity;
-import com.google.firebase.analytics.FirebaseAnalytics;
 import com.special.ResideMenu.ResideMenu;
 import com.special.ResideMenu.ResideMenuItem;
 
@@ -43,11 +42,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public static ResideMenu resideMenu;
     private ResideMenuItem itemDeveloper,itemRegister,itemEvents,itemMaps,itemTimeline,itemNotification, itemAboutUs,itemGallery,itemFeed;
     private static long back_pressed;
-
+    //public  static  TapTargetSequence sequence;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        overridePendingTransitionEnter();
+       // final Display display = getWindowManager().getDefaultDisplay();
+
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
@@ -56,10 +58,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         getSupportActionBar().hide();
-        overridePendingTransition(R.anim.slide_in_left_fast,R.anim.slide_out_right_fast);
         setUpMenu();
         if( savedInstanceState == null )
             changeFragment(new HomeFragment());
+     //   sequence = new TapTargetSequence(this);
+
         }
 
     private void setUpMenu() {
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         itemRegister = new ResideMenuItem(this,R.drawable.registration,"Register");
         itemDeveloper = new ResideMenuItem(this,R.drawable.devs,"Devs");
         itemFeed = new ResideMenuItem(this,R.drawable.feed,"Feed");
-        itemAboutUs = new ResideMenuItem(this,R.drawable.about_us,"About Us");
+        itemAboutUs = new ResideMenuItem(this,R.drawable.about_us,"Contact Us");
         itemGallery = new ResideMenuItem(this,R.drawable.gallery,"Gallery");
 
 
@@ -132,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, FeedActivity.class);
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                 }
             }, 200);
@@ -147,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
             Intent intent1 = new Intent(MainActivity.this, Registration.class);
+                    overridePendingTransitionExit();
             intent1.putExtra("event", 0);
             startActivity(intent1);
                 }
@@ -162,7 +167,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, Event.class);
+
                     intent1.putExtra("currentposition", currentposition );
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                     finish();
                 }
@@ -177,6 +184,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, TimeLineActivity.class);
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                 }
             }, 200);
@@ -190,6 +198,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, Gallery_activity.class);
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                 }
             }, 200);
@@ -220,6 +229,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                 } else if (manager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 
                                     Intent intent1 = new Intent(MainActivity.this, MapsActivity.class);
+                                    overridePendingTransitionExit();
                                     startActivity(intent1);
                                 }
                             }
@@ -229,8 +239,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                         99);
                             }
 
-
-//                        Toast.makeText(getApplicationContext(),"under development",Toast.LENGTH_LONG).show();
 
 
                     }
@@ -249,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, Dev.class);
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                 }
             }, 200);
@@ -263,6 +272,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, Notifications.class);
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                 }
             }, 200);
@@ -277,6 +287,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 @Override
                 public void run() {
                     Intent intent1 = new Intent(MainActivity.this, AboutUs.class);
+                    overridePendingTransitionExit();
                     startActivity(intent1);
                 }
             }, 200);
@@ -323,9 +334,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         else
         {
-            Toast.makeText(getApplicationContext(),"Press back again to Close app ",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Press back again to close app ",Toast.LENGTH_SHORT).show();
             back_pressed = System.currentTimeMillis();
+            overridePendingTransitionExit();
         }
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }
 

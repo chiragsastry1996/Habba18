@@ -367,7 +367,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:paddingTop="10dp"
-                            android:text="Price Money:"
+                            android:text="Prize Money:"
                             android:textColor="@android:color/white"
                             android:textSize="16sp"
                             />

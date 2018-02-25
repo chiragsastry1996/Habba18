@@ -43,6 +43,7 @@ public class Gallery_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_gallery);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -132,9 +133,15 @@ public class Gallery_activity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         Intent i8 = new Intent(Gallery_activity.this, MainActivity.class);
+        overridePendingTransitionExit();
         startActivity(i8);
         finish();
 
     }
-
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+    }
 }

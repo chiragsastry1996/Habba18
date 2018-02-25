@@ -1,11 +1,12 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 android:id="@+id/coordinator"
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 tools:context=".Registration.Registration">
 
-    <RelativeLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="250dp">
 
@@ -24,7 +25,13 @@
             android:scaleX="0.6"
             android:scaleY="0.6"/>
 
-    </RelativeLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
+<android.support.design.widget.CoordinatorLayout
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent">
+
+
 
 
 
@@ -45,7 +52,7 @@
                 app:realtimeBlurRadius="100dp"
                 app:realtimeOverlayColor="@android:color/transparent"/>
 
-            <RelativeLayout
+            <android.support.design.widget.CoordinatorLayout
                 android:id="@+id/relative_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -209,12 +216,13 @@
                 </ScrollView>
 
 
-            </RelativeLayout>
+            </android.support.design.widget.CoordinatorLayout>
 
 
 
         </android.support.v7.widget.CardView>
+</android.support.design.widget.CoordinatorLayout>
 
 
 
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

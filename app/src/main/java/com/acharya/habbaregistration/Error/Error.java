@@ -15,6 +15,7 @@ public class Error extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_error);
 
         textView_title = (TextView)findViewById(R.id.message_tittle);
@@ -31,4 +32,8 @@ public class Error extends AppCompatActivity {
         textView_message.setText(error_message);
 
     }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+
 }

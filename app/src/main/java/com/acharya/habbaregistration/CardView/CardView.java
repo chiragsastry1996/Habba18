@@ -36,6 +36,7 @@ public class CardView extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_cardview);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
@@ -150,16 +151,23 @@ public class CardView extends AppCompatActivity {
     @Override
     public void onBackPressed()
     {
-        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_out_right);
+
         if (getSupportFragmentManager().getBackStackEntryCount() == 0) {
             Intent intent1 = new Intent(CardView.this, Event.class);
             intent1.putExtra("currentposition", Integer.parseInt(value.get(5))-1);
             startActivity(intent1);
+            overridePendingTransitionExit();
             finish();
         } else {
             getSupportFragmentManager().popBackStack();
         }
 
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 
 }

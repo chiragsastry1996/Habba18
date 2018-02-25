@@ -33,77 +33,65 @@ public class Event extends AppCompatActivity {
     public int currentposition;
     Button first, three_prev, middle, three_next, last;
     final String PREFS_EVENTS = "MyEventsFile";
-    float taptarget2;
-    float taptarget4;
-    float taptarget5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_event);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
         getSupportActionBar().hide();
-
-
-        final Display display = getWindowManager().getDefaultDisplay();
-        taptarget2 = display.getWidth()/3.5f;
-        taptarget4 = display.getWidth()/1.45f;
-        taptarget5 = display.getWidth()/1.1f;
-        final Rect TapTargetbutton1 = new Rect(0,0,0,0);
-        TapTargetbutton1.offset(display.getWidth()/9,display.getHeight());
-        final Rect TapTargetbutton2 = new Rect(0,0,0,0);
-        TapTargetbutton2.offset((int) taptarget2,display.getHeight());
-        final Rect TapTargetbutton3 = new Rect(0,0,0,0);
-        TapTargetbutton3.offset(display.getWidth()/2,display.getHeight());
-        final Rect TapTargetbutton4 = new Rect(0,0,0,0);
-        TapTargetbutton4.offset((int) taptarget4,display.getHeight());
-        final Rect TapTargetbutton5 = new Rect(0,0,0,0);
-        TapTargetbutton5.offset((int) taptarget5,display.getHeight());
+        first = (Button) findViewById(R.id.first);
+        three_prev = (Button) findViewById(R.id.back3);
+        middle = (Button) findViewById(R.id.middle);
+        three_next = (Button) findViewById(R.id.jump3);
+        last = (Button) findViewById(R.id.last);
         final TapTargetSequence sequence = new TapTargetSequence(this)
                 .targets(
-                        TapTarget.forBounds(TapTargetbutton1,"The First Button", "Click on this to go to the first category")
+                        TapTarget.forView(first,"The First Button", "Click on this to go to the first category")
                         .dimColor(android.R.color.holo_blue_dark)  //don't remove android
-                        .outerCircleColor(R.color.colorAccent)
+                        .outerCircleColor(R.color.tap)
                         .targetCircleColor(R.color.colorPrimaryDark)
-                                .targetRadius(50)
+                                .targetRadius(30)
                         .transparentTarget(true)
                                 .cancelable(false)
-                        .textColor(R.color.colorPrimary)
+                        .textColor(R.color.white)
                         .id(1),
-                        TapTarget.forBounds(TapTargetbutton2,"The Second Button", "Click on this to skip three categories to the left")
+                        TapTarget.forView(three_prev,"The Second Button", "Click on this to skip three categories to the left")
                                 .dimColor(android.R.color.holo_blue_dark)  //don't remove android
-                                .outerCircleColor(R.color.colorAccent)
+                                .outerCircleColor(R.color.tap)
                                 .targetCircleColor(R.color.colorPrimaryDark)
                                 .transparentTarget(true)
-                                .targetRadius(50)
+                                .targetRadius(30)
                                 .cancelable(false)
-                                .textColor(R.color.colorPrimary)
+                                .textColor(R.color.white)
                                 .id(2),
-                        TapTarget.forBounds(TapTargetbutton3,"The Third Button", "Click on this to go to the middle category ")
+                        TapTarget.forView(middle,"The Third Button", "Click on this to go to the middle category ")
                                 .dimColor(android.R.color.holo_blue_dark)  //don't remove android
-                                .outerCircleColor(R.color.colorAccent)
+                                .outerCircleColor(R.color.tap)
                                 .targetCircleColor(R.color.colorPrimaryDark)
                                 .transparentTarget(true)
-                                .targetRadius(50)
+                                .targetRadius(30)
                                 .cancelable(false)
-                                .textColor(R.color.colorPrimary)
+                                .textColor(R.color.white)
                                 .id(3),
-                        TapTarget.forBounds(TapTargetbutton4,"The Fourth Button", "Click on this to skip three categories to the right")
+                        TapTarget.forView(three_next,"The Fourth Button", "Click on this to skip three categories to the right")
                                 .dimColor(android.R.color.holo_blue_dark)  //don't remove android
-                                .outerCircleColor(R.color.colorAccent)
+                                .outerCircleColor(R.color.tap)
                                 .targetCircleColor(R.color.colorPrimaryDark)
                                 .transparentTarget(true)
-                                .targetRadius(50)
+                                .targetRadius(30)
                                 .cancelable(false)
-                                .textColor(R.color.colorPrimary)
+                                .textColor(R.color.white)
                                 .id(4),
-                        TapTarget.forBounds(TapTargetbutton5,"The Fifth Button", "Click on this to go to the last category")
+                        TapTarget.forView(last,"The Fifth Button", "Click on this to go to the last category")
                                 .dimColor(android.R.color.holo_blue_dark)  //don't remove android
-                                .outerCircleColor(R.color.colorAccent)
+                                .outerCircleColor(R.color.tap)
                                 .targetCircleColor(R.color.colorPrimaryDark)
                                 .transparentTarget(true)
-                                .targetRadius(50)
+                                .targetRadius(30)
                                 .cancelable(false)
-                                .textColor(R.color.colorPrimary)
+                                .textColor(R.color.white)
                                 .id(5)
 
                 ).listener(new TapTargetSequence.Listener() {
@@ -134,7 +122,8 @@ public class Event extends AppCompatActivity {
                                     }
                                 });
                     }
-                });  SharedPreferences settings = getSharedPreferences(PREFS_EVENTS, 0);
+                });
+        SharedPreferences settings = getSharedPreferences(PREFS_EVENTS, 0);
         if (settings.getBoolean("my_first_time", true)) {
             sequence.start();
             settings.edit().putBoolean("my_first_time", false).apply();
@@ -176,11 +165,6 @@ public class Event extends AppCompatActivity {
 
         mViewPager.setCurrentItem(currentposition, true);
 
-        first = (Button) findViewById(R.id.first);
-        three_prev = (Button) findViewById(R.id.back3);
-        middle = (Button) findViewById(R.id.middle);
-        three_next = (Button) findViewById(R.id.jump3);
-        last = (Button) findViewById(R.id.last);
 
 //        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 //            @Override
@@ -297,6 +281,13 @@ public class Event extends AppCompatActivity {
     public void onBackPressed() {
         Intent i8 = new Intent(Event.this, MainActivity.class);
         startActivity(i8);
+        overridePendingTransitionExit();
         finish();
+    }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }
 }

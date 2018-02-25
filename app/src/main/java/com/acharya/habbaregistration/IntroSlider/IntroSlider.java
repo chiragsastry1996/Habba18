@@ -27,7 +27,7 @@ public class IntroSlider extends AppCompatActivity {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
-
+        overridePendingTransitionEnter();
         setContentView(R.layout.activity_intro_slider);
 
         getSupportActionBar().hide();
@@ -50,7 +50,9 @@ public class IntroSlider extends AppCompatActivity {
                     mViewPager.setCurrentItem(current);
                 } else {
                     Intent intent = new Intent(IntroSlider.this, MainActivity.class);
+                    overridePendingTransitionExit();
                     startActivity(intent);
+
                     finish();
                 }
             }
@@ -61,4 +63,16 @@ public class IntroSlider extends AppCompatActivity {
     private int getItem(int i) {
         return mViewPager.getCurrentItem() + i;
     }
+    protected void overridePendingTransitionEnter() {
+        overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
+    }
+    protected void overridePendingTransitionExit() {
+        overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
+    }
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
 }
