@@ -24,7 +24,7 @@ public class Scroll extends AppCompatActivity {
     ImageView whatsapp_button,caller_button,navigate_button;
     public int val;
     Button button;
-    TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8;
+    TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8,tv9,tv10;
     ImageView imageView;
     private static String name;
     private static String about;
@@ -34,6 +34,8 @@ public class Scroll extends AppCompatActivity {
     private static String number;
     private static String ename;
     private static String prizemoney;
+    private static String date;
+    private static String time;
     private static String venue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class Scroll extends AppCompatActivity {
             Window w = getWindow(); // in Activity's onCreate() for instance
             w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
+
+        getSupportActionBar().hide();
 
         button = (Button)findViewById(R.id.button3);
         whatsapp_button = findViewById(R.id.whatsapp_button);
@@ -120,6 +124,8 @@ public class Scroll extends AppCompatActivity {
         tv6=(TextView)findViewById(R.id.ename);
         tv7=(TextView)findViewById(R.id.pmoney);
         tv8=(TextView)findViewById(R.id.venue);
+        tv9=(TextView)findViewById(R.id.date);
+        tv10=(TextView)findViewById(R.id.time);
         imageView = (ImageView)findViewById(R.id.imageView);
 
         name = Test.subcatList.get(category).get(eventname).get(1);
@@ -130,6 +136,8 @@ public class Scroll extends AppCompatActivity {
         image = Test.subcatList.get(category).get(eventname).get(2);
         amount = Test.subcatList.get(category).get(eventname).get(4);
         prizemoney = Test.subcatList.get(category).get(eventname).get(9);
+        date = Test.subcatList.get(category).get(eventname).get(10);
+        time = Test.subcatList.get(category).get(eventname).get(14);
         venue = Test.subcatList.get(category).get(eventname).get(11);
 
         tv1.setText(name);
@@ -140,6 +148,8 @@ public class Scroll extends AppCompatActivity {
         tv6.setText(ename);
         tv7.setText(prizemoney);
         tv8.setText(venue);
+        tv9.setText(date);
+        tv10.setText(time);
         Glide.with(getBaseContext()).load(image).into(imageView);
 
     }

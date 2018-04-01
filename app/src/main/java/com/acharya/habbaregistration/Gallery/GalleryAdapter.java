@@ -49,7 +49,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.MyViewHo
         Image image = images.get(position);
 
         Glide.with(mContext).load(image.getMedium())                                                //use the .getMedium url
-                //.thumbnail(0.5f)
+                .thumbnail(0.5f)
                 .apply(new RequestOptions().placeholder(R.drawable.loader)
                 .diskCacheStrategy(DiskCacheStrategy.ALL))
                 .into(holder.thumbnail);

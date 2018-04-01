@@ -7,6 +7,14 @@
                 android:layout_height="wrap_content"
                 tools:context=".Feed.FeedActivity">
 
+    <ProgressBar
+        android:id="@+id/progressBar7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleX="0.1"
+        android:scaleY="0.1"
+       />
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -41,5 +49,7 @@
 
         </android.support.v7.widget.RecyclerView>
     </FrameLayout>
+
+
 
 </RelativeLayout>

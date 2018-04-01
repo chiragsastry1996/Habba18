@@ -38,7 +38,7 @@ public class Test extends AppCompatActivity {
     private static long time;
     ProgressBar progressBar;
     public String url = "http://acharyahabba.in/habba18/json.php";
-    public static boolean connection = false, dbchange = false,glide_complete=false, data_complete = false;
+    public static boolean connection = false, dbchange = false,glide_complete=false, data_complete = false, feedchange = false;
     public static ArrayList<ArrayList<String>> eventList;
     public static HashMap<String,String> dbChangeList;
     public static HashMap<String,HashMap<String,ArrayList<String>>> subcatList;
@@ -135,7 +135,7 @@ public class Test extends AppCompatActivity {
                 try {
                     HttpHandler sh = new HttpHandler();
                     deleteFile("EventVersion");
-                    String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/dbchange.php");
+                    String jsonStr = sh.makeServiceCall("http://acharyahabba.in/habba18/dbchange2.php");
                     new ReadWriteJsonFileUtils(getApplicationContext()).createJsonFileData("EventVersion", jsonStr);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -204,9 +204,12 @@ public class Test extends AppCompatActivity {
 
                     String current_subcat_version = dbChangeList.get("subcat");
                     String current_mainc_version = dbChangeList.get("mainc");
+                    String current_feed_version = dbChangeList.get("feeds");
                     if((!mainc_version.equals(current_mainc_version)||(!subcat_version.equals(current_subcat_version)))){
                         dbchange = true;
-                        Toast.makeText(getApplicationContext(),"Churning new events",Toast.LENGTH_SHORT).show();
+                    }
+                    if(!feeds_version.equals(current_feed_version)) {
+                        feedchange = true;
                     }
                     new GetEvents().execute();
                     System.out.println("ssss "+ mainc_version+subcat_version+current_mainc_version+current_subcat_version);
@@ -249,7 +252,6 @@ public class Test extends AppCompatActivity {
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
-                            Toast.makeText(getApplicationContext(),"App is feeling refreshed",Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -405,6 +407,7 @@ public class Test extends AppCompatActivity {
                             contact.add(venue);
                             contact.add(lat);
                             contact.add(lang);
+                            contact.add(time);
                             details.put(name,contact);
 
                             ArrayList<String> timelist = new ArrayList<String>();

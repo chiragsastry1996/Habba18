@@ -23,7 +23,7 @@ public class ScrollFragment extends Fragment{
     View view;
     Button button;
     ImageView whatsapp_button,caller_button,navigate_button;
-    TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8;
+    TextView tv1,tv2,tv3,tv4,tv5,tv6,tv7,tv8,tv9,tv10;
     ImageView imageView;
     private static String name;
     private static String about;
@@ -32,6 +32,8 @@ public class ScrollFragment extends Fragment{
     private static String image;
     private static String number;
     private static String ename;
+    private static String date;
+    private static String time;
     private static String prizemoney;
     private static String venue;
 
@@ -48,6 +50,8 @@ public class ScrollFragment extends Fragment{
         tv6=(TextView)view.findViewById(R.id.ename);
         tv7=(TextView)view.findViewById(R.id.pmoney);
         tv8=(TextView)view.findViewById(R.id.venue);
+        tv9=(TextView)view.findViewById(R.id.date);
+        tv10=(TextView)view.findViewById(R.id.time);
 
         button = view.findViewById(R.id.button_register);
         whatsapp_button = view.findViewById(R.id.whatsapp_button);
@@ -67,6 +71,9 @@ public class ScrollFragment extends Fragment{
         amount = ScrollViewPager.scrollEvents.get(position).get(4);
         prizemoney = ScrollViewPager.scrollEvents.get(position).get(9);
         venue = ScrollViewPager.scrollEvents.get(position).get(11);
+        date = ScrollViewPager.scrollEvents.get(position).get(10);
+        time = ScrollViewPager.scrollEvents.get(position).get(14);
+
 
         tv1.setText(name);
         tv2.setText(about);
@@ -76,6 +83,8 @@ public class ScrollFragment extends Fragment{
         tv6.setText(ename);
         tv7.setText(prizemoney);
         tv8.setText(venue);
+        tv9.setText(date);
+        tv10.setText(time);
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override

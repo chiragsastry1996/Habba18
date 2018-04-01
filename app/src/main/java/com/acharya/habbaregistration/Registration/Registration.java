@@ -50,6 +50,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
     private static String url = null;
     private static String url1 = null;
 
+    public static ArrayList<String> subspinnerlist,amountlist;
     private Button buttonRegister;
 
     private static final String REGISTER_URL = "http://acharyahabba.in/habba18/register.php";
@@ -75,6 +76,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
         url = "http://acharyahabba.in/habba18/events.php";
         spinnerlist = new ArrayList<>();
+        amountlist = new ArrayList<>();
         if(connection){
             new GetContacts().execute();
         }
@@ -144,8 +146,10 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
             editTextEmail.setHint("Please enter your email address");
         }
-        String ctg = s1.getSelectedItem().toString();
-        String sctg = s2.getSelectedItem().toString();
+        String ctg = " ";
+                ctg= s1.getSelectedItem().toString();
+        String sctg = " ";
+                sctg= s2.getSelectedItem().toString();
 
         register(name, clg, number, email, sctg);
     }
@@ -235,7 +239,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                     for (int i = 0; i < contacts.length(); i++) {
                         JSONObject c = contacts.getJSONObject(i);
                         String name = c.getString("name");
-
+                        if(!(name.equals("Dance")))
                         spinnerlist.add(name);
                     }
 
@@ -272,6 +276,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                 public void run() {
 
                     ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<String>(Registration.this,R.layout.spinner_item, spinnerlist);
+                    spinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                     s1.setAdapter(spinnerAdapter);
 
                    s1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -309,11 +314,11 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    public static ArrayList<String> subspinnerlist;
+
 
 
     private class GetCategory extends AsyncTask<Void, Void, Void> {
-        String amount;
+        String amount = " ";
 
         @Override
         protected void onPreExecute() {
@@ -353,7 +358,7 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
                         JSONObject c = contacts.getJSONObject(i);
                         String name = c.getString("name");
                          amount = c.getString("amount");
-
+                         amountlist.add(amount);
                         subspinnerlist.add(name);
                     }
 
@@ -382,8 +387,22 @@ public class Registration extends AppCompatActivity implements View.OnClickListe
 
                     ArrayAdapter<String> subspinnerAdapter = new ArrayAdapter<String>(getApplicationContext(),
                             R.layout.spinner_item , subspinnerlist);
+                    subspinnerAdapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
                     s2.setAdapter(subspinnerAdapter);
-                    amountTextview.setText(amount);
+
+                    s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                        @Override
+                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                            amountTextview.setText(amountlist.get(position));
+                        }
+
+                        @Override
+                        public void onNothingSelected(AdapterView<?> parent) {
+
+                        }
+                    });
+
+
 
 
                 }

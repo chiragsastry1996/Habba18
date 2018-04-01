@@ -24,7 +24,6 @@ public class AboutUs extends AppCompatActivity {
     String url = "https://www.youtube.com/user/acharya7317";
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,30 +32,31 @@ public class AboutUs extends AppCompatActivity {
 
         getSupportActionBar().hide();
 
-        title = (TextView)findViewById(R.id.title);
+        title = (TextView) findViewById(R.id.title);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             Window w = getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            w.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         }
 
 
-        mViewPager = (ViewPager)findViewById(R.id.view_pager_aboutus);
+        mViewPager = (ViewPager) findViewById(R.id.view_pager_aboutus);
         aboutUsAdapter = new AboutUsAdapter(getSupportFragmentManager());
 
-                mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-                    @Override public void transformPage(View page, float position) {
-                        page.setScaleX(1f - Math.abs(position * 0.3f));
-                        page.setScaleY(1f - Math.abs(position * 0.1f));
-                        page.setAlpha(1.0f - Math.abs(position * 0.5f));
+        mViewPager.setPageTransformer(false, new ViewPager.PageTransformer() {
+            @Override
+            public void transformPage(View page, float position) {
+                page.setScaleX(1f - Math.abs(position * 0.3f));
+                page.setScaleY(1f - Math.abs(position * 0.1f));
+                page.setAlpha(1.0f - Math.abs(position * 0.5f));
             }
         });
 
         mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if(position == 0) title.setText("About Habba");
-                if(position == 1) title.setText("About Acharya");
+                if (position == 0) title.setText("About Habba");
+                if (position == 1) title.setText("About Acharya");
             }
 
             @Override
@@ -73,10 +73,10 @@ public class AboutUs extends AppCompatActivity {
 
         mViewPager.setAdapter(aboutUsAdapter);
 
-        final ImageView facebook= (ImageView) findViewById(R.id.facebook);
-        final ImageView instagram= (ImageView) findViewById(R.id.instagram);
-        final ImageView snapchat= (ImageView) findViewById(R.id.snapchat);
-        final ImageView twitter= findViewById(R.id.twitter);
+        final ImageView facebook = (ImageView) findViewById(R.id.facebook);
+        final ImageView instagram = (ImageView) findViewById(R.id.instagram);
+        final ImageView snapchat = (ImageView) findViewById(R.id.snapchat);
+        final ImageView twitter = findViewById(R.id.twitter);
         final ImageView youtube = findViewById(R.id.youtube);
         final ImageView email = findViewById(R.id.email);
         facebook.setOnClickListener(new View.OnClickListener() {
@@ -86,7 +86,7 @@ public class AboutUs extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://facewebmodal/f?href=https://www.facebook.com/acharya.ac.in"));
                     intent.setPackage("com.facebook.katana");
                     startActivity(intent);
-                } catch(Exception e) {
+                } catch (Exception e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/acharya.ac.in/")));
                 }
             }
@@ -98,7 +98,7 @@ public class AboutUs extends AppCompatActivity {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/habba2018/"));
                     intent.setPackage("com.instagram.android");
                     startActivity(intent);
-                } catch(Exception e) {
+                } catch (Exception e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.instagram.com/habba2018/")));
                 }
             }
@@ -109,7 +109,7 @@ public class AboutUs extends AppCompatActivity {
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("snapchat://add/acharya_habba"));
                     startActivity(intent);
-                } catch(Exception e) {
+                } catch (Exception e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.app.goo.gl/?link=https://play.google.com/store/apps/details?id%3Dcom.snapchat.android%26ddl%3D1%26pcampaignid%3Dweb_ddl_1")));
                 }
             }
@@ -120,7 +120,7 @@ public class AboutUs extends AppCompatActivity {
                 try {
                     Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=" + "acharyahabba"));
                     startActivity(intent);
-                } catch(Exception e) {
+                } catch (Exception e) {
                     startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/acharyahabba?lang=en")));
                 }
             }
@@ -128,9 +128,9 @@ public class AboutUs extends AppCompatActivity {
         youtube.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=null;
+                Intent intent = null;
                 try {
-                    intent =new Intent(Intent.ACTION_VIEW);
+                    intent = new Intent(Intent.ACTION_VIEW);
                     intent.setPackage("com.google.android.youtube");
                     intent.setData(Uri.parse(url));
                     startActivity(intent);
@@ -145,7 +145,7 @@ public class AboutUs extends AppCompatActivity {
                                      @Override
                                      public void onClick(View view) {
                                          Intent emailIntent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                                 "mailto","habba@acharya.ac.in", null));
+                                                 "mailto", "habba@acharya.ac.in", null));
                                          startActivity(Intent.createChooser(emailIntent, "Send email..."));
                                      }
                                  }
@@ -159,9 +159,11 @@ public class AboutUs extends AppCompatActivity {
         startActivity(i8);
         finish();
     }
+
     protected void overridePendingTransitionEnter() {
         overridePendingTransition(R.anim.slide_from_right, R.anim.slide_to_left);
     }
+
     protected void overridePendingTransitionExit() {
         overridePendingTransition(R.anim.slide_from_left, R.anim.slide_to_right);
     }

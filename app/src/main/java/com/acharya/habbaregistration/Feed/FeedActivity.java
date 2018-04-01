@@ -11,14 +11,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ProgressBar;
 
 import com.acharya.habbaregistration.Error.Error;
 import com.acharya.habbaregistration.Events.HttpHandler;
 import com.acharya.habbaregistration.MainMenu.MainActivity;
 import com.acharya.habbaregistration.R;
 import com.acharya.habbaregistration.Test.ReadWriteJsonFileUtils;
+import com.acharya.habbaregistration.Test.Test;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.json.JSONArray;
@@ -33,7 +36,8 @@ public class FeedActivity extends AppCompatActivity {
     private List<Feed> feedList;
     private FeedAdapter feedAdapter;
     private RecyclerView recyclerView;
-    public boolean connection = false, dbchange = true;
+    private ProgressBar progressBar;
+    public boolean connection = false;
     public static android.support.v7.widget.Toolbar toolbar2;
     private static final String url ="http://acharyahabba.in/habba18/feeds.php";
 
@@ -51,6 +55,8 @@ public class FeedActivity extends AppCompatActivity {
         final ConnectivityManager connectivityManager = ((ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE));
         connection = (connectivityManager.getActiveNetworkInfo() != null && connectivityManager.getActiveNetworkInfo().isConnectedOrConnecting());
 
+        progressBar = (ProgressBar)findViewById(R.id.progressBar7);
+        progressBar.setVisibility(View.INVISIBLE);
         toolbar2 = (android.support.v7.widget.Toolbar)findViewById(R.id.toolbar2);
         recyclerView = (RecyclerView) findViewById(R.id.names_list_view);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
@@ -80,6 +86,7 @@ public class FeedActivity extends AppCompatActivity {
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            progressBar.setVisibility(View.VISIBLE);
         }
 
         //GET request done in background
@@ -89,7 +96,7 @@ public class FeedActivity extends AppCompatActivity {
 
             // Making a request to url and getting response
 
-            if(connection == true && dbchange == true) {
+            if(connection == true && Test.feedchange == true) {
                 try {
                     HttpHandler sh = new HttpHandler();
                     deleteFile("FeedCache");
@@ -159,6 +166,7 @@ public class FeedActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
+                    progressBar.setVisibility(View.INVISIBLE);
                     feedList = new ArrayList<>();
 
                     for (int j = 0; j < contactList.size(); j++)

@@ -75,7 +75,7 @@ public class FeedAdapter extends RecyclerView.Adapter<FeedAdapter.MyViewHolder>{
         if(feed.getImage().contains("http://acharyahabba.in/habba18/admin/feeds")){
             holder.relativeLayout.setVisibility(View.GONE);
             holder.playButton.setVisibility(View.GONE);
-            Glide.with(mContext).load(feed.getImage()).apply(new RequestOptions().override(100, 100).placeholder(R.drawable.loader)).into(holder.imageView);
+            Glide.with(mContext).load(feed.getImage()).apply(new RequestOptions().placeholder(R.drawable.loader)).into(holder.imageView);
         }
         else {
             Glide.with(mContext).load("https://img.youtube.com/vi/"+feed.getImage()+"/0.jpg").into(holder.imageView);

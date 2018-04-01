@@ -78,7 +78,7 @@
                         android:id="@+id/imageView"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="8050403084"/>
+                        android:tag="+918050403084"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -149,7 +149,7 @@
                         android:id="@+id/imageView2"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="8861583640"/>
+                        android:tag="+918861583640"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -200,7 +200,7 @@
                         android:id="@+id/imageView4"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="8105440185"/>
+                        android:tag="+918105440185"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -269,7 +269,7 @@
                         android:id="@+id/imageView5"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="7353717705"/>
+                        android:tag="+917353717705"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -329,7 +329,7 @@
                         android:id="@+id/imageView6"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9663218396"/>
+                        android:tag="+919663218396"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -389,7 +389,7 @@
                         android:id="@+id/imageView7"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9663574422"/>
+                        android:tag="+919663574422"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -452,7 +452,7 @@
                         android:id="@+id/imageView3"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="9740358104"/>
+                        android:tag="+919740358104"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -512,7 +512,7 @@
                         android:id="@+id/imageView8"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="7417352894"/>
+                        android:tag="+917417352894"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -573,7 +573,7 @@
                         android:id="@+id/imageView9"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="8277172590"/>
+                        android:tag="+918277172590"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"
@@ -618,7 +618,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Prashant P\nWeb Developer\nComputer Science"
+                        android:text="Prashant P\nWeb Developer\nInformation Science"
                         android:layout_centerVertical="true"
                         android:textColor="@android:color/background_light"
                         android:layout_toEndOf="@+id/face10"
@@ -634,7 +634,7 @@
                         android:id="@+id/imageView10"
                         android:background="@android:color/transparent"
                         android:onClick="call"
-                        android:tag="8546805196"/>
+                        android:tag="+918546805196"/>
                     <ImageView
                         android:layout_width="70dp"
                         android:layout_height="70dp"

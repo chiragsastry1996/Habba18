@@ -80,6 +80,7 @@
                             android:textSize="35sp"
                             android:background="#00000000"
                             android:textAllCaps="false"
+                            android:autoLink="web"
                             android:textColor="@android:color/white"
                             android:paddingBottom="6dp"
                             android:transitionName="text"/>
@@ -115,6 +116,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:paddingTop="20dp"
+                            android:autoLink="web"
                             android:textColor="@android:color/white"
                             android:textSize="15sp"/>
 
@@ -160,6 +162,7 @@
                             android:layout_marginLeft="12dp"
                             android:layout_marginRight="12dp"
                             android:paddingTop="20dp"
+                            android:autoLink="web"
                             android:textColor="@android:color/white"
                             android:textSize="15sp"/>
 
@@ -292,6 +295,59 @@
 
                         <TextView
                             android:id="@+id/venue"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="20dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:color/white"/>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="1dp"
+                        android:background="#00000000"
+                        android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/textView16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="5dp"
+                                android:paddingTop="15dp"
+                                android:text="Date"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp"/>
+
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom|center"
+                            android:layout_marginBottom="6dp"
+                            android:layout_marginLeft="12dp"
+                            android:layout_marginRight="12dp"
+                            android:paddingTop="20dp"
+                            android:textColor="@android:color/white"
+                            android:textSize="15sp"/>
+
+                        <TextView
+                            android:id="@+id/time"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom|center"

@@ -42,8 +42,7 @@
             android:name="com.acharya.habbaregistration.Scroll.Scroll"
             android:configChanges="orientation|screenSize"
             android:launchMode="singleInstance"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name="com.acharya.habbaregistration.Timeline.TimeLineActivity"
